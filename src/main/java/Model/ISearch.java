@@ -1,6 +1,6 @@
 package Model;
 
-public interface ISearcg {
+public interface ISearch {
     void searchByCatergory();
     void searchSpecificItem();
 }
