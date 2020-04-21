@@ -1,4 +1,4 @@
-package Model;
+package Market.Model;
 
 public interface ISearch {
     void searchByCatergory();
