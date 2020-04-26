@@ -1,9 +1,12 @@
 package Market.Model;
 
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class alien {
 
@@ -18,21 +21,5 @@ public class alien {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
     }
 }
