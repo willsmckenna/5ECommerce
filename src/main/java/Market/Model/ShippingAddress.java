@@ -6,10 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 @Data
 @Entity
-public class ShippingAddress {
+public class ShippingAddress implements Serializable {
     @Id
     @JoinColumn(name = "user_id")
     @ManyToOne
