@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "user")
+@Table(name = "App")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements Serializable {
     @Id
@@ -33,3 +33,4 @@ public abstract class User implements Serializable {
     public void logout() {}
     public abstract void manageProfile();
 }
+
