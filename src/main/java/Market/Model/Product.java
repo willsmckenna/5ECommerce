@@ -23,4 +23,8 @@ public abstract class Product implements Serializable {
     private double price;
     private String description;
     private Blob image;
+
+    public void removeProduct(){}
+    public void updateProduct(){}
+
 }
