@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class User {
     @Id
     private Long UID;
