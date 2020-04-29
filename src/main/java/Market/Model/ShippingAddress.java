@@ -1,21 +1,19 @@
 package Market.Model;
 
 import lombok.Data;
-import lombok.ToString;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Data
 @Entity
-@ToString
-public class ShippingAddress implements Serializable {
+public class ShippingAddress {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ShippingAddressID;
-
+    @JoinColumn(name = "user_id")
     @ManyToOne
-    private User userId;
+    private User user;
 
     private String shippingAddress;
 }
