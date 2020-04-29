@@ -16,7 +16,6 @@ import java.sql.Blob;
 
 public abstract class Product implements Serializable {
 
-//public class Product {
     @Id
     private Long PID;
 
