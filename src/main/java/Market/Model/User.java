@@ -14,7 +14,7 @@ public abstract class User {
     private Long UID;
     private String name;
     @OneToMany(
-            mappedBy="shippingAddress",
+            mappedBy="userId",
             cascade = CascadeType.ALL,
             fetch= FetchType.LAZY
     )
