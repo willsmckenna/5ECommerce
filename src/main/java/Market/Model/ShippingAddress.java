@@ -16,7 +16,7 @@ public class ShippingAddress implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "UserID")
-    private User user;
+    private Users user;
 
     private String shippingAddress;
 }

@@ -32,7 +32,7 @@ public class Buyer extends UserType
         this.bannedUsers =null;
     }
 
-    public Buyer(User user)
+    public Buyer(Users user)
     {
         this.user = user;
         this.cart = null;

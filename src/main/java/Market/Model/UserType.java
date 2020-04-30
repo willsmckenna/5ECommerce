@@ -16,7 +16,7 @@ public abstract class UserType {
     public int userTypeID;
 
     @OneToOne
-    public User user;
+    public Users user;
 
     protected void blockUser(UserType user){}
     protected void unBlockUser(UserType user){};

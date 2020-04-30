@@ -14,7 +14,7 @@ public class PaymentInfo {
 
     @ManyToOne
     @JoinColumn(name = "UserID")
-    private User user;
+    private Users user;
 
     private int creditCardNum;
     private int cvv;

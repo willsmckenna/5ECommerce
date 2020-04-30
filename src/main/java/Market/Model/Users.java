@@ -7,12 +7,13 @@ import java.util.List;
 
 @Data
 @Entity
-public class User {
-    //Default User HAS A type buyer
-    public User() { this.UT = new Buyer(); }
+public class Users {
+
 
     @Id
     private Long UID;
+
+
     private String name;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -23,6 +24,11 @@ public class User {
 
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PaymentInfo> paymentInfo;
+
+    //Default User HAS A type buyer
+    public Users() {
+        this.UT = new Buyer(this);
+    }
 
     /*Login, logout, & manage re-direct them to the page of their type */
     public void login() {
@@ -45,7 +51,7 @@ public class User {
         }
         else if(newType instanceof Buyer) {
             //could do an overloaded copy Constructor
-            newType = new Buyer();
+            newType = new Buyer(this);
         }
     }
 }

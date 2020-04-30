@@ -18,7 +18,7 @@ public class Seller extends UserType
     private Set<UserType> bannedUsers;
 
     /* Forcing a no-use default constructor is wishful thinking*/
-    public Seller(User boundUser) {
+    public Seller(Users boundUser) {
         this.user = boundUser;
         productsForSale = null;
         bannedUsers = null;

@@ -34,7 +34,7 @@ public class Admin implements Serializable,IMessage {
             fetch= FetchType.LAZY
     )
     @ToString.Exclude
-    private List<User> users;
+    private List<Users> users;
 
 
     @Type(type="hstore")
