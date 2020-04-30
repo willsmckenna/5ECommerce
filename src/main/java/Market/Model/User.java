@@ -7,34 +7,50 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "user")
 public class User {
 
+    public User()
+    {
+        //Default User HAS A type buyer
+        this.UT = new Buyer();
+    }
     @Id
     private Long UID;
     private String name;
-    @OneToMany(
-            mappedBy="userId",
-            cascade = CascadeType.ALL,
-            fetch= FetchType.LAZY
-    )
+
+    @OneToOne
+    
+    private UserType UT;
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
     private List<ShippingAddress> Address;
 
-    @OneToMany(
-            mappedBy="userId",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PaymentInfo> paymentInfo;
 
-    //public void login() {} (must call the)
-    //public void logout() {}
-    //public void manageProfile(){};
+    public void login() {
+        UT.login();
+    }
+    public void logout() {
+        UT.logout();
+    }
+    public void manageProfile(){
+        UT.manageProfile();
+    }
 
-   // private UserType UT; //the type this user can be
-
-    public void setUserType()
+    /*
+        Set strategy
+     */
+    public void setUserType(UserType newType)
     {
-        //set userType to either Buyer or seller here
+        if(newType instanceof Seller)
+        {
+            //Could do an overloaded copy Constructor
+            newType = new Seller();
+        }
+        else if(newType instanceof Buyer) {
+            //could do an overloaded copy Constructor
+            newType = new Buyer();
+        }
     }
 }

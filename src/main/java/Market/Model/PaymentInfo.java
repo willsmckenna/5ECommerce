@@ -1,12 +1,8 @@
 package Market.Model;
 
 import lombok.Data;
-import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.sql.Date;
 
 @Data
@@ -14,10 +10,15 @@ import java.sql.Date;
 public class PaymentInfo {
 
     @Id
+    private int userId;
+
+    @JoinColumn(name = "UID", nullable=false)
+    @ManyToOne
+    private User user;
+
     private int creditCardNum;
     private int cvv;
     private Date expirationDate;
-    //@OneToOne
-    @JoinColumn(name = "user_id", nullable=false)
-    private int userId;
+
+
 }
