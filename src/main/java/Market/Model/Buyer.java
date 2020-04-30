@@ -3,17 +3,62 @@ package Market.Model;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class Buyer extends UserType {
+@Entity
+public class Buyer extends UserType
+{
+    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private ShoppingCart cart;
-    private ArrayList<Orders> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Orders> orders;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UserType> bannedUsers;
+
+    /*
+        Trying to enforce a no-default constructor
+     */
+    public Buyer()
+    {
+        this.user =null;
+        this.cart = null;
+        this.orders = null;
+        this.bannedUsers =null;
+    }
+
+    public Buyer(User user)
+    {
+        this.user = user;
+        this.cart = null;
+        this.orders = null;
+        this.bannedUsers = null;
+    }
+
+    @Override
+    protected void blockUser(UserType user) {
+        if(this.bannedUsers == null)
+        {
+            this.bannedUsers = new HashSet<UserType>();
+        }
+        this.bannedUsers.add(user);
+    }
+
+    @Override
+    protected void unBlockUser(UserType user) {
+        if(this.bannedUsers != null && this.bannedUsers.contains(user))
+        {
+            this.bannedUsers.remove(user);
+        }
+    }
 
     @Override
     public void manageProfile() {
-
     }
 
     @Override

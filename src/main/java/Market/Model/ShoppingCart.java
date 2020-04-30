@@ -17,6 +17,9 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartID;
 
+    @OneToOne
+    Buyer buyer;
+
     @OneToMany(
             //mapped by shopping_cart, product will not create extra table
             mappedBy="shoppingCart",

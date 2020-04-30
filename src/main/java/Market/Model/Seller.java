@@ -50,7 +50,7 @@ public class Seller extends UserType
 
     @Override
     protected void unBlockUser(UserType user) {
-        if(this.bannedUsers != null)
+        if(this.bannedUsers != null && this.bannedUsers.contains(user))
         {
             this.bannedUsers.remove(user);
         }

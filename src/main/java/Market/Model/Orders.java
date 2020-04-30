@@ -14,6 +14,9 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
+    @ManyToOne
+    Buyer buyer;
+
     @OneToMany(
             //mapped by order, product will not create extra table
             mappedBy="order",
