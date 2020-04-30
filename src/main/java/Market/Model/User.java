@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "user")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class User {
+public class User {
+
     @Id
     private Long UID;
     private String name;
@@ -21,14 +21,20 @@ public abstract class User {
     private List<ShippingAddress> Address;
 
     @OneToMany(
-                mappedBy="userId",
-                cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER
+            mappedBy="userId",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
     private List<PaymentInfo> paymentInfo;
 
+    //public void login() {} (must call the)
+    //public void logout() {}
+    //public void manageProfile(){};
 
-    public void login() {}
-    public void logout() {}
-    public abstract void manageProfile();
+   // private UserType UT; //the type this user can be
+
+    public void setUserType()
+    {
+        //set userType to either Buyer or seller here
+    }
 }
