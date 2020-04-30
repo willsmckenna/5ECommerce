@@ -18,6 +18,9 @@ public abstract class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long PID;
 
+    @ManyToOne
+    Seller seller;
+
     private String name;
     private double price;
     private String description;

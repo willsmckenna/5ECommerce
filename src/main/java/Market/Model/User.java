@@ -8,12 +8,9 @@ import java.util.List;
 @Data
 @Entity
 public class User {
+    //Default User HAS A type buyer
+    public User() { this.UT = new Buyer(); }
 
-    public User()
-    {
-        //Default User HAS A type buyer
-        this.UT = new Buyer();
-    }
     @Id
     private Long UID;
     private String name;
@@ -27,6 +24,7 @@ public class User {
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PaymentInfo> paymentInfo;
 
+    /*Login, logout, & manage re-direct them to the page of their type */
     public void login() {
         UT.login();
     }

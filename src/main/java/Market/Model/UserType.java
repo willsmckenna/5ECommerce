@@ -15,7 +15,9 @@ public abstract class UserType {
     @OneToOne
     public User user;
 
-    public void login() {}
-    public void logout() {}
-    public void manageProfile(){}
+    protected void blockUser(UserType user){}
+    protected void unBlockUser(UserType user){};
+    protected void login() {}
+    protected void logout() {}
+    protected void manageProfile(){}
 }
