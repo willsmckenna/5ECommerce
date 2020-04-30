@@ -19,9 +19,11 @@ public abstract class Product implements Serializable {
     private Long PID;
 
     @ManyToOne
+    @JoinColumn(name = "products_for_sale")
     Seller seller;
 
     private String name;
+    private int quantity; //<= we may need a quantity of identical products because of a set in seller
     private double price;
     private String description;
     private Blob image;

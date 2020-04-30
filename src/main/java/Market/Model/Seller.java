@@ -15,18 +15,18 @@ public class Seller extends UserType
     private Set<Product> productsForSale;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<UserType> bannedBuyers;
+    private Set<UserType> bannedUsers;
 
     /* Forcing a no-use default constructor is wishful thinking*/
     public Seller(User boundUser) {
         this.user = boundUser;
         productsForSale = null;
-        bannedBuyers = null;
+        bannedUsers = null;
     }
     public Seller(){
         this.user = null;
         this.productsForSale = null;
-        bannedBuyers = null;
+        bannedUsers = null;
     }
 
     @Override
@@ -41,18 +41,18 @@ public class Seller extends UserType
     @Override
     public void blockUser(UserType user)
     {
-        if(this.bannedBuyers == null)
+        if(this.bannedUsers== null)
         {
-            this.bannedBuyers = new HashSet<UserType>();
-            this.bannedBuyers.add(user);
+            this.bannedUsers = new HashSet<UserType>();
         }
+        this.bannedUsers.add(user);
     }
 
     @Override
     protected void unBlockUser(UserType user) {
-        if(this.bannedBuyers != null)
+        if(this.bannedUsers != null)
         {
-            this.bannedBuyers.remove(user);
+            this.bannedUsers.remove(user);
         }
     }
 
@@ -72,10 +72,12 @@ public class Seller extends UserType
     }
 
 
-
-
-    public void sellAnItem(Buyer buy, Product prod)
+    public void sellAnItem(Buyer buyer, Product prod)
     {
         //Check if User is in the block list and update product inventory
+        if(this.bannedUsers == null  || (!this.bannedUsers.contains(buyer.user)))
+        {
+            //can sell to this buyer
+        }
     }
 }
