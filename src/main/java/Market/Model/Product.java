@@ -12,7 +12,7 @@ import java.sql.Blob;
 @Table(name = "products")
 @ToString
 
-public abstract class Product implements Serializable {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
