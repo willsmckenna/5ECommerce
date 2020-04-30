@@ -1,11 +1,18 @@
 package Market.Model;
 
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@TypeDefs({
+        @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
+})
 @Data
 @Entity
 public class Seller extends UserType
