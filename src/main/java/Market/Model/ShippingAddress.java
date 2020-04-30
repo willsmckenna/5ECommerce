@@ -12,10 +12,10 @@ import java.io.Serializable;
 @Entity
 public class ShippingAddress implements Serializable {
     @Id
-    private int userId;
+    private int userShippingId;
 
-    @JoinColumn(name = "UID")
     @ManyToOne
+    @JoinColumn(name = "UserID")
     private User user;
 
     private String shippingAddress;

@@ -10,10 +10,10 @@ import java.sql.Date;
 public class PaymentInfo {
 
     @Id
-    private int userId;
+    private Long userPaymentId;
 
-    @JoinColumn(name = "UID", nullable=false)
     @ManyToOne
+    @JoinColumn(name = "UserID")
     private User user;
 
     private int creditCardNum;

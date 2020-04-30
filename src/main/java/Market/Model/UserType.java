@@ -12,6 +12,9 @@ public abstract class UserType {
     @Id
     public int userTypeID;
 
+    @OneToOne
+    public User user;
+
     public void login() {}
     public void logout() {}
     public void manageProfile(){}

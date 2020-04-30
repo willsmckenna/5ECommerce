@@ -18,8 +18,7 @@ public class User {
     private Long UID;
     private String name;
 
-    @OneToOne
-    
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserType UT;
 
     @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
@@ -46,7 +45,7 @@ public class User {
         if(newType instanceof Seller)
         {
             //Could do an overloaded copy Constructor
-            newType = new Seller();
+            newType = new Seller(this);
         }
         else if(newType instanceof Buyer) {
             //could do an overloaded copy Constructor

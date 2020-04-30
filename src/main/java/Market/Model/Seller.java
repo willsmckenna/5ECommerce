@@ -10,7 +10,12 @@ import java.util.ArrayList;
 @Entity
 public class Seller extends UserType
 {
-   // private ArrayList<Product> selling = new ArrayList<>();
+
+    public Seller(User boundUser)
+    {
+        this.user = boundUser;
+    }
+    //private ArrayList<Product> selling = new ArrayList<>();
 
     public void listAnItem(){}
     public void removeAnItem(){}
