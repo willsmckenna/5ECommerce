@@ -38,13 +38,11 @@ public class User {
     }
 
     /*
-        Set strategy
+        Set (or reset) strategy
      */
     public void setUserType(UserType newType)
     {
-        if(newType instanceof Seller)
-        {
-            //Could do an overloaded copy Constructor
+        if(newType instanceof Seller) {
             newType = new Seller(this);
         }
         else if(newType instanceof Buyer) {

@@ -10,11 +10,14 @@ import java.util.ArrayList;
 @Entity
 public class Seller extends UserType
 {
-
-    public Seller(User boundUser)
-    {
+    /* Forcing a no-use default constructor is wishful thinking*/
+    public Seller(User boundUser) {
         this.user = boundUser;
     }
+    public Seller(){
+        this.user = null;
+    }
+
     //private ArrayList<Product> selling = new ArrayList<>();
 
     public void listAnItem(){}
