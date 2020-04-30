@@ -1,4 +1,4 @@
-package Market.Repo;
+package Market.Model;
 
 import Market.Model.ShippingAddress;
 import org.springframework.data.repository.CrudRepository;
