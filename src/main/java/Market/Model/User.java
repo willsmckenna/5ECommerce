@@ -3,19 +3,18 @@ package Market.Model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "App")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class User implements Serializable {
+@Table(name = "user")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class User {
     @Id
     private Long UID;
     private String name;
     @OneToMany(
-            mappedBy="shippingAddress",
+            mappedBy="userId",
             cascade = CascadeType.ALL,
             fetch= FetchType.LAZY
     )
@@ -33,4 +32,3 @@ public abstract class User implements Serializable {
     public void logout() {}
     public abstract void manageProfile();
 }
-
