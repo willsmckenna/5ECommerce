@@ -9,7 +9,7 @@ import java.util.ArrayList;
 @EqualsAndHashCode(callSuper=false)
 public class Buyer extends User {
     private ShoppingCart cart;
-    private ArrayList<Order> orders = new ArrayList<>();
+    private ArrayList<Orders> orders = new ArrayList<>();
 
     @Override
     public void manageProfile() {

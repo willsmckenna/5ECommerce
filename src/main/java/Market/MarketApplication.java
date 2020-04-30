@@ -10,7 +10,7 @@ public class MarketApplication {
         SpringApplication.run(MarketApplication.class, args);
         System.out.println("Peter was here");
         System.out.println("Saleh was here");
-        System.out.println("ang was here");
+        System.out.println("Ang was here");
         System.out.println("Agnes was here");
         System.out.println("Wills was here");
     }
