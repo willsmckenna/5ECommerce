@@ -1,11 +1,18 @@
 package Market.Model;
 
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
 import lombok.ToString;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
+
+@TypeDefs({
+        @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
+})
 
 @Data
 @Entity
