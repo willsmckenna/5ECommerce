@@ -10,11 +10,12 @@ import java.sql.Date;
 public class PaymentInfo {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userPaymentId;
 
-    @ManyToOne
-    @JoinColumn(name = "UserID")
-    private Users user;
+    //@ManyToOne                    --Leave for now - Peter
+    //@JoinColumn(name = "UserID")
+    //private Users user;
 
     private int creditCardNum;
     private int cvv;
