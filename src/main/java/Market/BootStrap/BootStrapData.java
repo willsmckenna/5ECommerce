@@ -28,7 +28,7 @@ public class BootStrapData implements CommandLineRunner {
     {
         System.out.println("Started in Bootstrap");
         Users user_1 = new Users();
-        user_1.setName("Its a Mario");
+        user_1.setName("Peter was here");
         usersRepository.save(user_1);
 
         System.out.println("Number of USERS: " + usersRepository.count());

@@ -18,10 +18,11 @@ public abstract class UserType {
     public Long userTypeID;
 
     @OneToOne
+    @JoinColumn(name ="UserTYPEIS")
     public Users user;
 
-    protected void blockUser(UserType user){}
-    protected void unBlockUser(UserType user){};
+    //protected void blockUser(UserType user){}
+    //protected void unBlockUser(UserType user){};
     protected void login() {}
     protected void logout() {}
     protected void manageProfile(){}
