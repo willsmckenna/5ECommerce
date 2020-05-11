@@ -12,8 +12,6 @@ public class Users {
 
     @Id
     private Long UID;
-
-
     private String name;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
