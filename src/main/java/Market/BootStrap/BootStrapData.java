@@ -29,15 +29,9 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Started in Bootstrap");
         Users user_1 = new Users();
         user_1.setName("Its a Mario");
-
-        Buyer buyer_1 = new Buyer(user_1);
-        user_1.setUserType(buyer_1);
-
         usersRepository.save(user_1);
-        userTypeRepository.save(buyer_1);
 
         System.out.println("Number of USERS: " + usersRepository.count());
-        System.out.println("Publisher of User-types " + userTypeRepository.count());
 
     }
 }
