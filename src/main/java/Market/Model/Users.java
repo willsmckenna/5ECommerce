@@ -9,21 +9,22 @@ import java.util.List;
 @Entity
 public class Users {
 
-
+    //force the underlying DB to come up with the primary key, that is what AUTO does
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-
-
-    private String name;
+    public String name;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserType UT;
 
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-    private List<ShippingAddress> Address;
+    /*Worry about Shipping address & Payment Later*/
 
-    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<PaymentInfo> paymentInfo;
+    //@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    //private List<ShippingAddress> Address;
+
+    //@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private List<PaymentInfo> paymentInfo;
 
     //Default User HAS A type buyer
     public Users() {

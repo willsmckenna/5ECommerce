@@ -12,14 +12,14 @@ import java.util.Set;
 @Entity
 public class Buyer extends UserType
 {
-    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private ShoppingCart cart;
+    //@OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //private ShoppingCart cart = new ShoppingCart();
 
-    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Orders> orders;
+   // @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private Set<Orders> orders = new HashSet<Orders>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<UserType> bannedUsers;
+    //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private Set<UserType> bannedUsers = new HashSet<UserType>();
 
     /*
         Trying to enforce a no-default constructor
@@ -27,20 +27,14 @@ public class Buyer extends UserType
     public Buyer()
     {
         this.user =null;
-        this.cart = null;
-        this.orders = null;
-        this.bannedUsers =null;
     }
 
     public Buyer(Users user)
     {
         this.user = user;
-        this.cart = null;
-        this.orders = null;
-        this.bannedUsers = null;
     }
 
-    @Override
+   /* @Override
     protected void blockUser(UserType user) {
         if(this.bannedUsers == null)
         {
@@ -67,5 +61,5 @@ public class Buyer extends UserType
 
     @Override
     public void logout() {
-    }
+    }*/
 }
