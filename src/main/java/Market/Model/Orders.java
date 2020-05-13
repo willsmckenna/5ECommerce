@@ -27,6 +27,7 @@ public class Orders {
     //@ManyToOne
     //Buyer buyer;
 
+    /*
     @OneToMany(
             //mapped by order, product will not create extra table
             mappedBy="order",
@@ -34,7 +35,7 @@ public class Orders {
             fetch= FetchType.LAZY
     )
     @ToString.Exclude
-    private List<Product> product_list;
+    private List<Product> product_list; */
 
 
     //no-sql for order status

@@ -35,17 +35,18 @@ public class Product implements Serializable {
     private String description;
     private Blob image;
 
+
     //shopping cart id for each product
     @ManyToOne
     @JoinColumn(name = "in_shopping_cart", nullable = false)
     private ShoppingCart shoppingCart;
 
     //order id for each product
-    @ManyToOne
+   /* @ManyToOne
     @JoinColumn(name = "under_order", nullable = false)
-    private Orders order;
+    private Orders order; */
 
-    protected Product() {
+    public Product() {
     }
 
     public void removeProduct(){}
