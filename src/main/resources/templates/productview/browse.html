@@ -2,25 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users that exist here</title>
+    <head th:replace="fragments/header :: common-header">
+    <title>Browse all products</title>
 </head>
 
-<h1>Browse Products</h1>
+
 <body>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Description</th>
-    </tr>
-
-    <!--For-Loop with thymeleaf -->
-    <tr th:each = "products : ${products}">
-        <td th:text = "${products.name}"></td>
-        <td th:text = "${products.price}"></td>
-        <td th:text = "${products.description}"></td>
-    </tr>
-</table>
-
+    <div th:replace="fragments/header :: header"></div>
+    <h1 class="text-center font-weight-bold">Browse Products</h1>
+    <br>
+        <div class="container">
+            <div class="row">
+                <div th:each = "products: ${products}" class="card" style="margin: 20px">
+                        <div class="container">
+                            <img class="card-img-top" src="..." alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text = "${products.name}"></h5>
+                                <h3 class="card-title" th:text = "${products.price}"></h3>
+                                <p class="card-text" th:text = "${products.description}"></p>
+                                <a href="#" class="btn btn-primary">Buy</a>
+                            </div>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
+

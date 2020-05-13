@@ -18,6 +18,6 @@ public class UsersController {
     public String getUsers(Model model)
     {
         model.addAttribute("users", usersRepository.findAll());
-        return "UsersView/list";
+        return "userview/list";
     }
 }
