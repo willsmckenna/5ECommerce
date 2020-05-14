@@ -3,33 +3,30 @@ package Market.Model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 public class Users {
 
-    //force the underlying DB to come up with the primary key, that is what AUTO does
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
     public String name;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private UserType UT;
+    private UserType UT = new Buyer();
 
-    /*Worry about Shipping address & Payment Later*/
+    // I can’t add users because most of the user class is commented out!
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+    private List<ShippingAddress> Address = new ArrayList<ShippingAddress>();
 
-    //@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-    //private List<ShippingAddress> Address;
-
-    //@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private List<PaymentInfo> paymentInfo;
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<PaymentInfo> paymentInfo = new ArrayList<PaymentInfo>();
 
     //Default User HAS A type buyer
-    public Users() {
-        this.UT = new Buyer(this);
-    }
+    public Users() { }
 
     /*Login, logout, & manage re-direct them to the page of their type */
     public void login() {

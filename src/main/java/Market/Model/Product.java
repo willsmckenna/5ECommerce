@@ -25,9 +25,9 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long PID;
 
-    //@ManyToOne
-    //@JoinColumn(name = "products_for_sale")
-    //Seller seller;
+    @ManyToOne
+    @JoinColumn(name = "products_for_sale")
+    Seller seller;
 
     private String name;
     private double quantity; //<= we may need a quantity of identical products because of a set in seller
