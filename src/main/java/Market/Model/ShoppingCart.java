@@ -3,6 +3,8 @@ package Market.Model;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data
@@ -17,11 +19,16 @@ public class ShoppingCart implements Serializable {
     @JoinColumn(name = "BuyerID")
     Buyer buyer;
 
+    @OneToMany
+    Set<Product> products = new HashSet<Product>();
+
     public  ShoppingCart(){}
     public  ShoppingCart(Buyer buyer ) { this.buyer = buyer; }
 
     public void removeItem(){}
-    public void addItemToCart(){}
+    public void addItemToCart(Product product){
+        this.products.add(product);
+    }
     public void checkOut(){}
 
 }

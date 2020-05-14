@@ -37,6 +37,9 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(Seller seller) {
+        this.seller = seller;
+    }
 
     public void removeProduct(){}
     public void updateProduct(){}

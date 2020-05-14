@@ -63,16 +63,11 @@ public class BootStrapData implements CommandLineRunner {
         item2.setDescription("Purell extra-large");
         productRepository.save(item2);
 
-
-        /*
         //create a shopping cart, put above items in it
         ShoppingCart shoppingCart1 = new ShoppingCart();
+        shoppingCart1.addItemToCart(item1);
+        shoppingCart1.addItemToCart(item2);
         shoppingCartRepository.save(shoppingCart1);
-        List<Product> items = new ArrayList<>();
-        items.add(item1); items.add(item2);
-        shoppingCart1.setItemsInCart(items);
-        */
-
 
         //Create an order
         Orders order = new Orders();
