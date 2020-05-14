@@ -73,13 +73,14 @@ public class BootStrapData implements CommandLineRunner {
         shoppingCart1.setItemsInCart(items);
         */
 
-        /*
+
         //Create an order
         Orders order = new Orders();
-        order.getProduct_list().add(item1);
-        order.getProduct_list().add(item2);
+        order.getProducts().add(item1);
+        order.getProducts().add(item2);
+        order.setOrderTotal(678.39);
         orderRepository.save(order);
-        */
+
 
         System.out.println("Number of USERS: " + usersRepository.count());
 
