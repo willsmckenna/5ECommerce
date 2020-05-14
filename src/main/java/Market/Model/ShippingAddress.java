@@ -11,9 +11,12 @@ public class ShippingAddress {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userShippingId;
 
-    //@ManyToOne                        --Leave for now - Peter
-    //@JoinColumn(name = "UserID")
-    //private Users user;
+    @ManyToOne
+    @JoinColumn(name = "UserID")
+    private Users user;
 
     private String shippingAddress;
+
+    public ShippingAddress(){ }
+    public ShippingAddress(Users user ){ this.user = user;}
 }

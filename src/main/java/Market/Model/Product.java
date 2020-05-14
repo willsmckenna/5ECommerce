@@ -18,7 +18,6 @@ import java.sql.Blob;
 @Entity
 @Table(name = "products")
 @ToString
-
 public class Product implements Serializable {
 
     @Id
@@ -35,19 +34,9 @@ public class Product implements Serializable {
     private String description;
     private Blob image;
 
-
-    //shopping cart id for each product
-    @ManyToOne
-    @JoinColumn(name = "in_shopping_cart", nullable = false)
-    private ShoppingCart shoppingCart;
-
-    //order id for each product
-   /* @ManyToOne
-    @JoinColumn(name = "under_order", nullable = false)
-    private Orders order; */
-
     public Product() {
     }
+
 
     public void removeProduct(){}
     public void updateProduct(){}

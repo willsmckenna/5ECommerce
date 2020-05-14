@@ -9,6 +9,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,18 +25,18 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
-    //@ManyToOne
-    //Buyer buyer;
+    @ManyToOne
+    @JoinColumn(name = "BuyerID")
+    Buyer buyer;
 
-    /*
-    @OneToMany(
-            //mapped by order, product will not create extra table
-            mappedBy="order",
-            cascade = CascadeType.ALL,
-            fetch= FetchType.LAZY
-    )
-    @ToString.Exclude
-    private List<Product> product_list; */
+    public Orders()
+    {
+    }
+
+    public Orders(Buyer buyer)
+    {
+        this.buyer = buyer;
+    }
 
 
     //no-sql for order status

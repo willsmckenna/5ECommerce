@@ -14,7 +14,7 @@ public class HomeController {
         this.productRepository = pr;
     }
 
-    @GetMapping({"/", "/welcome", "/home"})
+    @GetMapping({"", "/", "/welcome", "/home", "/welcome.html", "/home.html"})
     public String showHome(Model model){
         return "userview/home";
     }

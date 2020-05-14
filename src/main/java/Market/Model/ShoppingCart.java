@@ -1,12 +1,8 @@
 package Market.Model;
 
 import lombok.Data;
-import lombok.ToString;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Data
@@ -17,20 +13,12 @@ public class ShoppingCart implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartID;
 
-    //@OneToOne
-    //Buyer buyer;
+    @OneToOne
+    @JoinColumn(name = "BuyerID")
+    Buyer buyer;
 
-
-    @OneToMany(
-            //mapped by shopping_cart, product will not create extra table
-            mappedBy="shoppingCart",
-            cascade = CascadeType.ALL,
-            fetch= FetchType.LAZY
-    )
-    @ToString.Exclude
-    private List<Product> itemsInCart;
-
-
+    public  ShoppingCart(){}
+    public  ShoppingCart(Buyer buyer ) { this.buyer = buyer; }
 
     public void removeItem(){}
     public void addItemToCart(){}

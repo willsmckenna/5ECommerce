@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,20 +23,11 @@ import java.util.Map;
 public class Admin implements Serializable,IMessage {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     private long adminID;
-
     private String name;
 
-
-    @OneToMany(
-            mappedBy="UID",
-            cascade = CascadeType.ALL,
-            fetch= FetchType.LAZY
-    )
-    @ToString.Exclude
-    private List<Users> users; 
-
+    public Admin(){}
 
     @Type(type="hstore")
     @Column(columnDefinition = "hstore")

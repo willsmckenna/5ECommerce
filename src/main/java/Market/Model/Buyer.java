@@ -12,11 +12,11 @@ import java.util.Set;
 @Entity
 public class Buyer extends UserType
 {
-    //@OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private ShoppingCart cart = new ShoppingCart();
+    @OneToOne(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private ShoppingCart cart = new ShoppingCart(this);
 
-   // @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //private Set<Orders> orders = new HashSet<Orders>();
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Orders> orders = new HashSet<Orders>();
 
     //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private Set<UserType> bannedUsers = new HashSet<UserType>();
