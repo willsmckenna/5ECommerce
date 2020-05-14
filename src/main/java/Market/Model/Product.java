@@ -30,7 +30,7 @@ public class Product implements Serializable {
     //Seller seller;
 
     private String name;
-    private int quantity; //<= we may need a quantity of identical products because of a set in seller
+    private double quantity; //<= we may need a quantity of identical products because of a set in seller
     private double price;
     private String description;
     private Blob image;

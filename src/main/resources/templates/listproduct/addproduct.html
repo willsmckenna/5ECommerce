@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common-header">
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <head th:replace="fragments/header :: common-header">
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <h1 class="text-center font-weight-bold">Add Product</h1>
+    <div class="container">
+        <form action="#" th:action="@{/listproduct}" th:object="${product}" method="post">
+            <div class="form-group">
+                <label>Upload Image</label>
+                <div class="input-group">
+       	<span class="input-group-btn">
+        <span class="btn btn-info btn-file">
+        	<input type="file" id="imgInp" accept="image/*">
+        </span>
+        </span>
+                </div>
+                <img id='img-upload'/>
+            </div>
+
+            <div class="form-group">
+                <label for="productname">Product Name:</label>
+                <input type="text" class="form-control" th:field="*{name}"id="productname" placeholder="Enter product name" name="productname">
+            </div>
+
+            <div class="form-group">
+                <label for="productdescription">Product Description</label>
+                <textarea class="form-control" th:field="*{description}"id="pdescription" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="productname">Product Price:</label>
+                <input type="number" class="form-control" th:field="*{price}" id="productprice" placeholder="$1.00" name="productname">
+            </div>
+
+            <div class="form-group">
+                <label for="productname">Product Quantity:</label>
+                <input type="number" class="form-control" th:field="*{quantity}" id="productquantity" placeholder="1" name="productname">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>
