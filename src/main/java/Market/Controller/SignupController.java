@@ -15,9 +15,9 @@ public class SignupController {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping("/signupview")
+    @GetMapping({"/signupview", "/signup"})
     public String signup(Model model) {
-       // model.addAttribute("newuser",new Users());
+        model.addAttribute("newuser",new Users());
         return "signupview/signup";
     }
 

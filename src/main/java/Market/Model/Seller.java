@@ -18,8 +18,8 @@ import java.util.Set;
 public class Seller extends UserType
 {
 
-    //@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //private Set<Product> productsForSale;
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Product> productsForSale;
 
     //@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private Set<UserType> bannedUsers;
