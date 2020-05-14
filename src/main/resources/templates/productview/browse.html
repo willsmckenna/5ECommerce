@@ -12,21 +12,48 @@
     <h1 class="text-center font-weight-bold">Browse Products</h1>
     <br>
         <div class="container">
-            <div class="row">
-                <div th:each = "products: ${products}" class="card" style="margin: 20px">
-                        <div class="container">
-                            <img class="card-img-top" src="..." alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title" th:text = "${products.name}"></h5>
-                                <h3 class="card-title" th:text = "${products.price}"></h3>
-                                <p class="card-text" th:text = "${products.description}"></p>
-                                <a href="#" class="btn btn-primary">Buy</a>
+            <div class="container border shadow-sm p-3 mb-5 rounded bg-light">
+                <h1 class="text center font-weight-bold">Best Sellers</h1>
+                <div class="row">
+                        <div th:each = "products: ${products}"  style="margin: 20px">
+                            <div class="shadow p-3 mb-5 bg-white rounded h-100">
+                                <div class="container">
+                                    <img class="card-img-top" src="0.png" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title" th:text = "${products.name}"></h5>
+                                        <h3 class="card-title" th:text = "${products.price}"></h3>
+                                        <p class="card-text" th:text = "${products.description}"></p>
+                                        <a href="#" class="btn btn-primary">Buy</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <br>
                 </div>
             </div>
         </div>
+    <br>
+    <div class="container">
+        <div class="container border shadow-sm p-3 mb-5 rounded bg-light">
+            <h1 class="text center font-weight-bold">Recommended For You</h1>
+            <div class="row">
+                <div th:each = "forYouProducts: ${forYouProducts}"  style="margin: 20px">
+                    <div class="shadow p-3 mb-5 bg-white rounded h-100">
+                        <div class="container">
+                            <img class="card-img-top" src="0.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text = "${forYouProducts.name}"></h5>
+                                <h3 class="card-title" th:text = "${forYouProducts.price}"></h3>
+                                <p class="card-text" th:text = "${forYouProducts.description}"></p>
+                                <a href="#" class="btn btn-primary">Buy</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 
