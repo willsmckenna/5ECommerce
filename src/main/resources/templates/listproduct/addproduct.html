@@ -9,7 +9,7 @@
     <div th:replace="fragments/header :: header"></div>
     <h1 class="text-center font-weight-bold">Add Product</h1>
     <div class="container">
-        <form action="">
+        <form action="#" th:action="@{/listproduct}" th:object="${product}" method="post">
             <div class="form-group">
                 <label>Upload Image</label>
                 <div class="input-group">
@@ -24,22 +24,22 @@
 
             <div class="form-group">
                 <label for="productname">Product Name:</label>
-                <input type="text" class="form-control" id="productname" placeholder="Enter product name" name="productname">
+                <input type="text" class="form-control" th:field="*{name}"id="productname" placeholder="Enter product name" name="productname">
             </div>
 
             <div class="form-group">
                 <label for="productdescription">Product Description</label>
-                <textarea class="form-control" id="pdescription" rows="4"></textarea>
+                <textarea class="form-control" th:field="*{description}"id="pdescription" rows="4"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="productname">Product Price:</label>
-                <input type="number" class="form-control" id="productname" placeholder="$1.00" name="productname">
+                <input type="number" class="form-control" th:field="*{price}" id="productprice" placeholder="$1.00" name="productname">
             </div>
 
             <div class="form-group">
-                <label for="productname">Product Quanitity:</label>
-                <input type="number" class="form-control" id="productname" placeholder="1" name="productname">
+                <label for="productname">Product Quantity:</label>
+                <input type="number" class="form-control" th:field="*{quantity}" id="productquantity" placeholder="1" name="productname">
             </div>
 
 

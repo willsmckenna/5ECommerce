@@ -36,4 +36,6 @@ public class BrowseProductsController {
         return "productview/browse";
 
     }
+    
+
 }
