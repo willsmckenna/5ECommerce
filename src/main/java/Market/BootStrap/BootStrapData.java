@@ -39,9 +39,7 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Started in Bootstrap");
 
         //creating user instance, saving it to DB
-        Users user_1 = new Users();
-        user_1.setUserName("peter");
-        user_1.setPassword("password");
+        Users user_1 = new Users("peter", "password");
         usersRepository.save(user_1);
 
         //Create an admin test
@@ -64,11 +62,19 @@ public class BootStrapData implements CommandLineRunner {
         item2.setDescription("Purell extra-large");
         productRepository.save(item2);
 
-        //create a shopping cart, put above items in it
-        ShoppingCart shoppingCart1 = new ShoppingCart();
-        shoppingCart1.addItemToCart(item1);
-        shoppingCart1.addItemToCart(item2);
-        shoppingCartRepository.save(shoppingCart1);
+        //create a buyer, put above items in its cart
+        Buyer buyer = (Buyer) user_1.getUT();
+        buyer.getCart().addItemToCart(item1);
+        buyer.getCart().addItemToCart(item2);
+        shoppingCartRepository.save(buyer.getCart());
+
+        //Print out all data in the shopping cart
+        for(Product p : buyer.getCart().getProducts())
+        {
+            System.out.println("\nProduct Name:" + p.getName());
+            System.out.println("Product Price:" + p.getPrice());
+            System.out.println("Product Quantity:" + p.getQuantity() + "\n");
+        }
 
         //Create an order
         Orders order = new Orders();
