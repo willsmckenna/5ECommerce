@@ -40,7 +40,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //creating user instance, saving it to DB
         Users user_1 = new Users();
-        user_1.setName("Peter was here");
+        user_1.setUserName("peter");
+        user_1.setPassword("password");
         usersRepository.save(user_1);
 
         //Create an admin test
