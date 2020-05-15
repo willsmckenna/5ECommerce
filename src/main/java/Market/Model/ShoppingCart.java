@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "shoppingcart")
 public class ShoppingCart implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int cartID;
 
     @OneToOne

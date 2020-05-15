@@ -13,7 +13,9 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-    public String name;
+    private String userName;
+    private String password;
+
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private UserType UT = new Buyer();
@@ -26,7 +28,14 @@ public class Users {
     private List<PaymentInfo> paymentInfo = new ArrayList<PaymentInfo>();
 
     //Default User HAS A type buyer
-    public Users() { }
+    public Users() {
+    }
+
+    public Users(String userName, String password)
+    {
+        this.userName = userName;
+        this.password = password;
+    }
 
     /*Login, logout, & manage re-direct them to the page of their type */
     public void login() {
