@@ -7,6 +7,11 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+<div class="jumbotron text-center">
+    <h1 th:text="${p.name}"></h1>
+    <h3 class="card-title" th:text = "${p.price}"></h3>
+    <p class="card-text" th:text = "${p.description}"></p>
+</div>
 
 </body>
 </html>

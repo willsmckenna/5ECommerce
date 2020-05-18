@@ -2,8 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>Your Account Overview</title>
+    <title>Customer Account Overview</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
+
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/CommonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/CommonWebFlow/webflow.css}"/>
@@ -11,13 +12,19 @@
 </head>
 <body class="body">
 <header id="nav" class="sticky-nav-2">
-    <nav class="w-container">
-        <ul role="list" class="nav-grid w-list-unstyled">
-            <li id="w-node-3a5857c09192-93440a28"><a href="#" class="nav-logo-link w-inline-block"></a></li>
-            <li><a href="#" class="nav-link-2">About</a></li>
-            <li><a href="#" class="nav-link-2">Cart</a></li>
-            <li><a href="#" class="w-button">Sign Out</a></li>
-        </ul>
+    <nav class="container-8 w-container">
+        <div class="div-block-13">
+            <h5>5ECommerce</h5>
+        </div>
+        <a href="#" class="link-block-7 w-inline-block">
+            <h5>Home</h5>
+        </a>
+        <a href="#" class="link-block-9 w-inline-block">
+            <h5>Logout</h5>
+        </a>
+        <div class="div-block-14">
+            <form action="/search" class="search-2 w-form"><input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Search…" id="search" required=""><input type="submit" value="Search" class="search-button-2 w-button"></form>
+        </div>
     </nav>
 </header>
 <div class="section-4">
@@ -30,7 +37,7 @@
         <div class="div-block-9">
             <a href="#" class="link-block w-inline-block">
                 <h3 class="heading-3">Orders</h3>
-                <p class="paragraph">Review Your Orders</p>
+                <p class="paragraph">Review Your Recent <br>Orders</p>
             </a>
         </div>
         <div class="div-block-7">
@@ -54,7 +61,7 @@
         <div class="div-block-11">
             <a href="#" class="link-block-5 w-inline-block">
                 <h3>Sell</h3>
-                <p class="paragraph">Learn About Our <br>Merchant Program</p>
+                <p class="paragraph">Learn About Our<br>Merchant Program</p>
             </a>
         </div>
         <div class="div-block-11">
