@@ -18,7 +18,7 @@ public class BrowseProductsController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping("/productview")
+    @GetMapping({"/productview", "/browse"})
     public String listAllProducts(Model model){
         //Iterable<Product> products = productRepository.findAll();
         //products first row
