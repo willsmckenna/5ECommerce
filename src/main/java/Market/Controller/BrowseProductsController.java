@@ -5,7 +5,9 @@ import Market.Repo.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +59,15 @@ public class BrowseProductsController {
         return "productview/browse";
 
     }
-    
 
+    @GetMapping(path = "/productview", params = "info")
+    public String viewProduct(@RequestParam String name, Model model)
+    {
+        Product item1 = new Product();
+        item1.setName(name);
+        item1.setPrice(10.99);
+        item1.setDescription("a standard surgical facemask");
+        model.addAttribute("p",item1);
+        return "productview/info";
+    }
 }
