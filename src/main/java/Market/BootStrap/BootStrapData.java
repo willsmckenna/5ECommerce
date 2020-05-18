@@ -47,7 +47,6 @@ public class BootStrapData implements CommandLineRunner {
         admin.setName("Test Admin");
         this.adminRepo.save(admin);
 
-
         //Creating a product
         Product item1 = new Product();
         item1.setName("facemask");
