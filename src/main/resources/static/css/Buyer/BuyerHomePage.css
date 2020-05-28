@@ -850,6 +850,21 @@ a {
   padding-bottom: 9px;
 }
 
+.form {
+  color: transparent;
+}
+
+.form-block {
+  margin-bottom: 0px;
+  padding-top: 14px;
+  color: transparent;
+}
+
+.submit-button {
+  background-color: transparent;
+  color: #000;
+}
+
 @media screen and (max-width: 991px) {
   .nav-link {
     color: #fff;
