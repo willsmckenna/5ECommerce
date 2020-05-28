@@ -12,4 +12,9 @@ public class BuyerController {
     public String getBuyerAccount() {
         return "buyer/index";
     }
+
+    @GetMapping("cart")
+    public String getBuyerCart() {
+        return "buyer/cart";
+    }
 }

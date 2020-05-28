@@ -25,16 +25,15 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String getLogin() {
         return "login";
     }
 
-    @RequestMapping("/success")
+    @RequestMapping("success")
     public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException {
 
         String role =  authResult.getAuthorities().toString();
-
         if(role.contains("ROLE_ADMIN")){
             response.sendRedirect(response.encodeRedirectURL(request.getContextPath() + "/admin/index"));
         }
