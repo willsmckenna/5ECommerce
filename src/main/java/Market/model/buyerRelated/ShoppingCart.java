@@ -5,7 +5,9 @@ import Market.model.userTypes.Buyer;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -23,6 +25,7 @@ public class ShoppingCart implements Serializable {
 
     @OneToMany
     Set<Product> products = new HashSet<Product>();
+
 
     public  ShoppingCart(){}
     public  ShoppingCart(Buyer buyer ) { this.buyer = buyer; }
