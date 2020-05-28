@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <title>Merchant Account Overview</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
-
-
-    <link rel="stylesheet" type="text/css" th:href="@{/css/CommonWebFlow/normalize.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/CommonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/Seller/SellerAccountOverview.webflow.css}"/>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/seller/sellerHomePage.css}"/>
 </head>
+
 <body class="body">
 <header id="nav" class="sticky-nav-2">
     <nav class="container-8 w-container">
@@ -20,11 +18,21 @@
         <a href="#" class="link-block-7 w-inline-block">
             <h5>Home</h5>
         </a>
-        <a href="#" class="link-block-9 w-inline-block">
-            <h5>Logout</h5>
-        </a>
         <div class="div-block-14">
             <form action="/search" class="search-2 w-form"><input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Search…" id="search" required=""><input type="submit" value="Search" class="search-button-2 w-button"></form>
+        </div>
+        <div>
+            <div class="form-block w-form">
+                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" th:action="@{/logout}" th:method="post">
+                    <input type="submit" value="logout" data-wait="Please wait..." class="submit-button w-button">
+                </form>
+                <div class="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
         </div>
     </nav>
 </header>
@@ -62,7 +70,7 @@
         <div class="div-block-11">
             <a href="#" class="link-block-5 w-inline-block">
                 <h3>Statements</h3>
-                <p class="paragraph">Review Your Total <br>Credited Income</p>
+                <p class="paragraph">Review Your Total<br>Credited Income</p>
             </a>
         </div>
         <div class="div-block-11">

@@ -846,8 +846,23 @@ a {
 
 .search-button-2 {
   margin-top: 12px;
-  margin-bottom: 9px;
-  padding-bottom: 5px;
+  margin-bottom: 11px;
+  padding-bottom: 9px;
+}
+
+.form {
+  color: transparent;
+}
+
+.form-block {
+  margin-bottom: 0px;
+  padding-top: 14px;
+  color: transparent;
+}
+
+.submit-button {
+  background-color: transparent;
+  color: #000;
 }
 
 @media screen and (max-width: 991px) {
