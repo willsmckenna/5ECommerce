@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SellerController
 {
     @GetMapping("index")
-    public String getBuyerAccount()
+    public String getSellerAccount()
     {
         return "seller/index";
     }
