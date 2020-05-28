@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 /*
     Keep this until we can fully figure out flyway, populates tables
  */
+/*
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -86,4 +87,4 @@ public class BootStrapData implements CommandLineRunner {
         System.out.println("Number of USERS: " + usersRepository.count());
 
     }
-}
+} */

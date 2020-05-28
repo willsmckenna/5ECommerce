@@ -18,7 +18,7 @@
                         <div th:each = "products: ${products}"  style="margin: 20px">
                             <div class="shadow p-3 mb-5 bg-white rounded h-100">
                                 <div class="container">
-                                    <img class="card-img-top" src="0.png" alt="Card image cap">
+                                    <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
                                     <div class="card-body">
                                         <h5 class="card-title" th:text = "${products.name}"></h5>
                                         <h3 class="card-title" th:text = "${products.price}"></h3>
@@ -41,7 +41,7 @@
                 <div th:each = "forYouProducts: ${forYouProducts}"  style="margin: 20px">
                     <div class="shadow p-3 mb-5 bg-white rounded h-100">
                         <div class="container">
-                            <img class="card-img-top" src="0.png" alt="Card image cap">
+                            <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
                             <div class="card-body">
                                 <h5 class="card-title" th:text = "${forYouProducts.name}"></h5>
                                 <h3 class="card-title" th:text = "${forYouProducts.price}"></h3>
