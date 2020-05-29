@@ -30,6 +30,10 @@ public class BootStrapData implements CommandLineRunner {
         userRepository.save(seller);
         userRepository.save(admin);
 
+
+
+
+
         System.out.println("Started in Bootstrap");
     }
 }

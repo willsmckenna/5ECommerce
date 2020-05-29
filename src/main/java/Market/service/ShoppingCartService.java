@@ -1,9 +1,8 @@
-package Market.Service;
+package Market.service;
 
 import Market.model.Product;
 
 import java.util.Map;
-import java.util.Optional;
 
 public interface ShoppingCartService {
     void addProduct(Product product);

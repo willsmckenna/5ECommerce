@@ -1,6 +1,6 @@
-package Market.Service.Imple;
+package Market.service.implementationService;
 
-import Market.Service.ShoppingCartService;
+import Market.service.ShoppingCartService;
 import Market.model.Product;
 import Market.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class ShoppingCartServiceImp implements ShoppingCartService {

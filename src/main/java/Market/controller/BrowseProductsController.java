@@ -22,6 +22,7 @@ public class BrowseProductsController {
     public String listAllProducts(Model model){
         //Iterable<Product> products = productRepository.findAll();
         //products first row
+
         Product item1 = new Product();
         item1.setName("facemask");
         item1.setPrice(10.99);
