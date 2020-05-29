@@ -7,6 +7,7 @@ import Market.model.buyerRelated.ShoppingCart;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -49,4 +50,19 @@ public class Buyer{
     public Buyer() {
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Buyer buyer = (Buyer) o;
+        return Objects.equals(id, buyer.id) &&
+                Objects.equals(username, buyer.username) &&
+                Objects.equals(firstname, buyer.firstname) &&
+                Objects.equals(lastname, buyer.lastname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, firstname, lastname);
+    }
 }
