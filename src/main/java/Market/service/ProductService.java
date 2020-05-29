@@ -1,4 +1,4 @@
-package Market.Service;
+package Market.service;
 
 import Market.model.Product;
 

@@ -1,6 +1,6 @@
-package Market.Service.Imple;
+package Market.service.implementationService;
 
-import Market.Service.ProductService;
+import Market.service.ProductService;
 import Market.model.Product;
 import Market.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

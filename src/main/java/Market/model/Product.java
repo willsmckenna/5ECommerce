@@ -10,6 +10,7 @@ import org.hibernate.annotations.TypeDefs;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.Objects;
 
 @TypeDefs({
         @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
@@ -45,4 +46,20 @@ public class Product implements Serializable {
     public void removeProduct(){}
     public void updateProduct(){}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.quantity, quantity) == 0 &&
+                Double.compare(product.price, price) == 0 &&
+                Objects.equals(id, product.id) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, quantity, price, description);
+    }
 }

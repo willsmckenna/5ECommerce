@@ -34,11 +34,19 @@ public class Admin implements Serializable, IMessage {
     @Column(name="lastname")
     private String lastname;
 
-    public Admin(){}
-
     @Type(type="hstore")
     @Column(columnDefinition = "hstore")
     private Map<String,String> messages = new HashMap<>();
+
+
+    public Admin(String username, String firstname, String lastname) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
+
+    public Admin() {
+    }
 
     public void removeUser(){}
     public void removeSeller(){}
