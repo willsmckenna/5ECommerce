@@ -5,22 +5,18 @@ import Market.model.userTypes.Buyer;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 
 @Data
 @Entity
-@Table(name = "shoppingcart")
+@Table(name = "shoppingcart", schema = "public")
 public class ShoppingCart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cartID;
+    private Long id;
 
     @OneToOne
-    @JoinColumn(name = "BuyerID")
     Buyer buyer;
 
     @OneToMany
@@ -36,4 +32,17 @@ public class ShoppingCart implements Serializable {
     }
     public void checkOut(){}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingCart that = (ShoppingCart) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(products, that.products);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, products);
+    }
 }

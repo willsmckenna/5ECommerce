@@ -14,14 +14,14 @@ import java.util.*;
 
 @Entity
 @Data
-@Table(name= "orders")
+@Table(name = "orders", schema = "public")
 @TypeDefs({
         @TypeDef(name = "hstore", typeClass = PostgreSQLHStoreType.class)
 })
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long order_id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "BuyerID")
@@ -46,4 +46,21 @@ public class Orders {
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore")
     private Map<String,String> status = new HashMap<String,String>();
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Orders orders = (Orders) o;
+        return Double.compare(orders.orderTotal, orderTotal) == 0 &&
+                Objects.equals(id, orders.id) &&
+                Objects.equals(products, orders.products) &&
+                Objects.equals(status, orders.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, products, orderTotal, status);
+    }
 }
