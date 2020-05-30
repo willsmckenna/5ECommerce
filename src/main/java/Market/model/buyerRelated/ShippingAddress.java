@@ -40,4 +40,12 @@ public class ShippingAddress {
     public int hashCode() {
         return Objects.hash(userShippingId, shippingAddress);
     }
+
+    @Override
+    public String toString() {
+        return "ShippingAddress{" +
+                "userShippingId=" + userShippingId +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                '}';
+    }
 }

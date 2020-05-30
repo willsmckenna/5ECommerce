@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>admin Home</title>
+    <title>Admin Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/AdminHomepage.css}"/>
 </head>
-<body>
-
-<h1>BOOTED INTO ADMIN INDEX</h1>
-
+<body class="body">
+<div th:replace="fragments/adminHeader :: header"></div>
+<div class="section-4">
+    <div class="container-3 w-container">
+        <div>
+            <a href="#" class="link-block-10 w-inline-block">
+                <h4 class="heading-10">Update Deals </h4>
+                <p>View or update the<br>Daily Deals</p>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{searchUser}" class="link-block-10 w-inline-block">
+                <h4 class="heading-11">Remove User</h4>
+                <p>Remove a user<br>From the sysetm</p>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{adminSearchProduct}" class="link-block-10 w-inline-block">
+                <h4 class="heading-12">Remove Product</h4>
+                <p>Remove a Product<br>From the System</p>
+            </a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
