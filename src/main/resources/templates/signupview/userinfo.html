@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:replace="fragments/header :: common-header">
+        <title>Signup</title>
+    </head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h1 class="text-center font-weight-bold">Sign Up</h1>
+<div class="container">
+    <form action="#" th:action="@{/saveUsers}" th:object="${newUser}" method="post" >
+
+        <div class="form-group">
+            <input type="text" class="form-control" th:field="*{id}" placeholder="id" hidden="true"/>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" th:field="*{permissions}" placeholder="id" hidden="true" th:value="none"/>
+        </div>
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" th:field="*{username}" id="username" placeholder="Enter Username" name="username">
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" th:field="*{password}"id="password" placeholder="Enter Password" name="password">
+        </div>
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="option1" name="option1" class="custom-control-input" value="BUYER" th:field="*{roles}">
+                <label class="custom-control-label" for="option1">Buyer</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="option2" name="option2" class="custom-control-input" value="SELLER" th:field="*{roles}">
+                <label class="custom-control-label" for="option2">Seller</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+
+    </form>

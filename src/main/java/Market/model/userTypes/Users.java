@@ -52,6 +52,10 @@ public class Users {
         return new ArrayList<>();
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     /*Cannot be named isActive*/
     public boolean userIsActive() {
         return active > 0;
