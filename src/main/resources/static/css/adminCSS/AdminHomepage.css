@@ -560,13 +560,12 @@ a {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
   -ms-flex-align: start;
@@ -713,10 +712,9 @@ a {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -884,7 +882,8 @@ a {
 }
 
 .link-block-10 {
-  margin-top: 1px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   text-decoration: none;
 }
 
@@ -897,7 +896,7 @@ a {
 }
 
 .heading-9 {
-  padding-bottom: 0px;
+  padding-bottom: 1px;
   font-weight: 400;
 }
 
@@ -916,10 +915,6 @@ a {
 .heading-13 {
   margin-top: 0px;
   margin-bottom: 0px;
-}
-
-.link-block-12 {
-  text-decoration: none;
 }
 
 @media screen and (max-width: 991px) {
