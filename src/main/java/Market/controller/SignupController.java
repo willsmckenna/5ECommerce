@@ -68,7 +68,16 @@ public class SignupController {
 
     }
 
-    
+    @RequestMapping(value = "/saveSeller", method = RequestMethod.POST)
+    public String addBuyerSeller(@ModelAttribute("newSeller") Seller newSeller, BindingResult bindingResult, Model model)
+    {
+        newSeller.setUsername(user.getUsername());
+        user = null;
+        System.out.println(newSeller);
+        sellerRepository.save(newSeller);
+        return "/login";
+
+    }
 
 /*
     @PostMapping("/addUser")
