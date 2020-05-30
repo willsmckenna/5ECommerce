@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Search User</title>
-
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/SearchUser.css}"/>
-
 </head>
 <body class="body">
 <div th:replace="fragments/adminHeader :: header"></div>
@@ -28,26 +26,20 @@
     <div class="returnedusers w-container">
         <h4 class="heading-14">Users:</h4>
         <div>
-            <table border="1" align="center">
-                <tr>
-                    <th>Username</th>
-                    <th>ID</th>
-                    <th>Active</th>
-                    <th>Permission</th>
-                    <th>Role</th>
-                    <th>Remove?</th>
-                </tr>
-                <tr th:each="user: ${users}">
-                    <td th:text="${user.getUsername()}">John</td>
-                    <td th:text="${user.getId()}">12</td>
-                    <td th:text="${user.userIsActive()}">Active</td>
-                    <td th:text="${user.getPermissions()}">Perm</td>
-                    <td th:text="${user.getRoles()}">BUYER</td>
-                    <td>
-                        <a th:href="@{removeUser(username=${user.username})}" class="w-button"> X </a>
-                    </td>
-                </tr>
-            </table>
+            <ul role="list" class="list w-list-unstyled">
+                <li>UserName</li>
+                <li>ID</li>
+                <li>IsActive?</li>
+                <li>Remove?</li>
+            </ul>
+            <ul role="list" class="usertable w-list-unstyled" th:each="user: ${users}">
+                <li class="username" th:text="${user.getUsername()}"> UserName</li>
+                <li class="role" th:text="${user.getId()}">ID</li>
+                <li class="role" th:text="${user.userIsActive()}">Active</li>
+                <li class="remove">
+                    <a th:href="@{removeUser(username=${user.username})}" class="w-button"> X </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
