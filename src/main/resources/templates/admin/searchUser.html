@@ -29,13 +29,9 @@
         </div>
         <div>
             <div class="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form"><input type="submit" value="Logout" data-wait="Please wait..." class="submit-button w-button"></form>
-                <div class="w-form-done">
-                    <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                    <div>Oops! Something went wrong while submitting the form.</div>
-                </div>
+                <form id="email-form" name="email-form" data-name="Email Form" th:action="@{/logout}" th:method="post" class="form">
+                    <input type="submit" value="Logout" data-wait="Please wait..." class="submit-button w-button">
+                </form>
             </div>
         </div>
     </nav>
@@ -47,22 +43,30 @@
         </div>
         <div>
             <div class="w-form">
-                <form id="email-form-2" name="email-form-2" data-name="Email Form 2"><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="Search Username..." id="username"><input type="submit" value="Search" data-wait="Please wait..." class="w-button"></form>
-                <div class="w-form-done">
-                    <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail"></div>
+                <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{searchUser}" method="get">
+                    <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="Search Username..." id="username">
+                    <input type="submit" value="Search" data-wait="Please wait..." class="w-button">
+                </form>
             </div>
         </div>
     </div>
     <div class="returnedusers w-container">
         <h4 class="heading-14">Users:</h4>
         <div>
-            <ul role="list" class="usertable w-list-unstyled">
-                <li class="username"></li>
-                <li class="role"></li>
-                <li class="remove"></li>
-            </ul>
+            <table style="width:100%">
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Remove?</th>
+                </tr>
+                <tr th:each="user: ${users}">
+                    <td th:text="${user.getUsername()}">John</td>
+                    <td th:text="${user.getRoles()}">BUYER</td>
+                    <td>
+                        <a class="w-button"> X </a>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
