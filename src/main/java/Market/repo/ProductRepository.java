@@ -8,4 +8,5 @@ import java.util.Set;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
     Set<Product> findBySeller(Seller seller);
+    Set<Product> findAllByNameLike(String name);
 }

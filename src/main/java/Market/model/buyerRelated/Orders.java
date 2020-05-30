@@ -27,7 +27,8 @@ public class Orders {
     @JoinColumn(name = "BuyerID")
     Buyer buyer;
 
-   @OneToMany
+    //turn this into strings
+   @OneToMany(orphanRemoval = true)
    Set<Product> products = new HashSet<Product>();
 
 

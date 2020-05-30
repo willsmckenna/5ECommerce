@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Search</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/SearchProducts.css}"/>
+</head>
+<body class="body">
+<div th:replace="fragments/adminHeader :: header"></div>
+
+<div class="section-4">
+    <div class="container-9 w-container">
+        <div>
+            <h3>Search By Product Name</h3>
+        </div>
+        <div>
+            <div class="w-form">
+                <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{adminSearchProduct}" method="get">
+                    <input type="text" class="w-input" maxlength="256" name="productname" data-name="productname" placeholder="Search Product..." id="productname">
+                    <input type="submit" value="Search" data-wait="Please wait..." class="w-button">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="returnedusers w-container">
+        <h4 class="heading-14">Products</h4>
+        <div>
+            <ul role="list" class="list w-list-unstyled">
+                <li>Product Name</li>
+                <li>Seller Name</li>
+                <li>Price</li>
+                <li>Remove?</li>
+            </ul>
+            <ul role="list" class="usertable w-list-unstyled" th:each="product: ${products}">
+                <li class="username" th:text="${product.getName()}"></li>
+                <li class="role" th:text="${product.getSeller().getUsername()}"></li>
+                <li class="active" th:text="${product.getPrice()}"></li>
+                <li class="remove">
+                    <a th:href="@{removeProduct(productName=${product.getName()}, sellerUsername = ${product.getSeller().getUsername()})}" class="w-button"> X </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

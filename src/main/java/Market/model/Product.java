@@ -1,5 +1,6 @@
 package Market.model;
 
+import Market.model.buyerRelated.Orders;
 import Market.model.userTypes.Seller;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
@@ -19,16 +20,15 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "products", schema = "public")
-@ToString
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "products_for_sale")
     Seller seller;
+
 
     private String name;
     private double quantity; //<= we may need a quantity of identical products because of a set in seller
@@ -58,8 +58,19 @@ public class Product implements Serializable {
                 Objects.equals(description, product.description);
     }
 
+    public Seller getSeller() {
+        if(seller == null)
+        {
+            Seller seller_1 = new Seller();
+            seller_1.setUsername("VERY MUCH NULL");
+            return seller_1;
+        }
+        return seller;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(id, name, quantity, price, description);
     }
+
 }

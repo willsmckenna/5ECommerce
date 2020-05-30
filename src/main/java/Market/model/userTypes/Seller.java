@@ -33,7 +33,8 @@ public class Seller {
     @Column(name="lastname")
     private String lastname;
 
-    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<Product> productsForSale;
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
@@ -64,5 +65,15 @@ public class Seller {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, firstname, lastname);
+    }
+
+    @Override
+    public String toString() {
+        return "Seller{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                '}';
     }
 }
