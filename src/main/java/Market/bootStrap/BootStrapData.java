@@ -144,10 +144,10 @@ public class BootStrapData implements CommandLineRunner {
         Orders orders_1 = new Orders();
         buyer_1.getOrders().add(orders_1);
         orders_1.setBuyer(buyer_1);
-        orders_1.setProducts(demoProducts);
 
         double order_1_Price = 0.0;
         for(Product p : demoProducts) {
+            orders_1.addProduct(p,p.getQuantity());
             order_1_Price += p.getPrice();
         }
         orders_1.setOrderTotal(order_1_Price);
