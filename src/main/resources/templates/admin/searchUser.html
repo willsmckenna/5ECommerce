@@ -69,7 +69,7 @@
                     <td th:text="${user.getPermissions()}">Perm</td>
                     <td th:text="${user.getRoles()}">BUYER</td>
                     <td>
-                        <a class="w-button"> X </a>
+                        <a th:href="@{removeUser(username=${user.username})}" class="w-button"> X </a>
                     </td>
                 </tr>
             </table>

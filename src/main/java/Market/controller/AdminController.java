@@ -28,4 +28,12 @@ public class AdminController {
         model.addAttribute("users", userService.findByUserNames(username));
         return "admin/searchUser";
     }
+
+    @RequestMapping(value = "removeUser", method = RequestMethod.GET)
+    public String getRemoveUser(Model model, String username) {
+        userService.removeUser(username);
+        model.addAttribute("users", userService.findByUserNames(""));
+        return "admin/searchUser";
+    }
+
 }

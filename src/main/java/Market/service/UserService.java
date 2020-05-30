@@ -16,4 +16,12 @@ public class UserService {
     public Set<Users>  findByUserNames(String username) {
         return usersRepository.findByUsernameLike("%" + username + "%");
     }
+
+    public void removeUser(String username)
+    {
+        Users user = usersRepository.findByUsername(username);
+        if(user != null){
+            usersRepository.delete(user);
+        }
+    }
 }
