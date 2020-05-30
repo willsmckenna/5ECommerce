@@ -114,6 +114,14 @@ public class BootStrapData implements CommandLineRunner {
         product_3.setQuantity(1);
         product_3.setDescription("Lasts literally forever");
         demoProducts.add(product_3);
+
+        Product product_4 = new Product();
+        product_4.setSeller(seller_1);
+        product_4.setName("Facemask");
+        product_4.setPrice(109.99);
+        product_4.setQuantity(1);
+        product_4.setDescription("Standard surgical facemask");
+        demoProducts.add(product_4);
         productRepository.saveAll(demoProducts);
 
         /*Make shipping address for seller_1*/
@@ -144,10 +152,10 @@ public class BootStrapData implements CommandLineRunner {
         Orders orders_1 = new Orders();
         buyer_1.getOrders().add(orders_1);
         orders_1.setBuyer(buyer_1);
-        orders_1.setProducts(demoProducts);
 
         double order_1_Price = 0.0;
         for(Product p : demoProducts) {
+            orders_1.addProduct(p,p.getQuantity());
             order_1_Price += p.getPrice();
         }
         orders_1.setOrderTotal(order_1_Price);

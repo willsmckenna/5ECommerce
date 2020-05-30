@@ -3,6 +3,9 @@ package Market.model.buyerRelated;
 import Market.model.Product;
 import Market.model.userTypes.Buyer;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -19,7 +22,7 @@ public class ShoppingCart implements Serializable {
     @OneToOne
     Buyer buyer;
 
-    @OneToMany
+    @OneToMany(mappedBy = "shoppingCart",orphanRemoval = true, cascade = CascadeType.REMOVE)
     Set<Product> products = new HashSet<Product>();
 
 
@@ -30,7 +33,9 @@ public class ShoppingCart implements Serializable {
     public void addItemToCart(Product product){
         this.products.add(product);
     }
-    public void checkOut(){}
+    public void checkOut(){
+
+    }
 
     @Override
     public boolean equals(Object o) {

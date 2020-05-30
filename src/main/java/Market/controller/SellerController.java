@@ -20,7 +20,7 @@ public class SellerController
     }
 
     @GetMapping("index")
-    public String getBuyerAccount()
+    public String getSellerAccount()
     {
         return "seller/index";
     }

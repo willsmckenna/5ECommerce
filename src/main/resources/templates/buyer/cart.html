@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <head th:replace="fragments/header :: common-header">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <title>Browse all products</title>
+
+        <title>Shopping Cart</title>
     </head>
     <div th:replace="fragments/header :: header"></div>
 <body>
@@ -21,6 +22,7 @@
                 <th scope="col">description</th>
             </tr>
             </thead>
+            <tr th:if="${items.empty}">Shopping Cart Empty</tr>
             <tr th:each = "items: ${items}"  style="margin: 20px">
                 <th scope="row" th:text="${items.name}"> </th>
                 <td th:text="${items.price}"></td>
