@@ -17,8 +17,7 @@ public class UserService {
         return usersRepository.findByUsernameLike("%" + username + "%");
     }
 
-    public void removeUser(String username)
-    {
+    public void removeUser(String username) {
         Users user = usersRepository.findByUsername(username);
         if(user != null){
             usersRepository.delete(user);

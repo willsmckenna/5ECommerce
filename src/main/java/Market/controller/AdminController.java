@@ -1,6 +1,5 @@
 package Market.controller;
 
-import Market.repo.userTypeRepositories.UsersRepository;
 import Market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,5 +34,4 @@ public class AdminController {
         model.addAttribute("users", userService.findByUserNames(""));
         return "admin/searchUser";
     }
-
 }

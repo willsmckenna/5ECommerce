@@ -10,32 +10,7 @@
 
 </head>
 <body class="body">
-<header id="nav" class="sticky-nav-2">
-    <nav class="container-8 w-container">
-        <div>
-            <a th:href="@{/}" class="link-block-10 w-inline-block">
-                <h5 class="heading-9">5ECommerce</h5>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{index}" class="link-block-10 w-inline-block">
-                <h5 class="heading-9">Home</h5>
-            </a>
-        </div>
-        <div>
-            <a href="#" class="link-block-10 w-inline-block">
-                <h5 class="heading-9">Messages</h5>
-            </a>
-        </div>
-        <div>
-            <div class="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" th:action="@{/logout}" th:method="post">
-                    <input type="submit" value="Logout" data-wait="Please wait..." class="submit-button w-button">
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
+<div th:replace="fragments/adminHeader :: header"></div>
 <div class="section-4">
     <div class="container-3 w-container">
         <div>
