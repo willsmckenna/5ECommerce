@@ -30,6 +30,16 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("errorPage")
+    public String getError() {
+        return "404";
+    }
+
+    @GetMapping("terms")
+    public String getTerms() {
+        return "termsService";
+    }
+
     @RequestMapping("success")
     public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException {
 

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common-header">
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div class="container text-center" style="margin-top:8em;">
+        <h1>404</h1>
+        <p>Oops! Something went wrong!</p>
+        <a href="/index" class="btn btn-primary btn-lg container shadow-lg p-3 mb-5 rounded w-25 p-3">
+            Return to Home Page
+        </a>
+    </div>
+
+</body>
+</html>
