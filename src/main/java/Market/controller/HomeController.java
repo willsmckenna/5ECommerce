@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -61,8 +62,8 @@ public class HomeController {
     @GetMapping(path = "/productview", params = "info")
     public String viewProduct(@RequestParam String name, Model model)
     {
-        Product item1 = productRepository.findByName(name);
-        model.addAttribute("p",item1);
+        Set<Product> items = productRepository.findAllByNameLike(name);
+        model.addAttribute("p", items.toArray()[0]);
         return "productview/info";
     }
 }

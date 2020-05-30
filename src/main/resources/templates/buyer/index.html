@@ -5,7 +5,11 @@
     <title>Customer Account Overview</title>
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
-
+    <!-- Font Awesome CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous"
+    >
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/buyerCSS/BuyerHomePage.css}"/>
@@ -36,6 +40,11 @@
                     <div>Oops! Something went wrong while submitting the form.</div>
                 </div>
             </div>
+        </div>
+        <br>
+        <div class="div-block-14" style="margin-top: 10px; display:block;">
+            <a href="/buyer/cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            <p>Cart</p>
         </div>
     </nav>
 </header>
@@ -80,6 +89,12 @@
             <a href="#" class="link-block-6 w-inline-block">
                 <h3>Service</h3>
                 <p class="paragraph">Learn About Our <br>Terms of Service</p>
+            </a>
+        </div>
+        <div class="div-block-11">
+            <a href="/browse" class="link-block-6 w-inline-block">
+                <h3>Browse</h3>
+                <p class="paragraph">Browse<br>All Products</p>
             </a>
         </div>
     </div>

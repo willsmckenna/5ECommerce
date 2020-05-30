@@ -23,8 +23,7 @@
                                         <h5 class="card-title" th:text = "${products.name}"></h5>
                                         <h3 class="card-title" th:text = "${products.price}"></h3>
                                         <p class="card-text" th:text = "${products.description}"></p>
-                                        <a href="#" class="btn btn-primary">Buy</a>
-                                        <a class="btn btn-info" th:href="@{/productview(info,name=${products.name})}"> Info</a>
+                                        <a class="btn btn-info" th:href="@{/productview(info, name=${products.name})}">View</a>
                                     </div>
                                 </div>
                             </div>

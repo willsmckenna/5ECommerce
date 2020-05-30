@@ -7,11 +7,17 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-<div class="jumbotron text-center">
-    <h1 th:text="${p.name}"></h1>
-    <h3 class="card-title" th:text = "${p.price}"></h3>
-    <p class="card-text" th:text = "${p.description}"></p>
+<br>
+<div class="container">
+    <div class="shadow p-3 mb-5 bg-white rounded">
+        <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
+        <div class="card-body">
+            <h5 class="card-title" th:text = "${p.name}"></h5>
+            <h3 class="card-title" th:text = "${p.price}"></h3>
+            <p class="card-text" th:text = "${p.description}"></p>
+            <button type="button" class="btn-primary">Add to Cart</button>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
