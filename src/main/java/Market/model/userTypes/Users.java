@@ -51,4 +51,9 @@ public class Users {
         }
         return new ArrayList<>();
     }
+
+    /*Cannot be named isActive*/
+    public boolean userIsActive() {
+        return active > 0;
+    }
 }
