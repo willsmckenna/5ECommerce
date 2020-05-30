@@ -114,6 +114,14 @@ public class BootStrapData implements CommandLineRunner {
         product_3.setQuantity(1);
         product_3.setDescription("Lasts literally forever");
         demoProducts.add(product_3);
+
+        Product product_4 = new Product();
+        product_4.setSeller(seller_1);
+        product_4.setName("Facemask");
+        product_4.setPrice(109.99);
+        product_4.setQuantity(1);
+        product_4.setDescription("Standard surgical facemask");
+        demoProducts.add(product_4);
         productRepository.saveAll(demoProducts);
 
         /*Make shipping address for seller_1*/
