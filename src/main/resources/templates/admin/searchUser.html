@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search User</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/SearchUser.css}"/>
+
+</head>
+<body class="body">
+<header id="nav" class="sticky-nav-2">
+    <nav class="container-8 w-container">
+        <div>
+            <a th:href="@{/}" class="link-block-10 w-inline-block">
+                <h5 class="heading-9">5ECommerce</h5>
+            </a>
+        </div>
+        <div>
+            <a th:href="@{index}" class="link-block-10 w-inline-block">
+                <h5 class="heading-9">Home</h5>
+            </a>
+        </div>
+        <div>
+            <a href="#" class="link-block-10 w-inline-block">
+                <h5 class="heading-9">Messages</h5>
+            </a>
+        </div>
+        <div>
+            <div class="form-block w-form">
+                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form"><input type="submit" value="Logout" data-wait="Please wait..." class="submit-button w-button"></form>
+                <div class="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="section-4">
+    <div class="container-9 w-container">
+        <div>
+            <h3>Search By Username</h3>
+        </div>
+        <div>
+            <div class="w-form">
+                <form id="email-form-2" name="email-form-2" data-name="Email Form 2"><input type="text" class="w-input" maxlength="256" name="name" data-name="Name" placeholder="Search Username..." id="username"><input type="submit" value="Search" data-wait="Please wait..." class="w-button"></form>
+                <div class="w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                </div>
+                <div class="w-form-fail"></div>
+            </div>
+        </div>
+    </div>
+    <div class="returnedusers w-container">
+        <h4 class="heading-14">Users:</h4>
+        <div>
+            <ul role="list" class="usertable w-list-unstyled">
+                <li class="username"></li>
+                <li class="role"></li>
+                <li class="remove"></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>

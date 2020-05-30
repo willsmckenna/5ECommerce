@@ -12,4 +12,9 @@ public class AdminController {
     public String getAdminPage() {
         return "admin/index";
     }
+
+    @GetMapping("searchUser")
+    public String getUserSearch() {
+        return "admin/searchUser";
+    }
 }
