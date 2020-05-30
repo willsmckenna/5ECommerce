@@ -48,18 +48,21 @@ public class Admin implements Serializable, IMessage {
     public Admin() {
     }
 
-    public void removeUser(){}
-    public void removeSeller(){}
-    public void removeItem(){}
-    public void processRequest(){}
+    public void removeUser(){
 
-    @Override
-    public void sendMsg() {
+    }
+    public void removeItem(){
+
+    }
+    public void processRequest(){
 
     }
 
     @Override
-    public void showMsgs() {
+    public void sendMsg() {
+    }
 
+    @Override
+    public void showMsgs() {
     }
 }

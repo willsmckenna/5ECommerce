@@ -153,7 +153,6 @@ public class BootStrapData implements CommandLineRunner {
         orders_1.setOrderTotal(order_1_Price);
         orderRepository.save(orders_1);
 
-
         /*Make a few payment infos*/
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -165,7 +164,6 @@ public class BootStrapData implements CommandLineRunner {
         paymentInfo_1.setCvv(210);
         paymentInfo_1.setExpirationDate(date);
         demoPaymentInfo.add(paymentInfo_1);
-
 
         PaymentInfo paymentInfo_2 = new PaymentInfo();
         paymentInfo_2.setSeller(seller_1);
