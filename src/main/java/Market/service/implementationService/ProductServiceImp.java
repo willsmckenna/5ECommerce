@@ -39,16 +39,10 @@ public class ProductServiceImp implements ProductService {
         Seller seller = sellerRepository.findByUsername(sellerUsername);
         Iterable<Product> products= productRepository.findAll();
         if(seller != null) {
-
-            System.out.println("Found Seller with username: " + seller.getUsername());
-            for (Product p : seller.getProductsForSale())
-            {
-                System.out.println("Remove:" +productName + "  Have:" + p.getName() );
+            for (Product p : seller.getProductsForSale()) {
                 if (p.getName().equals(productName)) {
-                    System.out.println("Found product with Name: " + productName);
                     seller.getProductsForSale().remove(p);
                     sellerRepository.save(seller);
-                   // productRepository.delete(p);
                     break;
                 }
             }
