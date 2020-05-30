@@ -27,9 +27,8 @@ public class Orders {
     @JoinColumn(name = "BuyerID")
     Buyer buyer;
 
-    //turn this into strings
-   @OneToMany(orphanRemoval = true)
-   Set<Product> products = new HashSet<Product>();
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    Set<productsNoDepend> ordersProducts = new HashSet<productsNoDepend>();
 
 
     private double orderTotal;
@@ -41,6 +40,19 @@ public class Orders {
         this.buyer = buyer;
     }
 
+    public void addProduct(Product product, int quantity)
+    {
+        productsNoDepend productsNoDepend = new productsNoDepend(
+                this,
+                product.getId(),
+                product.getSeller().getUsername(),
+                product.getName(),
+                product.getPrice(),
+                quantity,
+                product.getImage()
+        );
+        this.ordersProducts.add(productsNoDepend);
+    }
 
 
     //no-sql for order status
@@ -48,20 +60,25 @@ public class Orders {
     @Column(columnDefinition = "hstore")
     private Map<String,String> status = new HashMap<String,String>();
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Orders orders = (Orders) o;
         return Double.compare(orders.orderTotal, orderTotal) == 0 &&
-                Objects.equals(id, orders.id) &&
-                Objects.equals(products, orders.products) &&
-                Objects.equals(status, orders.status);
+                Objects.equals(id, orders.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products, orderTotal, status);
+        return Objects.hash(id, orderTotal);
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "id=" + id +
+                ", orderTotal=" + orderTotal +
+                '}';
     }
 }

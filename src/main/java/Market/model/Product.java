@@ -1,14 +1,17 @@
 package Market.model;
 
 import Market.model.buyerRelated.Orders;
+import Market.model.buyerRelated.ShoppingCart;
 import Market.model.userTypes.Seller;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
 import lombok.ToString;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Objects;
@@ -29,9 +32,13 @@ public class Product implements Serializable {
     @ManyToOne
     Seller seller;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    ShoppingCart shoppingCart;
+
 
     private String name;
-    private double quantity; //<= we may need a quantity of identical products because of a set in seller
+    private int quantity;
     private double price;
     private String description;
     private Blob image;
