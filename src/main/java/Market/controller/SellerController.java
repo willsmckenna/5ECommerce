@@ -43,5 +43,9 @@ public class SellerController
         return "productview/browse";
 
     }
+    @GetMapping("TOS")
+    public String getTOS() {
+        return "termsService";
+    }
 
 }

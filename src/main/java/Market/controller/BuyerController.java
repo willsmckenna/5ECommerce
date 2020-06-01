@@ -85,4 +85,11 @@ public class BuyerController {
         shoppingCartRepository.save(cart);
         return "redirect:/browse";
     }
+
+
+    @GetMapping("TOS")
+    public String getTOS() {
+        return "termsService";
+    }
+
 }

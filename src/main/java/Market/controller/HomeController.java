@@ -39,11 +39,6 @@ public class HomeController {
         return "error";
     }
 
-    @GetMapping("terms")
-    public String getTerms() {
-        return "termsService";
-    }
-
     @RequestMapping("success")
     public void loginPageRedirect(HttpServletRequest request, HttpServletResponse response, Authentication authResult) throws IOException {
 
