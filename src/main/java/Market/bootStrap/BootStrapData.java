@@ -4,6 +4,7 @@ import Market.model.Product;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.buyerRelated.ShoppingCart;
+import Market.model.buyerRelated.ShoppingCartProducts;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
@@ -35,8 +36,9 @@ public class BootStrapData implements CommandLineRunner {
     private final ShoppingCartRepository shoppingCartRepository;
     private final OrderRepository orderRepository;
     private final PaymentRepo paymentRepo;
+    private final ShoppingCartProductsRepository shoppingCartProductsRepository;
 
-    public BootStrapData(UsersRepository userRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository, AdminRepo adminRepo, ProductRepository productRepository, ShippingAddressRepository shippingAddressRepository, ShoppingCartRepository shoppingCartRepository, OrderRepository orderRepository, PaymentRepo paymentRepo) {
+    public BootStrapData(UsersRepository userRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository, AdminRepo adminRepo, ProductRepository productRepository, ShippingAddressRepository shippingAddressRepository, ShoppingCartRepository shoppingCartRepository, OrderRepository orderRepository, PaymentRepo paymentRepo, ShoppingCartProductsRepository shoppingCartProductsRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.buyerRepository = buyerRepository;
@@ -47,6 +49,7 @@ public class BootStrapData implements CommandLineRunner {
         this.shoppingCartRepository = shoppingCartRepository;
         this.orderRepository = orderRepository;
         this.paymentRepo = paymentRepo;
+        this.shoppingCartProductsRepository = shoppingCartProductsRepository;
     }
 
     @Override
@@ -64,6 +67,7 @@ public class BootStrapData implements CommandLineRunner {
         orderRepository.deleteAll();
         paymentRepo.deleteAll();
         adminRepo.deleteAll();
+        shoppingCartProductsRepository.deleteAll();
 
         /* Make the global users that exist in the System */
 
@@ -142,11 +146,13 @@ public class BootStrapData implements CommandLineRunner {
         /*Make some a cart, add products to the cart*/
         ShoppingCart cart_1 = new ShoppingCart();
         cart_1.setBuyer(buyer_1);
-        cart_1.addItemToCart(product_1);
-        cart_1.addItemToCart(product_2);
-        cart_1.addItemToCart(product_3);
-
+        cart_1.addProduct(product_1);
+        cart_1.addProduct(product_2);
+        cart_1.addProduct(product_3);
         shoppingCartRepository.save(cart_1);
+        shoppingCartProductsRepository.saveAll(cart_1.getShoppingCartProducts());
+        buyerRepository.save(buyer_1);
+
 
         /*Make an order*/
         Orders orders_1 = new Orders();

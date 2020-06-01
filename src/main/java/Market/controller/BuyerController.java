@@ -2,8 +2,10 @@ package Market.controller;
 
 import Market.model.Product;
 import Market.model.buyerRelated.ShoppingCart;
+import Market.model.buyerRelated.ShoppingCartProducts;
 import Market.model.userTypes.Buyer;
 import Market.repo.ProductRepository;
+import Market.repo.ShoppingCartProductsRepository;
 import Market.repo.ShoppingCartRepository;
 import Market.repo.BuyerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -21,12 +24,18 @@ public class BuyerController {
 
     @Autowired
     private BuyerRepository buyerRepository;
+
     @Autowired
     private ProductRepository productRepository;
+
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
 
-    public BuyerController(){}
+    @Autowired
+    private ShoppingCartProductsRepository shoppingCartProductsRepository;
+
+    public BuyerController(){
+    }
 
     @GetMapping("index")
     public String getBuyerAccount() {
@@ -39,7 +48,16 @@ public class BuyerController {
 
         Buyer buyer = buyerRepository.findByUsername(user);
         ShoppingCart sc = shoppingCartRepository.findByBuyer(buyer);
-        Set <Product> items = sc.getProducts();
+
+        Set<ShoppingCartProducts> shoppingCartProducts = sc.getShoppingCartProducts();
+        Set <Product> items = new HashSet<Product>();
+
+        for(ShoppingCartProducts SCP : shoppingCartProducts) {
+            Product p = productRepository.getById(SCP.getProductId());
+            if(p != null) {
+                items.add(p);
+            }
+        }
         model.addAttribute("items", items);
         return "buyer/cart";
     }
@@ -51,20 +69,20 @@ public class BuyerController {
         }
         //get product(s) that was asked for
         Set<Product> productToAdd = productRepository.findAllByNameLike(product.getName());
+
         //get the first one you can if there are dups
         Product p = productToAdd.iterator().next();
+
         //get currently logged in user/buyer
         String user = request.getUserPrincipal().getName();
         Buyer buyer = buyerRepository.findByUsername(user);
+
         //get buyer's cart
         ShoppingCart cart = shoppingCartRepository.findByBuyer(buyer);
-        //assign product to that cart
-        p.setShoppingCart(cart);
-        //save product in product repo
-        productRepository.save(p);
 
+        //Add product to that cart
+        cart.addProduct(p);
+        shoppingCartRepository.save(cart);
         return "redirect:/browse";
-
     }
-
 }

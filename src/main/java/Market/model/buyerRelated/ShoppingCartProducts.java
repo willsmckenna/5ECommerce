@@ -13,14 +13,18 @@ public class ShoppingCartProducts {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    ShoppingCart shoppingCart;
+
     @Column(name = "product_Id")
-    String productId;
+    Long productId;
 
 
     public ShoppingCartProducts() {
     }
 
-    public ShoppingCartProducts(String productId) {
+    public ShoppingCartProducts(ShoppingCart shoppingCart, Long productId) {
+        this.shoppingCart = shoppingCart;
         this.productId = productId;
     }
 }

@@ -22,17 +22,19 @@ public class ShoppingCart implements Serializable {
     @OneToOne
     Buyer buyer;
 
-    @OneToMany(mappedBy = "shoppingCart",orphanRemoval = true, cascade = CascadeType.REMOVE)
-    Set<Product> products = new HashSet<Product>();
+    @OneToMany(mappedBy = "shoppingCart",orphanRemoval = true, cascade = CascadeType.ALL )
+    Set<ShoppingCartProducts> shoppingCartProducts = new HashSet<ShoppingCartProducts>();
 
+    public  ShoppingCart(){
 
-    public  ShoppingCart(){}
+    }
     public  ShoppingCart(Buyer buyer ) { this.buyer = buyer; }
 
-    public void removeItem(){}
-    public void addItemToCart(Product product){
-        this.products.add(product);
+
+    public void addProduct(Product product) {
+        this.shoppingCartProducts.add(new ShoppingCartProducts(this, product.getId()));
     }
+
     public void checkOut(){
 
     }
@@ -42,12 +44,11 @@ public class ShoppingCart implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ShoppingCart that = (ShoppingCart) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(products, that.products);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products);
+        return Objects.hash(id);
     }
 }
