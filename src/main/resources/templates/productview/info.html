@@ -10,14 +10,18 @@
 <br>
 <div class="container">
     <div class="shadow p-3 mb-5 bg-white rounded">
-        <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
-        <div class="card-body">
-            <h5 class="card-title" th:text = "${p.name}"></h5>
-            <h3 class="card-title" th:text = "${p.price}"></h3>
-            <p class="card-text" th:text = "${p.description}"></p>
-            <button type="button" class="btn-primary">Add to Cart</button>
-        </div>
+        <form action="#" th:action="@{buyer/productview/info/add}" method="post">
+            <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
+            <div class="card-body">
+                    <h5 class="card-title"  th:text = "${p.name}" id="name" name="name"></h5>
+                    <input type="hidden" th:value="${p.name}" name="name"/>
+                    <h3 class="card-title" th:text = "${p.price}" id="price" name="price"></h3>
+                    <p class="card-text" th:text = "${p.description}" id="description" name="description"></p>
+                    <button type="submit" class="btn-primary">Add to Cart</button>
+            </div>
+        </form>
     </div>
+</div>
 </div>
 </body>
 </html>

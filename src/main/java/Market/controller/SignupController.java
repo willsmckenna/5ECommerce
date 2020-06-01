@@ -1,8 +1,10 @@
 package Market.controller;
 
+import Market.model.buyerRelated.ShoppingCart;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
+import Market.repo.ShoppingCartRepository;
 import Market.repo.userTypeRepositories.BuyerRepository;
 import Market.repo.userTypeRepositories.SellerRepository;
 import Market.repo.userTypeRepositories.UsersRepository;
@@ -20,13 +22,15 @@ public class SignupController {
     private final PasswordEncoder passwordEncoder;
     private final BuyerRepository buyerRepository;
     private final SellerRepository sellerRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
     private static Users user;
 
-    public SignupController(UsersRepository usersRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository) {
+    public SignupController(UsersRepository usersRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.buyerRepository = buyerRepository;
         this.sellerRepository = sellerRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
     }
 
     @GetMapping({"/signupview", "/signup"})
@@ -64,6 +68,10 @@ public class SignupController {
         user = null;
         System.out.println(newBuyer);
         buyerRepository.save(newBuyer);
+        //add a new shopping cart for the new buyer
+        ShoppingCart sc = new ShoppingCart();
+        sc.setBuyer(newBuyer);
+        shoppingCartRepository.save(sc);
         return "/login";
 
     }
