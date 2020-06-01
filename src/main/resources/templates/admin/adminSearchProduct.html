@@ -27,13 +27,13 @@
     <div class="returnedusers w-container">
         <h4 class="heading-14">Products</h4>
         <div>
-            <ul role="list" class="list w-list-unstyled" style="border: 1px solid black">
+            <ul role="list" class="list w-list-unstyled">
                 <li>Product Name</li>
                 <li>Seller Name</li>
                 <li>Price</li>
                 <li>Remove?</li>
             </ul>
-            <ul role="list" class="usertable w-list-unstyled" th:each="product: ${products}">
+            <ul role="list" class="usertable w-list-unstyled" th:each="product: ${products}" style="border: 1px solid black">
                 <li class="username" th:text="${product.getName()}"></li>
                 <li class="role" th:text="${product.getSeller().getUsername()}"></li>
                 <li class="active" th:text="${product.getPrice()}"></li>
