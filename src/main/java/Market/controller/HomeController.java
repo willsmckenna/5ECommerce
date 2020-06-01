@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -38,7 +36,7 @@ public class HomeController {
 
     @GetMapping("errorPage")
     public String getError() {
-        return "404";
+        return "error";
     }
 
     @GetMapping("terms")

@@ -35,7 +35,7 @@ public class SellerController
     {
         //System.out.println(newProduct);
         //productRepository.save(newProduct);
-        return "redirect:/browse";
+        return "productview/browse";
 
     }
 
