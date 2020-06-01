@@ -8,7 +8,7 @@ import java.util.Set;
 
 public interface ProductService{
     Optional<Product> findById(Long id);
-
+    Set<Product> findBySeller(Seller seller);
     Set<Product> findByName(String productName);
     void removeProduct(String productName, String  sellerUsername);
 }

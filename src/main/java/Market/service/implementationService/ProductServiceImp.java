@@ -29,6 +29,11 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public Set<Product> findBySeller(Seller seller) {
+        return productRepository.findBySeller(seller);
+    }
+
+    @Override
     public Set<Product> findByName(String productName) {
         return productRepository.findAllByNameLike("%" + productName + "%");
     }
