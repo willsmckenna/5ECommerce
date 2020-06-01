@@ -4,6 +4,7 @@ import Market.model.Product;
 import Market.model.userTypes.Seller;
 import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
+import Market.service.ProductService;
 import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class SellerController
 {
     @Autowired
     private ProductServiceImp productServiceImp;
+
+    @Autowired
+    private ProductService productService;
 
     private final ProductRepository productRepository;
     private final SellerRepository sellerRepository;
@@ -68,5 +72,13 @@ public class SellerController
     public String getLandingPage() {
         return "index";
     }
+
+    @RequestMapping(value = "removeProduct", method = RequestMethod.GET)
+    public String getRemoveProduct(Model model, String productName, String sellerUsername) {
+        productService.removeProduct(productName, sellerUsername);
+        model.addAttribute("products", productService.findByName(""));
+        return "seller/viewProducts";
+    }
+
 
 }

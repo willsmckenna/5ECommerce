@@ -51,7 +51,9 @@
                 <li class="username" th:text="${product.getName()}"></li>
                 <li class="role" th:text="${product.getQuantity()}"></li>
                 <li class="active" th:text="${product.getPrice()}"></li>
-                <li class="remove"></li>
+                <li class="remove">
+                    <a th:href="@{removeProduct(productName=${product.getName()}, sellerUsername = ${product.getSeller().getUsername()})}" class="w-button"> X </a>
+                </li>
             </ul>
         </div>
     </div>
