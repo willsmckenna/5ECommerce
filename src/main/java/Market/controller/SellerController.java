@@ -48,4 +48,9 @@ public class SellerController
         return "termsService";
     }
 
+    @GetMapping("/")
+    public String getLandingPage() {
+        return "index";
+    }
+
 }

@@ -92,4 +92,9 @@ public class BuyerController {
         return "termsService";
     }
 
+    @GetMapping("/")
+    public String getLandingPage() {
+        return "index";
+    }
+
 }
