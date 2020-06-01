@@ -4,10 +4,7 @@ import Market.model.Product;
 import Market.repo.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("seller")
@@ -33,10 +30,12 @@ public class SellerController
         return "seller/addProduct";
     }
 
-    @PostMapping("addproduct")
-    public String addProduct(@ModelAttribute Product product)
+    @PostMapping("list")
+    public String addProduct(@ModelAttribute("product") Product newProduct)
     {
-        return "seller/result";
+        //System.out.println(newProduct);
+        //productRepository.save(newProduct);
+        return "redirect:/browse";
 
     }
 
