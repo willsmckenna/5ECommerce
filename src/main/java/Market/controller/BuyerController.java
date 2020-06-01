@@ -5,18 +5,14 @@ import Market.model.buyerRelated.ShoppingCart;
 import Market.model.userTypes.Buyer;
 import Market.repo.ProductRepository;
 import Market.repo.ShoppingCartRepository;
-import Market.repo.userTypeRepositories.BuyerRepository;
+import Market.repo.BuyerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Set;
 
 @Controller

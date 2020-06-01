@@ -1,4 +1,4 @@
-package Market.repo.userTypeRepositories;
+package Market.repo;
 
 import Market.model.userTypes.Admin;
 import org.springframework.data.repository.CrudRepository;

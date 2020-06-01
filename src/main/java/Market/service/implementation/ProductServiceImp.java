@@ -1,7 +1,7 @@
-package Market.service.implementationService;
+package Market.service.implementation;
 
 import Market.model.userTypes.Seller;
-import Market.repo.userTypeRepositories.SellerRepository;
+import Market.repo.SellerRepository;
 import Market.service.ProductService;
 import Market.model.Product;
 import Market.repo.ProductRepository;

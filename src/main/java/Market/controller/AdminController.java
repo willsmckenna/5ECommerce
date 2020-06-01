@@ -1,9 +1,7 @@
 package Market.controller;
 
-import Market.model.Product;
-import Market.model.userTypes.Seller;
 import Market.service.ProductService;
-import Market.service.UserService;
+import Market.service.implementation.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImp userServiceImp;
 
     @Autowired
     private ProductService productService;
@@ -29,14 +27,14 @@ public class AdminController {
 
     @RequestMapping(value = "searchUser", method = RequestMethod.GET)
     public String getUserSearch(Model model, @RequestParam(defaultValue = "") String username) {
-        model.addAttribute("users", userService.findByUserNames(username));
+        model.addAttribute("users", userServiceImp.findByUserNames(username));
         return "admin/searchUser";
     }
 
     @RequestMapping(value = "removeUser", method = RequestMethod.GET)
     public String getRemoveUser(Model model, String username) {
-        userService.removeUser(username);
-        model.addAttribute("users", userService.findByUserNames(""));
+        userServiceImp.removeUser(username);
+        model.addAttribute("users", userServiceImp.findByUserNames(""));
         return "admin/searchUser";
     }
 

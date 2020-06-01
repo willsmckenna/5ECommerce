@@ -5,15 +5,14 @@ import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.ShoppingCartRepository;
-import Market.repo.userTypeRepositories.BuyerRepository;
-import Market.repo.userTypeRepositories.SellerRepository;
-import Market.repo.userTypeRepositories.UsersRepository;
+import Market.repo.BuyerRepository;
+import Market.repo.SellerRepository;
+import Market.repo.UsersRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.model.IModel;
 
 @Controller
 public class SignupController {

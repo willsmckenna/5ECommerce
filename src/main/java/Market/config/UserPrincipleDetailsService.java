@@ -1,7 +1,7 @@
 package Market.config;
 
 import Market.model.userTypes.Users;
-import Market.repo.userTypeRepositories.UsersRepository;
+import Market.repo.UsersRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
