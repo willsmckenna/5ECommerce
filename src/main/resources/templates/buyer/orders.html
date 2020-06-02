@@ -26,7 +26,7 @@
                 <tr th:each = "items: ${orderItems}"  style="margin: 20px">
                     <th scope="row" th:text="${items.product_name}"> </th>
                     <td th:text="${items.price}"></td>
-                    <td th:text="${items.quantity} +1"></td>
+                    <td th:text="${items.quantity} + 1"></td>
                     <td th:text="${items.description}"></td>
                 </tr>
                 <input type="hidden" th:value="${items}" name="name"/>

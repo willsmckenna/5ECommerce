@@ -19,6 +19,8 @@ public class ShoppingCartProducts {
     @Column(name = "product_Id")
     Long productId;
 
+//    @Column(name = "product_quantity")
+//    Long quantity;
 
     public ShoppingCartProducts() {
     }
@@ -26,5 +28,6 @@ public class ShoppingCartProducts {
     public ShoppingCartProducts(ShoppingCart shoppingCart, Long productId) {
         this.shoppingCart = shoppingCart;
         this.productId = productId;
+ //       this.quantity = quantity;
     }
 }

@@ -7,6 +7,7 @@ import Market.model.buyerRelated.ShoppingCartProducts;
 import Market.model.buyerRelated.productsNoDepend;
 import Market.model.userTypes.Buyer;
 import Market.repo.*;
+import Market.service.implementation.ShoppingCartServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +25,9 @@ import java.util.Set;
 @Controller
 @RequestMapping("buyer")
 public class BuyerController {
+
+    @Autowired
+    private ShoppingCartServiceImp shoppingCartServiceImp;
 
     @Autowired
     private BuyerRepository buyerRepository;
@@ -54,6 +59,7 @@ public class BuyerController {
         Buyer buyer = buyerRepository.findByUsername(user);
         ShoppingCart sc = shoppingCartRepository.findByBuyer(buyer);
 
+
         Set<ShoppingCartProducts> shoppingCartProducts = sc.getShoppingCartProducts();
         Set <Product> items = new HashSet<Product>();
 
@@ -63,6 +69,12 @@ public class BuyerController {
                 items.add(p);
             }
         }
+        double total = 0;
+        for (Product p: items){
+            total = total + p.getPrice()*p.getQuantity();
+        }
+
+        model.addAttribute("total",total);
         model.addAttribute("items", items);
         return "buyer/cart";
     }
@@ -78,6 +90,8 @@ public class BuyerController {
         //get the first one you can if there are dups
         Product p = productToAdd.iterator().next();
 
+        System.out.println("we want add :" + p.getName());
+
         //get currently logged in user/buyer
         String user = request.getUserPrincipal().getName();
         Buyer buyer = buyerRepository.findByUsername(user);
@@ -88,6 +102,7 @@ public class BuyerController {
         //Add product to that cart
         cart.addProduct(p);
         shoppingCartRepository.save(cart);
+
         return "redirect:/browse";
     }
     @RequestMapping(value = "buyer/cart/checkout", method = RequestMethod.POST)
