@@ -1,21 +1,23 @@
 package Market.controller;
 
 import Market.model.Product;
+import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShoppingCart;
 import Market.model.buyerRelated.ShoppingCartProducts;
+import Market.model.buyerRelated.productsNoDepend;
 import Market.model.userTypes.Buyer;
-import Market.repo.ProductRepository;
-import Market.repo.ShoppingCartProductsRepository;
-import Market.repo.ShoppingCartRepository;
-import Market.repo.BuyerRepository;
+import Market.repo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -33,6 +35,9 @@ public class BuyerController {
 
     @Autowired
     private ShoppingCartProductsRepository shoppingCartProductsRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     public BuyerController(){
     }
@@ -84,6 +89,42 @@ public class BuyerController {
         cart.addProduct(p);
         shoppingCartRepository.save(cart);
         return "redirect:/browse";
+    }
+    @RequestMapping(value = "buyer/cart/checkout", method = RequestMethod.POST)
+    public String checkOut(HttpServletRequest request) {
+        //get currently logged in user/buyer
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        //get shopping cart products
+        Set<ShoppingCartProducts>products = shoppingCartRepository.findByBuyer(buyer).getShoppingCartProducts();
+        //create a new order
+        Orders order = new Orders();
+        double total = 0;
+
+        for (ShoppingCartProducts p: products){
+            Product product = productRepository.findById(p.getProductId()).orElse(null);
+            total += product.getPrice();
+            order.addProduct(product, 1);
+        }
+
+        order.setBuyer(buyer);
+        order.setOrderTotal(total);
+        orderRepository.save(order);
+        return "buyer/checkout";
+    }
+
+    @GetMapping("orders")
+    public String getOrders(HttpServletRequest request, Model model) {
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        Set<Orders>orders = buyer.getOrders();
+        Set<productsNoDepend>items = new HashSet<>();
+        for (Orders o: orders){
+            for (productsNoDepend p: o.getOrdersProducts())
+                items.add(p);
+        }
+        model.addAttribute("orderItems", items);
+        return "buyer/orders";
     }
 
 
