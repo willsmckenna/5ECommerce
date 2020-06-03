@@ -59,6 +59,8 @@ public class Product {
         {
             Seller seller_1 = new Seller();
             seller_1.setUsername("VERY MUCH NULL");
+            seller_1.setFirstname("NULL");
+            seller_1.setLastname("NULL");
             return seller_1;
         }
         return seller;

@@ -7,9 +7,11 @@ import Market.repo.SellerRepository;
 import Market.service.ProductService;
 import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +31,7 @@ public class SellerController
     public SellerController(ProductRepository productRepository, SellerRepository sellerRepository) {
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
+        this.authResult = authResult;
     }
 
     @GetMapping("index")
@@ -58,8 +61,9 @@ public class SellerController
     @PostMapping("list")
     public String addProduct(@ModelAttribute("product") Product newProduct)
     {
-        //System.out.println(newProduct);
-        //productRepository.save(newProduct);
+
+        System.out.println(newProduct);
+        productRepository.save(newProduct);
         return "productview/browse";
 
     }
