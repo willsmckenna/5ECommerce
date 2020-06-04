@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:replace="fragments/header :: common-header">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <title>Your Payment Information</title>
+    </head>
+    <div th:replace="fragments/header :: header"></div>
+</head>
+<body>
+<h1 class="text-center font-weight-bold">Your Payment Information</h1>
+<br>
+<br>
+<div th:each = "paymentInfo: ${paymentInfo}" class="container">
+    <div class="shadow p-3 mb-5 bg-white rounded h-100">
+        <h4>Payment Information: </h4>
+        <br>
+        <p><b>Credit Card Number:</b> [[${paymentInfo.creditCardNum}]]</p>
+        <p><b>Expiration Date:</b> [[${paymentInfo.expirationDate}]]</p>
+        <p><b>CVV:</b> [[${paymentInfo.cvv}]]</p>
+    </div>
+</div>
+</body>
+</html>

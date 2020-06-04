@@ -1,7 +1,6 @@
 package Market.controller;
 
 import Market.model.Product;
-import Market.model.Review;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShoppingCart;
 import Market.model.buyerRelated.ShoppingCartProducts;
@@ -106,7 +105,6 @@ public class BuyerController {
 
         return "redirect:/browse";
     }
-
     @RequestMapping(value = "buyer/cart/checkout", method = RequestMethod.POST)
     public String checkOut(HttpServletRequest request) {
         //get currently logged in user/buyer
@@ -146,39 +144,6 @@ public class BuyerController {
         }
         model.addAttribute("orderItems", items);
         return "buyer/orders";
-    }
-
-    //want to keep track with each product
-    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
-    public String addReview(Model model){
-
-        return "buyer/addReview";
-    }
-
-    //collect user input of product review
-    @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
-    public String saveReview( @ModelAttribute("product") Product product, BindingResult bindingResult, HttpServletRequest request){
-        //grab product
-       // Set<Product> productToAdd = productRepository.findAllByNameLike(product.getName());
-       // Product p = productToAdd.iterator().next();
-
-        //create review object
-       // Review new_review = new Review();
-        //set user's review
-        //review.getReview("xxx");
-
-        //grab buyer
-       // String user = request.getUserPrincipal().getName();
-       // Buyer buyer = buyerRepository.findByUsername(user);
-        //also can set user name and data into review object
-
-
-        //grab current product's reviews and add new one to the list
-       // List<Review> curr_review = p.getReviews();
-       // curr_review.add(new_review);
-
-        //save p into database
-        return null;
     }
 
 

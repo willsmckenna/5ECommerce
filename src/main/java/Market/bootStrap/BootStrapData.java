@@ -139,6 +139,7 @@ public class BootStrapData implements CommandLineRunner {
         ShippingAddress shippingAddress_2 = new ShippingAddress();
         shippingAddress_2.setShippingAddress("1 E Jackson Blvd, Chicago, IL 60604");
         shippingAddress_2.setSeller(seller_1);
+        shippingAddress_2.setBuyer(buyer_1);
         demoShippingAddresses.add(shippingAddress_2);
 
         shippingAddressRepository.saveAll(demoShippingAddresses);
