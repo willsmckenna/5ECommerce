@@ -8,6 +8,7 @@ import Market.service.ProductService;
 import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,6 @@ public class SellerController
     public SellerController(ProductRepository productRepository, SellerRepository sellerRepository) {
         this.productRepository = productRepository;
         this.sellerRepository = sellerRepository;
-        this.authResult = authResult;
     }
 
     @GetMapping("index")
@@ -61,8 +61,9 @@ public class SellerController
     @PostMapping("list")
     public String addProduct(@ModelAttribute("product") Product newProduct)
     {
-
-        System.out.println(newProduct);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Seller currentSeller = sellerRepository.findByUsername(authentication.getName());
+        newProduct.setSeller(currentSeller);
         productRepository.save(newProduct);
         return "productview/browse";
 
