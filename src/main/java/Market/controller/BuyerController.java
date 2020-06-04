@@ -1,10 +1,8 @@
 package Market.controller;
 
+import Market.model.PaymentInfo;
 import Market.model.Product;
-import Market.model.buyerRelated.Orders;
-import Market.model.buyerRelated.ShoppingCart;
-import Market.model.buyerRelated.ShoppingCartProducts;
-import Market.model.buyerRelated.productsNoDepend;
+import Market.model.buyerRelated.*;
 import Market.model.userTypes.Buyer;
 import Market.repo.*;
 import Market.service.implementation.ShoppingCartServiceImp;
@@ -137,15 +135,29 @@ public class BuyerController {
         String user = request.getUserPrincipal().getName();
         Buyer buyer = buyerRepository.findByUsername(user);
         Set<Orders>orders = buyer.getOrders();
-        Set<productsNoDepend>items = new HashSet<>();
-        for (Orders o: orders){
-            for (productsNoDepend p: o.getOrdersProducts())
-                items.add(p);
-        }
-        model.addAttribute("orderItems", items);
+
+
+        model.addAttribute("orders", orders);
         return "buyer/orders";
     }
 
+    @GetMapping("shippingInfo")
+    public String getShippingInfo(HttpServletRequest request, Model model) {
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        Set<ShippingAddress>sa = buyer.getShippingAddress();
+        model.addAttribute("shippingInfo", sa);
+        return "buyer/shippingInfo";
+    }
+
+    @GetMapping("paymentInfo")
+    public String getPaymentInfo(HttpServletRequest request, Model model) {
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        Set<PaymentInfo>pa = buyer.getPaymentInfo();
+        model.addAttribute("paymentInfo", pa);
+        return "buyer/paymentInfo";
+    }
 
     @GetMapping("TOS")
     public String getTOS() {

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:replace="fragments/header :: common-header">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <title>Your Shipping Information</title>
+    </head>
+    <div th:replace="fragments/header :: header"></div>
+</head>
+<body>
+    <h1 class="text-center font-weight-bold">Your Shipping Information</h1>
+    <br>
+    <br>
+    <div th:each = "shippingInfo: ${shippingInfo}" class="container">
+        <div class="shadow p-3 mb-5 bg-white rounded h-100">
+            <h4>Shipping Address: </h4>
+            <p th:text="${shippingInfo.shippingAddress}">Address: </p>
+        </div>
+    </div>
+</body>
+</html>
