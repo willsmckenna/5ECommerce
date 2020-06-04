@@ -14,7 +14,6 @@ import java.util.List;
 })
 @Entity
 @Data
-
 public class ProductReviews {
 
     @Id

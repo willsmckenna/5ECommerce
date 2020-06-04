@@ -18,14 +18,9 @@
                     <h3 class="card-title" th:text = "${p.price}" id="price" name="price"></h3>
                     <p class="card-text" th:text = "${p.description}" id="description" name="description"></p>
                     <button type="submit" class="btn-primary" th:onclick="'alert(\'Product Added to Cart!\');'">Add to Cart</button>
+                    <a th:href="@{addReview(productName=${p.name}, sellerUsername=${p.getSeller().getUsername()})}" class="w-button"> ADD REVIEW? </a>
             </div>
         </form>
-
-        <form action = "#" th:action="@{buyer/addReview}">
-            <button type="submit" class="btn-primary">Add Review</button>
-        </form>
-
-
     </div>
 </div>
 </div>

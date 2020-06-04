@@ -39,6 +39,18 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+    public Product findByNameAndSeller(String name, String sellerUsername)
+    {
+        Seller seller = this.sellerRepository.findByUsername(sellerUsername);
+        if(seller != null)
+        {
+           return this.productRepository.findByNameAndSeller(name, seller);
+
+        }
+        return null;
+    }
+
+    @Override
     public void removeProduct(String productName, String  sellerUsername) {
 
         Seller seller = sellerRepository.findByUsername(sellerUsername);

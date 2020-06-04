@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -146,13 +147,6 @@ public class BuyerController {
         }
         model.addAttribute("orderItems", items);
         return "buyer/orders";
-    }
-
-    //want to keep track with each product
-    @RequestMapping(value = "/addReview", method = RequestMethod.POST)
-    public String addReview(Model model){
-
-        return "buyer/addReview";
     }
 
     //collect user input of product review
