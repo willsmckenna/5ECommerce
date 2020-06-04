@@ -125,6 +125,10 @@ public class BuyerController {
         order.setBuyer(buyer);
         order.setOrderTotal(total);
         orderRepository.save(order);
+        //also empty current items in shopping cart since they were checked out
+        ShoppingCart cart = shoppingCartRepository.findByBuyer(buyer);
+        cart.getShoppingCartProducts().removeAll(products);
+        shoppingCartRepository.save(cart);
         return "buyer/checkout";
     }
 

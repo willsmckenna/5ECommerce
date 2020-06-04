@@ -1,64 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="common-header">
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/seller/sellerViewProductsForSale.css}"/>
-
+    <head th:replace="fragments/header :: common-header">
     <title>Your Products</title>
-
+        <div th:replace="fragments/header :: header"></div>
 </head>
 <body class="body">
-<header id="nav" class="sticky-nav-2">
-    <nav class="container-8 w-container">
-        <div>
-            <a th:href="@{/}"class="link-block-10 w-inline-block">
-                <h5 class="heading-9">5ECommerce</h5>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{index}" class="link-block-10 w-inline-block">
-                <h5 class="heading-9">Home</h5>
-            </a>
-        </div>
-        <div>
-            <a href="#" class="link-block-10 w-inline-block">
-                <h5 class="heading-9">Messages</h5>
-            </a>
-        </div>
-        <div>
-            <div class="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form"th:action="@{/logout}" th:method="post">
-                    <input type="submit" value="Logout" data-wait="Please wait..." class="submit-button w-button">
-                </form>
-            </div>
-        </div>
-    </nav>
-</header>
-<div class="section-4">
-    <div class="returnedusers w-container">
-        <h4 class="heading-14">Products for Sale</h4>
-        <div>
-            <ul role="list" class="list w-list-unstyled">
-                <li>Product Name</li>
-                <li>Quantity</li>
-                <li>Price</li>
-                <li>Remove?</li>
-            </ul>
-            <ul role="list" class="usertable w-list-unstyled" th:each="product: ${products}" style="border: 1px solid black">
-                <li class="username" th:text="${product.getName()}"></li>
-                <li class="role" th:text="${product.getQuantity()}"></li>
-                <li class="active" th:text="${product.getPrice()}"></li>
-                <li class="remove">
+
+<h1 class="text-center font-weight-bold">View Products For Sale</h1>
+<br>
+<div class="container">
+    <div class="row">
+        <table class="table table-striped" style="border-style: solid;">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Remove?</th>
+                </tr>
+            </thead>
+            <tr th:if="${products.empty}">Product List Empty</tr>
+            <tr th:each = "product: ${products}"  style="margin: 20px">
+                <th scope="row" th:text="${product.getName()}"> </th>
+                <td th:text="${product.getQuantity()}"></td>
+                <td th:text="${product.getPrice()}"></td>
+                <td class="remove">
                     <a th:href="@{removeProduct(productName=${product.getName()}, sellerUsername = ${product.getSeller().getUsername()})}" class="w-button"> X </a>
-                </li>
-            </ul>
+                </td>
+            </tr>
+        </table>
         </div>
-    </div>
-    <div class="container-10 w-container">
-        <div><a th:href="@{addProduct}" class="w-button">Add A New Product For Sale</a></div>
+
+    <div class="align-right" style="float:left;">
+        <button type="button" class="btn btn-outline-primary" onclick="window.location.href='/seller/addProduct'">Add a New Product For Sale</button>
     </div>
 </div>
 </body>
