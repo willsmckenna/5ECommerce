@@ -110,4 +110,9 @@ public class SellerController
         this.sellerService.updateSeller(usernamePlaceHolder, seller.getUsername(), seller.getFirstname(), seller.getLastname());
         return "/login";
     }
+
+    @GetMapping("messagingPortal")
+    public String getMessagingPortal() {
+        return "messaging/messagingPortal";
+    }
 }

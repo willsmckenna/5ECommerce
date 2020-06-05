@@ -183,4 +183,8 @@ public class BuyerController {
         return "index";
     }
 
+    @GetMapping("messagingPortal")
+    public String getMessagingPortal() {
+        return "messaging/messagingPortal";
+    }
 }

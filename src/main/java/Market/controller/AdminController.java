@@ -107,4 +107,9 @@ public class AdminController {
 
         return "admin/index";
     }
+
+    @GetMapping("messagingPortal")
+    public String getMessagingPortal() {
+        return "messaging/messagingPortal";
+    }
 }
