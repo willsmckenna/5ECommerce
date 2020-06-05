@@ -26,4 +26,9 @@ public class BuyerServiceImp implements BuyerService {
        }
        return false;
     }
+
+    @Override
+    public void save(Buyer buyer) {
+        this.buyerRepository.save(buyer);
+    }
 }

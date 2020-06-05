@@ -1,5 +1,7 @@
 package Market.controller;
 
+import Market.model.userTypes.Buyer;
+import Market.service.BuyerService;
 import Market.service.ProductService;
 import Market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class AdminController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private BuyerService buyerService;
+
+    static String usernamePlaceHolder ="";
 
     @GetMapping("index")
     public String getAdminPage() {
@@ -64,8 +71,22 @@ public class AdminController {
     @RequestMapping(value = "adminAlterSelectedUser", method = RequestMethod.GET)
     public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username)
     {
-        //find out if the user is a
-        model.addAttribute("users",userService.findByUserNames(username));
+        usernamePlaceHolder = username;
+        model.addAttribute("users",userService.getByUsername(username));
+        return "admin/alterSelectedUser";
+    }
+
+    @RequestMapping(value = "adminAlterUserDone", method = RequestMethod.GET)
+    public String getAlterDone(Model model, @RequestParam(defaultValue = "") String newPassword, String newUsername)
+    {
+        //find out if the user was a buyer or a seller and update their username
+        if(this.buyerService.containsBuyer(usernamePlaceHolder))
+        {
+            //the person was a buyer
+            Buyer buyer = buyerService.findByUsername(usernamePlaceHolder);
+            buyer.setUsername(newUsername);
+            buyerService.save(buyer);
+        }
         return "admin/alterSelectedUser";
     }
 }

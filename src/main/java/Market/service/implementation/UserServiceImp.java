@@ -14,6 +14,11 @@ public class UserServiceImp implements UserService {
     @Autowired
     UsersRepository usersRepository;
 
+    @Override
+    public Users getByUsername(String username) {
+        return this.usersRepository.findByUsername(username);
+    }
+
     public Set<Users>  findByUserNames(String username) {
         return usersRepository.findByUsernameLike("%" + username + "%");
     }
