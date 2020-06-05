@@ -113,16 +113,19 @@ public class HomeController {
     }
     //collect user input of product productReviewContent
     @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
-    public String saveReview(Model model,Principal principal, @ModelAttribute("review") ProductReviewContent productReviewContent,
+    public String saveReview(Principal principal, @ModelAttribute("review") ProductReviewContent productReviewContent,
                              String productName, String sellerUsername)
     {
         productReviewContent.setAuthor(principal.getName());
         productReviewContent.setProductName(productName);
         productReviewContent.setSellerUsername(sellerUsername);
 
+        /*
         System.out.println("Product Name:" + productName);
         System.out.println("Seller Name:" + sellerUsername);
         System.out.println("ProductReviewContent" + productReviewContent.getReviewMessage());
+        
+         */
 
         ProductReviewsHeading productReviewsHeading = new ProductReviewsHeading();
         productReviewsHeading.getProductReviewContents().add(productReviewContent);
