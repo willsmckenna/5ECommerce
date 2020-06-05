@@ -147,13 +147,8 @@ public class BuyerController {
     public String getOrders(HttpServletRequest request, Model model) {
         String user = request.getUserPrincipal().getName();
         Buyer buyer = buyerRepository.findByUsername(user);
-        Set<Orders>orders = buyer.getOrders();
-        Set<productsNoDepend>items = new HashSet<>();
-        for (Orders o: orders){
-            for (productsNoDepend p: o.getOrdersProducts())
-                items.add(p);
-        }
-        model.addAttribute("orderItems", items);
+        Set<Orders> orders = buyer.getOrders();
+        model.addAttribute("orders", orders);
         return "buyer/orders";
     }
 
