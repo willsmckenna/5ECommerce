@@ -33,12 +33,6 @@
             <div class="form-block w-form">
                 <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" th:action="@{/logout}">
                     <input type="submit" value="logout" data-wait="Please wait..." class="submit-button w-button"></form>
-                <div class="w-form-done">
-                    <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                    <div>Oops! Something went wrong while submitting the form.</div>
-                </div>
             </div>
         </div>
         <br>
@@ -62,9 +56,9 @@
             </a>
         </div>
         <div class="div-block-7">
-            <a href="#" class="link-block-2 w-inline-block">
+            <a th:href="@{alterBuyerInfo}"  class="link-block-2 w-inline-block">
                 <h3 class="heading-2"> Security</h3>
-                <p class="paragraph">Review Your Sign In</p>
+                <p class="paragraph">Review Your Personal Info</p>
             </a>
         </div>
         <div class="div-block-8">

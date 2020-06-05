@@ -1,6 +1,7 @@
 package Market.service.implementation;
 
 import Market.model.userTypes.Buyer;
+import Market.model.userTypes.Seller;
 import Market.repo.BuyerRepository;
 import Market.service.BuyerService;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,17 @@ public class BuyerServiceImp implements BuyerService {
 
     @Override
     public void save(Buyer buyer) {
+        this.buyerRepository.save(buyer);
+    }
+
+    @Override
+    public void updateBuyer(String oldUsername, String newUsername, String newFirstName, String newLastName)
+    {
+        Buyer buyer = this.buyerRepository.findByUsername((oldUsername));
+        buyer.setUsername(newUsername);
+        buyer.setFirstname(newFirstName);
+        buyer.setLastname(newLastName);
+
         this.buyerRepository.save(buyer);
     }
 }

@@ -6,7 +6,11 @@ import Market.model.buyerRelated.ShoppingCart;
 import Market.model.buyerRelated.ShoppingCartProducts;
 import Market.model.buyerRelated.productsNoDepend;
 import Market.model.userTypes.Buyer;
+import Market.model.userTypes.Seller;
+import Market.model.userTypes.Users;
 import Market.repo.*;
+import Market.service.BuyerService;
+import Market.service.UserService;
 import Market.service.implementation.ShoppingCartServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,6 +30,12 @@ public class BuyerController {
 
     @Autowired
     private ShoppingCartServiceImp shoppingCartServiceImp;
+
+    @Autowired
+    BuyerService buyerService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     private BuyerRepository buyerRepository;
@@ -40,6 +51,8 @@ public class BuyerController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    static String usernamePlaceHolder ="";
 
     public BuyerController(){
     }
@@ -144,7 +157,21 @@ public class BuyerController {
         return "buyer/orders";
     }
 
+    @RequestMapping(value = "alterBuyerInfo", method = RequestMethod.GET)
+    public String getAlterSelectedUser(Model model, Principal principal)
+    {
+        usernamePlaceHolder = principal.getName();
+        model.addAttribute("user", userService.getByUsername(usernamePlaceHolder));
+        model.addAttribute("buyer", buyerService.findByUsername(usernamePlaceHolder));
+        return "buyer/alterBuyerInfo";
+    }
 
+    @RequestMapping(value = "alterBuyerInfoDone", method = RequestMethod.POST)
+    public String getAlterSellerDone(@ModelAttribute("seller") Seller seller, @ModelAttribute("user") Users user ) {
+        this.userService.updateUser(usernamePlaceHolder, seller.getUsername(), user.getPassword());
+        this.buyerService.updateBuyer(usernamePlaceHolder, seller.getUsername(), seller.getFirstname(), seller.getLastname());
+        return "/login";
+    }
 
     @GetMapping("TOS")
     public String getTOS() {

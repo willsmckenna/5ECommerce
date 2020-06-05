@@ -35,7 +35,7 @@
 <div>
     <div class="w-container">
         <div class="w-form">
-            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{alterSellerInfoDone}" th:object="${seller}" method="post">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{alterBuyerInfoDone}" th:object="${buyer}" method="post">
                 <label for="username">Username</label>
                     <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="" id="username" th:field = "*{username}">
                 <label for="firstname-3">First Name</label>
@@ -46,8 +46,6 @@
                     <label for="password">Password</label>
                     <input type="password" class="w-input" maxlength="256" name="password" data-name="password" placeholder="" id="password" required="" th:field="${user.password}">
                 </div>
-
-
                 <input type="submit" value="Submit" data-wait="Please wait..." class="w-button">
             </form>
         </div>
@@ -55,7 +53,3 @@
 </div>
 </body>
 </html>
-
-<!--
-
--->
