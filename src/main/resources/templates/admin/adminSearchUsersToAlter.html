@@ -55,7 +55,8 @@
             <li th:text="${user.getUsername()}">Username </li>
             <li th:text="${user.getId()}" >ID</li>
             <li th:text="${user.userIsActive()}" >Role</li>
-            <li class="w-button" style="text-decoration: none;"> <a th:href="@{adminAlterSelectedUser(username=${user.username})}" style="text-decoration: none; color: white;">Select </a></li>
+            <li class="w-button" style="text-decoration: none;">
+                <a th:href="@{adminAlterSelectedUser(username=${user.username})}" style="text-decoration: none; color: white;">Select </a></li>
         </ul>
     </div>
 </div>
