@@ -5,30 +5,45 @@
     <title>Admin Home</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/AdminHomepage.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/adminIndex.css}"/>
 </head>
+
 <body class="body">
-<div th:replace="fragments/adminHeader :: header"></div>
-<div class="section-4">
-    <div class="container-3 w-container">
-        <div>
-            <a href="#" class="link-block-10 w-inline-block">
-                <h4 class="heading-10">Update Deals </h4>
-                <p>View or update the<br>Daily Deals</p>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{searchUser}" class="link-block-10 w-inline-block">
-                <h4 class="heading-11">Remove User</h4>
-                <p>Remove a user<br>From the sysetm</p>
-            </a>
-        </div>
-        <div>
-            <a th:href="@{adminSearchProduct}" class="link-block-10 w-inline-block">
-                <h4 class="heading-12">Remove Product</h4>
-                <p>Remove a Product<br>From the System</p>
-            </a>
-        </div>
+<header id="nav" class="sticky-nav-2">
+    <nav class="w-container">
+        <ul role="list" class="nav-grid-2 w-list-unstyled">
+            <li><a th:href="@{/}"  class="nav-link">5SECommerce</a></li>
+            <li><a th:href="@{index}" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link">Messages</a></li>
+            <li>
+                <div class="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" class="form" th:action="@{/logout}">
+                        <input type="submit" value="Logout" data-wait="Please wait..." class="submit-button-2 w-button">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="section"></div>
+<div>
+    <div class="container-2 w-container">
+        <a href="#" class="link-block-2 w-inline-block">
+            <h3 class="heading-2">Update Deals</h3>
+            <p class="paragraph">View or Update the<br>Daily Deals</p>
+        </a>
+        <a href="#" class="link-block-2 w-inline-block">
+            <h3 class="heading-2">Alter User</h3>
+            <p class="paragraph">Search &amp; Update<br>Users</p>
+        </a>
+        <a th:href="@{searchUser}" class="link-block-2 w-inline-block">
+            <h3 class="heading-2">Remove User</h3>
+            <p class="paragraph">Remove a user<br>From the System</p>
+        </a>
+        <a th:href="@{adminSearchProduct}" class="link-block-2 w-inline-block">
+            <h3 class="heading-2">Remove Product</h3>
+            <p class="paragraph">Remove a Product<br>From the System</p>
+        </a>
     </div>
 </div>
 </body>

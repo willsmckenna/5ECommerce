@@ -52,4 +52,5 @@ public class AdminController {
         model.addAttribute("products", productService.findByName(""));
         return "admin/adminSearchProduct";
     }
+
 }
