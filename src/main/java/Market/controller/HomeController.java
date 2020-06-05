@@ -1,8 +1,11 @@
 package Market.controller;
 
 import Market.model.Product;
+import Market.model.buyerRelated.Orders;
+import Market.model.OrderTrackingContent;
 import Market.model.reviewTypes.ProductReviewsHeading;
 import Market.model.reviewTypes.ProductReviewContent;
+import Market.repo.OrderRepository;
 import Market.repo.ProductRepository;
 import Market.repo.ProductReviewRepository;
 import Market.service.BuyerService;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +36,9 @@ public class HomeController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    OrderRepository orderRepository;
 
     private final ProductRepository productRepository;
 
@@ -132,5 +139,6 @@ public class HomeController {
         productReviewRepository.save(productReviewsHeading);
         return "redirect:/browse";
     }
+
 
 }

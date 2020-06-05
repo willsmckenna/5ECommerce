@@ -1,4 +1,5 @@
 package Market.bootStrap;
+import Market.model.OrderTrackingContent;
 import Market.model.PaymentInfo;
 import Market.model.Product;
 import Market.model.buyerRelated.Orders;
@@ -14,6 +15,7 @@ import Market.repo.AdminRepo;
 import Market.repo.BuyerRepository;
 import Market.repo.SellerRepository;
 import Market.repo.UsersRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -166,6 +168,9 @@ public class BootStrapData implements CommandLineRunner {
             order_1_Price += p.getPrice();
         }
         orders_1.setOrderTotal(order_1_Price);
+        OrderTrackingContent tracking = new OrderTrackingContent();
+        tracking.setStatus("Ordered, not yet Shipped");
+        orders_1.setOrderTrackingContents(tracking);
         orderRepository.save(orders_1);
 
         /*Make a few payment infos*/
