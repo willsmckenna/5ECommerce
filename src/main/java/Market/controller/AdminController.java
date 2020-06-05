@@ -60,4 +60,12 @@ public class AdminController {
         return "admin/adminSearchUsersToAlter";
     }
 
+
+    @RequestMapping(value = "adminAlterSelectedUser", method = RequestMethod.GET)
+    public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username)
+    {
+        //find out if the user is a
+        model.addAttribute("users",userService.findByUserNames(username));
+        return "admin/alterSelectedUser";
+    }
 }
