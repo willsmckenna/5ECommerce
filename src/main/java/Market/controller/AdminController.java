@@ -83,8 +83,9 @@ public class AdminController {
     }
 
     @RequestMapping(value = "adminAlterUserDone", method = RequestMethod.GET)
-    public String getAlterDone(Model model, @RequestParam(defaultValue = "") String newPassword, String newUsername)
+    public String getAlterDone(Model model, String newUsername, String newPassword)
     {
+        this.userService.updatedPassword(newUsername, newPassword);
         //find out if the user was a buyer or a seller and update their username
         if(this.buyerService.containsBuyer(usernamePlaceHolder))
         {
@@ -106,6 +107,6 @@ public class AdminController {
             this.adminService.save(admin);
         }
 
-        return "admin/alterSelectedUser";
+        return "admin/index";
     }
 }
