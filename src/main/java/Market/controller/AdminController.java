@@ -65,16 +65,14 @@ public class AdminController {
 
 
     @RequestMapping(value = "adminAlterUserSearch", method = RequestMethod.GET)
-    public String getAlterUserSearch(Model model, @RequestParam(defaultValue = "") String username)
-    {
+    public String getAlterUserSearch(Model model, @RequestParam(defaultValue = "") String username) {
         model.addAttribute("users",userService.findByUserNames(username));
         return "admin/adminSearchUsersToAlter";
     }
 
 
     @RequestMapping(value = "adminAlterSelectedUser", method = RequestMethod.GET)
-    public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username)
-    {
+    public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username) {
         usernamePlaceHolder = username;
         model.addAttribute("user",userService.getByUsername(username));
         return "admin/alterSelectedUser";
