@@ -11,12 +11,13 @@
 
     <div class="container">
 
-        <form action="#" th:action="@{saveReview}" th:object="${Review}" method="post">
+        <form action="#" th:action="@{saveReview(productName=${product.name},sellerUsername =${product.getSeller().getUsername()})}" th:object="${Review}" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" th:field="*{review}" id="review" name="review">
             </div>
+            <button type="submit">add review <button>
         </form>
 
-        <button type="submit">add review <button>
+
     </div>
 </body>

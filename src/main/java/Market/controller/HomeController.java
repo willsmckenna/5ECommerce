@@ -14,14 +14,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -114,4 +116,34 @@ public class HomeController {
         }
         return "login";
     }
+    //collect user input of product review
+    @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
+    public String saveReview(Model model,@ModelAttribute("review") Review review,
+                             BindingResult bindingResult, String productName, String sellerUsername)
+    {
+        System.out.println("review user write is :" + review.getReview());
+
+        Product product =productService.findByNameAndSeller(productName, sellerUsername);
+        System.out.println("product name is " + product.getName());
+
+        List<Review> reviewList = product.getReviews();
+
+        if (reviewList == null) {
+            reviewList = new ArrayList<Review>();
+        }
+
+        Review new_review = new Review();
+        new_review.setReview(review.getReview());
+
+        reviewList.add(new_review);
+
+        for (Review r: reviewList){
+            System.out.println(r.getReview());
+        }
+
+        productRepository.save(product);
+
+        return "redirect:/browse";
+    }
+
 }
