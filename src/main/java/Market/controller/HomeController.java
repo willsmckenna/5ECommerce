@@ -92,9 +92,7 @@ public class HomeController {
     @GetMapping("addReview")
     public String getRedirectToLogin(Principal principal, Model model, String productName, String sellerUsername)
     {
-        if(principal == null || productName ==null){
-            return "/login";
-        }
+        if(principal == null || productName ==null){ return "/login"; }
 
         String username = principal.getName();
         if(username !=null)
