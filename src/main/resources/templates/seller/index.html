@@ -15,7 +15,7 @@
         <div class="div-block-13">
             <h5>5ECommerce</h5>
         </div>
-        <a href="#" class="link-block-7 w-inline-block">
+        <a th:href="@{index}" class="link-block-7 w-inline-block">
             <h5>Home</h5>
         </a>
         <div class="div-block-14">
@@ -28,12 +28,6 @@
                 <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" th:action="@{/logout}" th:method="post">
                     <input type="submit" value="logout" data-wait="Please wait..." class="submit-button w-button">
                 </form>
-                <div class="w-form-done">
-                    <div>Thank you! Your submission has been received!</div>
-                </div>
-                <div class="w-form-fail">
-                    <div>Oops! Something went wrong while submitting the form.</div>
-                </div>
             </div>
         </div>
     </nav>
@@ -64,7 +58,7 @@
             </a>
         </div>
         <div class="div-block-10">
-            <a href="#" class="link-block-4 w-inline-block">
+            <a th:href="@{alterSellerInfo}" class="link-block-4 w-inline-block">
                 <h3>Security</h3>
                 <p class="paragraph">Review Your Personal<br>Information</p>
             </a>

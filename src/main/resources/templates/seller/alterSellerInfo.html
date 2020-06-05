@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Alter Login</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/seller/alterSellerInfo.css}"/>
+</head>
+<body class="body">
+<header id="nav" class="sticky-nav-2">
+    <nav class="w-container">
+        <ul role="list" class="nav-grid-2 w-list-unstyled">
+            <li><a th:href="@{/}" class="nav-link">5SECommerce</a></li>
+            <li><a th:href="@{index}" class="nav-link">Home</a></li>
+            <li><a href="#" class="nav-link">Messages</a></li>
+            <li>
+                <div class="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" class="form" th:action="@{/logout}" th:method="post">
+                        <input type="submit" value="Logout" data-wait="Please wait..." class="submit-button-2 w-button">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="section">
+    <div class="container-3 w-container">
+        <div>
+            <h2 class="heading-3">Edit Your Info</h2>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="w-container">
+        <div class="w-form">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{alterSellerInfoDone}" th:object="${seller}" method="post">
+                <label for="username">Username</label>
+                    <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="" id="username" th:field = "*{username}">
+                <label for="firstname-3">First Name</label>
+                    <input type="text" class="w-input" maxlength="256" name="firstname" data-name="firstname" placeholder="" id="firstname-3" required="" th:field = "*{firstname}">
+                <label for="lastname">Last Name</label>
+                    <input type="text" class="w-input" maxlength="256" name="lastname" data-name="lastname" placeholder="" id="lastname" required="" th:field = "*{lastname}">
+                <div th:object="${user}" >
+                    <label for="password">Password</label>
+                    <input type="password" class="w-input" maxlength="256" name="password" data-name="password" placeholder="" id="password" required="" th:field="${user.password}">
+                </div>
+
+
+                <input type="submit" value="Submit" data-wait="Please wait..." class="w-button">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!--
+
+-->

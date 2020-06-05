@@ -2,9 +2,12 @@ package Market.controller;
 
 import Market.model.Product;
 import Market.model.userTypes.Seller;
+import Market.model.userTypes.Users;
 import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
 import Market.service.ProductService;
+import Market.service.SellerService;
+import Market.service.UserService;
 import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -15,16 +18,22 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 @RequestMapping("seller")
 public class SellerController
 {
     @Autowired
-    private ProductServiceImp productServiceImp;
+    private ProductService productService;
 
     @Autowired
-    private ProductService productService;
+    private SellerService sellerService;
+
+    @Autowired
+    private UserService userService;
+
+    static String usernamePlaceHolder ="";
 
     private final ProductRepository productRepository;
     private final SellerRepository sellerRepository;
@@ -85,5 +94,20 @@ public class SellerController
         return "seller/viewProducts";
     }
 
+    @RequestMapping(value = "alterSellerInfo", method = RequestMethod.GET)
+    public String getAlterSelectedUser(Model model, Principal principal)
+    {
+        usernamePlaceHolder = principal.getName();
+        model.addAttribute("user", userService.getByUsername(usernamePlaceHolder));
+        model.addAttribute("seller", sellerService.findByUsername(usernamePlaceHolder));
+        return "seller/alterSellerInfo";
+    }
 
+    @RequestMapping(value = "alterSellerInfoDone", method = RequestMethod.POST)
+    public String getAlterSellerDone(@ModelAttribute("seller") Seller seller, @ModelAttribute("user")Users user )
+    {
+        this.userService.updateUser(usernamePlaceHolder, seller.getUsername(), user.getPassword());
+        this.sellerService.updateSeller(usernamePlaceHolder, seller.getUsername(), seller.getFirstname(), seller.getLastname());
+        return "/login";
+    }
 }

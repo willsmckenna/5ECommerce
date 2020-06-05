@@ -124,7 +124,6 @@ public class HomeController {
         System.out.println("Product Name:" + productName);
         System.out.println("Seller Name:" + sellerUsername);
         System.out.println("ProductReviewContent" + productReviewContent.getReviewMessage());
-        
          */
 
         ProductReviewsHeading productReviewsHeading = new ProductReviewsHeading();
