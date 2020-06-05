@@ -1,4 +1,5 @@
-package Market.model;
+package Market.model.reviewTypes;
+
 import Market.model.userTypes.Users;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +11,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Review implements Serializable {
-    private Users user;
+public class ProductReviewContent implements Serializable {
     private String author;
-    private Date date;
-    private String review;
+    private String sellerUsername;
+    private String productName;
+    private String reviewMessage;
 }

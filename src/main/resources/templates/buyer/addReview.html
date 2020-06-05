@@ -13,9 +13,9 @@
 
         <form action="#" th:action="@{saveReview(productName=${product.name},sellerUsername =${product.getSeller().getUsername()})}" th:object="${Review}" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" th:field="*{review}" id="review" name="review">
+                <input type="text" class="form-control" th:field="*{reviewMessage}" id="productReviewContent" name="productReviewContent">
             </div>
-            <button type="submit">add review <button>
+            <button type="submit">add productReviewContent </button>
         </form>
 
 

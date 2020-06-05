@@ -1,30 +1,23 @@
 package Market.controller;
 
 import Market.model.Product;
-import Market.model.Review;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
+import Market.model.reviewTypes.ProductReviewsHeading;
+import Market.model.reviewTypes.ProductReviewContent;
 import Market.repo.ProductRepository;
+import Market.repo.ProductReviewRepository;
 import Market.service.BuyerService;
 import Market.service.ProductService;
 import Market.service.UserService;
-import Market.service.implementation.BuyerServiceImp;
-import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -42,8 +35,11 @@ public class HomeController {
 
     private final ProductRepository productRepository;
 
-    public HomeController(ProductRepository pr){
+    private final ProductReviewRepository productReviewRepository;
+
+    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository){
         this.productRepository = pr;
+        this.productReviewRepository = productReviewRepository;
     }
 
     @GetMapping("index")
@@ -109,46 +105,29 @@ public class HomeController {
                 //is a buyer
                 model.addAttribute("product", product);
                 model.addAttribute("buyer", buyerService.findByUsername(username));
-                model.addAttribute("Review", new Review());
+                model.addAttribute("Review", new ProductReviewContent());
                 return "buyer/addReview";
             }
         }
         return "login";
     }
-    //collect user input of product review
+    //collect user input of product productReviewContent
     @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
-    public String saveReview(Model model,@ModelAttribute("review") Review review,
-                             BindingResult bindingResult, String productName, String sellerUsername)
+    public String saveReview(Model model,Principal principal, @ModelAttribute("review") ProductReviewContent productReviewContent,
+                             String productName, String sellerUsername)
     {
-        System.out.println("review user write is :" + review.getReview());
+        productReviewContent.setAuthor(principal.getName());
+        productReviewContent.setProductName(productName);
+        productReviewContent.setSellerUsername(sellerUsername);
 
-        Product product =productService.findByNameAndSeller(productName, sellerUsername);
-        System.out.println("product name is " + product.getName());
+        System.out.println("Product Name:" + productName);
+        System.out.println("Seller Name:" + sellerUsername);
+        System.out.println("ProductReviewContent" + productReviewContent.getReviewMessage());
 
-        List<Review> reviewList = product.getReviews();
+        ProductReviewsHeading productReviewsHeading = new ProductReviewsHeading();
+        productReviewsHeading.getProductReviewContents().add(productReviewContent);
 
-        if (reviewList == null) {
-            reviewList = new ArrayList<Review>();
-        }
-
-        Review new_review = new Review();
-        new_review.setReview(review.getReview());
-        new_review.setDate(new Date());
-        new_review.setAuthor(sellerUsername);
-
-        reviewList.add(new_review);
-
-        System.out.println("review list from product:");
-        for (Review r: reviewList){
-            System.out.println(r.getReview());
-            System.out.println(r.getDate());
-            System.out.println(r.getAuthor());
-        }
-
-        product.setReviews(reviewList);
-
-        productRepository.save(product);
-
+        productReviewRepository.save(productReviewsHeading);
         return "redirect:/browse";
     }
 

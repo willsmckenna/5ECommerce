@@ -1,20 +1,12 @@
 package Market.model;
 
 import Market.model.userTypes.Seller;
-import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
-import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Blob;
-import java.util.List;
 import java.util.Objects;
-
-@TypeDefs({
-        @TypeDef(name="hstore", typeClass= JsonBinaryType.class)
-})
 
 @Data
 @Entity
@@ -33,12 +25,6 @@ public class Product {
     private double price;
     private String description;
     private Blob image;
-
-
-    @Type(type="jsonb")
-    @Column(columnDefinition = "jsonb")
-    @Basic(fetch = FetchType.EAGER)
-    private List<Review> reviews;
 
     public Product() {
     }

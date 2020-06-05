@@ -1,7 +1,6 @@
 package Market.controller;
 
 import Market.model.Product;
-import Market.model.Review;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShoppingCart;
 import Market.model.buyerRelated.ShoppingCartProducts;
@@ -17,11 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.security.Principal;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Controller
