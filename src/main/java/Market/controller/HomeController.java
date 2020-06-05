@@ -145,7 +145,8 @@ public class HomeController {
             System.out.println(r.getAuthor());
         }
 
-        //it looks like it not update in database and every time, it will create new review_list
+        product.setReviews(reviewList);
+
         productRepository.save(product);
 
         return "redirect:/browse";
