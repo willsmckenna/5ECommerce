@@ -38,8 +38,9 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void updatedPassword(String username, String plaintextPassword) {
-        Users user = this.usersRepository.findByUsername(username);
+    public void updateUser(String oldUsername,String newUsername, String plaintextPassword) {
+        Users user = this.usersRepository.findByUsername(oldUsername);
+        user.setUsername(newUsername);
         user.setPassword(passwordEncoder.encode(plaintextPassword));
         this.usersRepository.save(user);
     }

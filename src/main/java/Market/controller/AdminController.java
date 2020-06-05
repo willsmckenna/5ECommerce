@@ -3,14 +3,12 @@ package Market.controller;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
+import Market.model.userTypes.Users;
 import Market.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("admin")
@@ -78,32 +76,32 @@ public class AdminController {
     public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username)
     {
         usernamePlaceHolder = username;
-        model.addAttribute("users",userService.getByUsername(username));
+        model.addAttribute("user",userService.getByUsername(username));
         return "admin/alterSelectedUser";
     }
 
-    @RequestMapping(value = "adminAlterUserDone", method = RequestMethod.GET)
-    public String getAlterDone(Model model, String newUsername, String newPassword)
+    @RequestMapping(value = "adminAlterUserDone", method = RequestMethod.POST)
+    public String getAlterDone(@ModelAttribute("user")Users user)
     {
-        this.userService.updatedPassword(newUsername, newPassword);
+        this.userService.updateUser(usernamePlaceHolder,user.getUsername(), user.getPassword());
         //find out if the user was a buyer or a seller and update their username
         if(this.buyerService.containsBuyer(usernamePlaceHolder))
         {
             //the person was a buyer
             Buyer buyer = this.buyerService.findByUsername(usernamePlaceHolder);
-            buyer.setUsername(newUsername);
+            buyer.setUsername(user.getUsername());
             this.buyerService.save(buyer);
         }
         else if(this.sellerService.containsSeller(usernamePlaceHolder))
         {
             Seller seller = this.sellerService.findByUsername(usernamePlaceHolder);
-            seller.setUsername(newUsername);
+            seller.setUsername(user.getUsername());
             this.sellerService.save(seller);
         }
         else if(this.adminService.containsAdmin(usernamePlaceHolder))
         {
             Admin admin = this.adminService.findByUsername(usernamePlaceHolder);
-            admin.setUsername(newUsername);
+            admin.setUsername(user.getUsername());
             this.adminService.save(admin);
         }
 

@@ -8,5 +8,5 @@ public interface UserService {
    public  Users getByUsername(String username);
     Set<Users> findByUserNames(String username);
     void removeUser(String username);
-    void updatedPassword(String username, String plaintextPassword);
+    void updateUser(String oldUsername,String newUsername, String plaintextPassword);
 }
