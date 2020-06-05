@@ -1,9 +1,9 @@
 package Market.controller;
 
+import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
-import Market.service.BuyerService;
-import Market.service.ProductService;
-import Market.service.UserService;
+import Market.model.userTypes.Seller;
+import Market.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +24,12 @@ public class AdminController {
 
     @Autowired
     private BuyerService buyerService;
+
+    @Autowired
+    private SellerService sellerService;
+
+    @Autowired
+    private AdminService adminService;
 
     static String usernamePlaceHolder ="";
 
@@ -83,10 +89,23 @@ public class AdminController {
         if(this.buyerService.containsBuyer(usernamePlaceHolder))
         {
             //the person was a buyer
-            Buyer buyer = buyerService.findByUsername(usernamePlaceHolder);
+            Buyer buyer = this.buyerService.findByUsername(usernamePlaceHolder);
             buyer.setUsername(newUsername);
-            buyerService.save(buyer);
+            this.buyerService.save(buyer);
         }
+        else if(this.sellerService.containsSeller(usernamePlaceHolder))
+        {
+            Seller seller = this.sellerService.findByUsername(usernamePlaceHolder);
+            seller.setUsername(newUsername);
+            this.sellerService.save(seller);
+        }
+        else if(this.adminService.containsAdmin(usernamePlaceHolder))
+        {
+            Admin admin = this.adminService.findByUsername(usernamePlaceHolder);
+            admin.setUsername(newUsername);
+            this.adminService.save(admin);
+        }
+
         return "admin/alterSelectedUser";
     }
 }
