@@ -1,7 +1,7 @@
 package Market.model.userTypes;
 
 
-import Market.model.IMessage;
+import Market.model.messages.IMessage;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
