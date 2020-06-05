@@ -35,7 +35,7 @@
 <div>
     <div class="w-container">
         <div class="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form" class="searchteammembers">
+            <form id="email-form" name="email-form" data-name="Email Form" class="searchteammembers" th:action="@{adminAlterUserSearch}" method="get">>
                 <h1>Alter Users</h1>
                 <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="Search By Username" id="username" required="">
                 <input type="submit" value="Search" data-wait="Please wait..." class="w-button">
@@ -47,15 +47,15 @@
     <div class="w-container">
         <ul role="list" class="list w-list-unstyled">
             <li>Username </li>
-            <li>IsActive?</li>
-            <li>Role</li>
+            <li>ID</li>
+            <li>isActive?</li>
             <li>Select?</li>
         </ul>
-        <ul role="list" class="list w-list-unstyled">
-            <li>Username </li>
-            <li>Manager</li>
-            <li>Role</li>
-            <li>Select?</li>
+        <ul role="list" class="list w-list-unstyled" th:each="user: ${users}">
+            <li th:text="${user.getUsername()}">Username </li>
+            <li th:text="${user.getId()}" >ID</li>
+            <li th:text="${user.userIsActive()}" >Role</li>
+            <li class="w-button">Select</li>
         </ul>
     </div>
 </div>
