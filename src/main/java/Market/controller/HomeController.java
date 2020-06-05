@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -132,13 +133,19 @@ public class HomeController {
 
         Review new_review = new Review();
         new_review.setReview(review.getReview());
+        new_review.setDate(new Date());
+        new_review.setAuthor(sellerUsername);
 
         reviewList.add(new_review);
 
+        System.out.println("review list from product:");
         for (Review r: reviewList){
             System.out.println(r.getReview());
+            System.out.println(r.getDate());
+            System.out.println(r.getAuthor());
         }
 
+        //it looks like it not update in database and every time, it will create new review_list
         productRepository.save(product);
 
         return "redirect:/browse";
