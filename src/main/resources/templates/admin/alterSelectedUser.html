@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Select Users To Alter</title>
+    <title>Alter Selected User</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/SearchUsersToAlter.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/adminCSS/alterSelectedUser.css}"/>
 </head>
 <body class="body">
 <header id="nav" class="sticky-nav">
@@ -34,29 +34,22 @@
 </header>
 <div>
     <div class="w-container">
-        <div class="w-form">
-            <form id="email-form" name="email-form" data-name="Email Form" class="searchteammembers" th:action="@{adminAlterUserSearch}" method="get">>
-                <h1>Alter Users</h1>
-                <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="Search By Username" id="username" required="">
-                <input type="submit" value="Search" data-wait="Please wait..." class="w-button">
-            </form>
+        <div class="div-block">
+            <h1>Alter User</h1>
         </div>
     </div>
 </div>
 <div>
     <div class="w-container">
-        <ul role="list" class="list w-list-unstyled">
-            <li>Username </li>
-            <li>ID</li>
-            <li>isActive?</li>
-            <li>Select?</li>
-        </ul>
-        <ul role="list" class="list w-list-unstyled" th:each="user: ${users}">
-            <li th:text="${user.getUsername()}">Username </li>
-            <li th:text="${user.getId()}" >ID</li>
-            <li th:text="${user.userIsActive()}" >Role</li>
-            <li class="w-button" style="text-decoration: none;"> <a th:href="@{adminAlterSelectedUser(username=${user.username})}" style="text-decoration: none; color: white;">Select </a></li>
-        </ul>
+        <div class="w-form">
+            <form id="email-form-3" name="email-form-3" data-name="Email Form 3" class="alter-user">
+                <label for="username">New Username:</label>
+                        <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="New Username..." id="username">
+                <label for="password">New Password</label>
+                    <input type="text" class="w-input" maxlength="256" name="password" data-name="password" placeholder="New Password" id="password" required="">
+                <input type="submit" value="Submit" data-wait="Please wait..." class="w-button">
+            </form>
+        </div>
     </div>
 </div>
 </body>
