@@ -17,6 +17,9 @@ import java.util.Set;
 @Entity
 @Data
 
+/*
+    THIS IS ALL WRONG - peter
+ */
 public class MessageHeader {
 
     @Id

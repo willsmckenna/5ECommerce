@@ -13,4 +13,8 @@ public class MessageContent implements Serializable {
     private String toUsername;
     private String subject;
     private String messagePayload;
+
+    /*
+    THIS IS ALL WRONG -peter
+ */
 }
