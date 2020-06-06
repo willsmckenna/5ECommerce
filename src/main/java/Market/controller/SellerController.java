@@ -115,4 +115,11 @@ public class SellerController
     public String getMessagingPortal() {
         return "messaging/messagingPortal";
     }
+
+    @GetMapping("searchUserToMessage")
+    public String getSearchUserToMessage(Model model, @RequestParam(defaultValue = "") String username) {
+        //could probably remove yourself
+        model.addAttribute("users",userService.findByUserNames(username));
+        return "messaging/searchUserToMessage";
+    }
 }
