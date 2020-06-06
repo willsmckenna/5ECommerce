@@ -150,6 +150,14 @@ public class HomeController {
         return "redirect:/browse";
     }
 
+    @GetMapping("viewSellerReviews")
+    public String viewSellerReviews(@RequestParam String sellerUsername,Model model)
+    {
+        Seller seller = sellerRepository.findByUsername(sellerUsername);
+        System.out.println(seller.getReviews());
+        model.addAttribute("reviews",seller.getReviews());
+        return "productview/sellerreviewsview";
+    }
 
     @GetMapping("reviewSeller")
     public String redirectToReviewForm(@RequestParam String sellerUsername,Model model)
