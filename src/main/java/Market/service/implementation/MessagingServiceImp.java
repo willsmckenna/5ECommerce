@@ -10,10 +10,7 @@ import Market.repo.SellerRepository;
 import Market.service.MessagingService;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class MessagingServiceImp  implements MessagingService {
@@ -37,13 +34,13 @@ public class MessagingServiceImp  implements MessagingService {
         if(this.buyerRepository.existsByUsername(to))
         {
             Buyer buyer = buyerRepository.findByUsername(to);
-            buyer.addMessage(message);
+            buyer.getMessages().add(message);
             this.buyerRepository.save(buyer);
         }
         else if(this.sellerRepository.existsByUsername(to))
         {
             Seller seller = this.sellerRepository.findByUsername(to);
-            seller.addMessage(message);
+            seller.getMessages().add(message);
             this.sellerRepository.save(seller);
         }
         else if(this.adminRepo.existsByUsername(to))
@@ -55,15 +52,19 @@ public class MessagingServiceImp  implements MessagingService {
     }
 
     @Override
-    public Map<String, Message> convertUserMessagesToJSON(String username) {
+    public List<Message> getUsersMessages(String username) {
         if(this.buyerRepository.existsByUsername(username)) {
-           buyerRepository.findByUsername(username).getMessages();
+           return buyerRepository.findByUsername(username).getMessages();
         }
 
         else if(this.sellerRepository.existsByUsername(username)) {
            return this.sellerRepository.findByUsername(username).getMessages();
         }
 
-        return new HashMap<String, Message>();
+        else if(this.adminRepo.existsByUsername(username)) {
+            return this.adminRepo.findByUsername(username).getMessages();
+        }
+
+        return new ArrayList<Message>();
     }
 }

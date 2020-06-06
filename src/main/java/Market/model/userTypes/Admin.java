@@ -7,7 +7,6 @@ import lombok.Data;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -35,7 +34,7 @@ public class Admin implements Serializable {
     private String lastname;
 
     @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "jsonb", name = "messages")
     @Basic(fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Message> messages = new ArrayList<Message> ();

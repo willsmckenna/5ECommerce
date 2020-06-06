@@ -5,6 +5,7 @@ import Market.model.Product;
 import Market.model.Review;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.messages.Message;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @TypeDefs({
@@ -20,7 +22,7 @@ import java.util.*;
 @Data
 @Entity
 @Table(name = "seller", schema = "public")
-public class Seller {
+public class Seller implements Serializable  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,13 +51,11 @@ public class Seller {
     @Column(columnDefinition = "hstore")
     private Map<String, Review> reviews = new HashMap<>();
 
-    @Type(type = "hstore")
-    @Column(columnDefinition = "hstore", name = "messages")
-    private Map<String, Message> messages = new HashMap<String, Message>();
-
-    @Column(name = "last_message_key")
-    private Integer lastKey = 0;
-
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb", name = "messages")
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Message> messages = new ArrayList<Message> ();
 
     public Seller() { }
 
@@ -90,11 +90,5 @@ public class Seller {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
-    }
-
-    //pretty slick
-    public void addMessage(Message message) {
-        this.getMessages().put(lastKey.toString(), message);
-        lastKey++;
     }
 }
