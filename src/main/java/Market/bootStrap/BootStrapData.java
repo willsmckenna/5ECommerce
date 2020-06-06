@@ -196,6 +196,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         /* Make a seller review: */
+        /*
         Review review_1 = new Review();
         review_1.setAuthor(buyer_1.getUsername());
         review_1.setContent("Because, If I am not, I am more than likely doomed");
@@ -206,7 +207,7 @@ public class BootStrapData implements CommandLineRunner {
 
         //Get the review:
         System.out.println(seller_1.getReviews().containsKey("wut"));
-
+        */
 
         //Make some messages: STRESS TEST
         Message message_1 = new Message();
