@@ -11,10 +11,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @TypeDefs({
         @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
@@ -39,13 +36,13 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, orphanRemoval = true)
-    private Set<Product> productsForSale;
+    private Set<Product> productsForSale = new HashSet<>();
 
     @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
-    private Set<ShippingAddress> shippingAddress;
+    private Set<ShippingAddress> shippingAddress = new HashSet<>();
 
     @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL)
-    private Set<PaymentInfo> paymentInfo;
+    private Set<PaymentInfo> paymentInfo = new HashSet<>();
 
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore")
