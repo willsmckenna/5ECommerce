@@ -1,5 +1,6 @@
 package Market.service;
 
+import Market.model.messages.Message;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 

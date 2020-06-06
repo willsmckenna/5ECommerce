@@ -3,11 +3,13 @@ package Market.controller;
 import Market.model.PaymentInfo;
 import Market.model.Product;
 import Market.model.buyerRelated.*;
+import Market.model.messages.Message;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.*;
 import Market.service.BuyerService;
+import Market.service.MessagingService;
 import Market.service.UserService;
 import Market.service.implementation.ShoppingCartServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +47,7 @@ public class BuyerController {
     private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
-    private ShoppingCartProductsRepository shoppingCartProductsRepository;
+    MessagingService messagingService;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -206,4 +208,16 @@ public class BuyerController {
         return "messaging/searchUserToMessage";
     }
 
+    @GetMapping("composeMessage")
+    public String getComposeMessage(Model model, String username) {
+        usernamePlaceHolder = username;
+        model.addAttribute("message", new Message());
+        return "messaging/composeMessage";
+    }
+
+    @RequestMapping(value = "sendMessage", method = RequestMethod.POST)
+    public String getMessageSent(Principal principal, @ModelAttribute("message")Message message) {
+        this.messagingService.saveMessage(message,principal.getName(), usernamePlaceHolder);
+        return "messaging/messagingPortal";
+    }
 }

@@ -1,13 +1,12 @@
 package Market.controller;
 
 import Market.model.Product;
+import Market.model.messages.Message;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
-import Market.service.ProductService;
-import Market.service.SellerService;
-import Market.service.UserService;
+import Market.service.*;
 import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,6 +31,9 @@ public class SellerController
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    MessagingService messagingService;
 
     static String usernamePlaceHolder ="";
 
@@ -122,4 +124,20 @@ public class SellerController
         model.addAttribute("users",userService.findByUserNames(username));
         return "messaging/searchUserToMessage";
     }
+
+    @GetMapping("composeMessage")
+    public String getComposeMessage(Model model, String username)
+    {
+        usernamePlaceHolder = username;
+        model.addAttribute("message", new Message());
+        return "messaging/composeMessage";
+    }
+
+    @RequestMapping(value = "sendMessage", method = RequestMethod.POST)
+    public String getMessageSent(Principal principal, @ModelAttribute("message")Message message)
+    {
+        this.messagingService.saveMessage(message,principal.getName(), usernamePlaceHolder);
+        return "messaging/messagingPortal";
+    }
+
 }

@@ -1,6 +1,11 @@
 package Market.service.implementation;
 
+import Market.model.messages.Message;
+import Market.model.userTypes.Admin;
+import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
+import Market.repo.AdminRepo;
+import Market.repo.BuyerRepository;
 import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
 import Market.service.SellerService;
@@ -11,7 +16,7 @@ public class SellerServiceImp  implements SellerService {
 
     private final SellerRepository sellerRepository;
 
-    public SellerServiceImp(SellerRepository sellerRepository, ProductRepository productRepository) {
+    public SellerServiceImp(SellerRepository sellerRepository) {
         this.sellerRepository = sellerRepository;
     }
 

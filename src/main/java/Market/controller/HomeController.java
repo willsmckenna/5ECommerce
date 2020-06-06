@@ -56,7 +56,7 @@ public class HomeController {
     }
 
     @GetMapping("index")
-    public String showHome(Model model){
+    public String showHome(){
         return "index";
     }
 

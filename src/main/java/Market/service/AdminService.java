@@ -8,5 +8,4 @@ public interface AdminService {
     Admin findByUsername(String username);
     boolean containsAdmin(String username);
     void save(Admin admin);
-    void saveMessage(Message message, String from, String to);
 }
