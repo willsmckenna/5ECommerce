@@ -13,6 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Message implements Serializable
 {
+    private Integer id;
     private String from;
     private String to;
     private String subject;

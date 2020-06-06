@@ -56,6 +56,9 @@ public class Buyer implements Serializable {
     @JsonIgnore
     private List<Message> messages = new ArrayList<Message> ();
 
+    @Column(name = "last_message_id")
+    private Integer lastMessageKey = 0;
+
     public Buyer(String username, String firstname, String lastname) {
         this.username = username;
         this.firstname = firstname;
@@ -64,6 +67,7 @@ public class Buyer implements Serializable {
 
     public Buyer() {
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -79,6 +83,15 @@ public class Buyer implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, firstname, lastname);
+    }
+
+    public void addMessage(Message message)
+    {
+        if(message != null)
+        {
+            message.setId(this.lastMessageKey++);
+            this.messages.add(message);
+        }
     }
 
 }

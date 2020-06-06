@@ -51,6 +51,9 @@ public class Seller implements Serializable  {
     @Column(columnDefinition = "hstore")
     private Map<String, Review> reviews = new HashMap<>();
 
+    @Column(name = "last_message_id")
+    private Integer lastMessageKey = 0;
+
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", name = "messages")
     @Basic(fetch = FetchType.LAZY)
@@ -90,5 +93,14 @@ public class Seller implements Serializable  {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
+    }
+
+    public void addMessage(Message message)
+    {
+        if(message != null)
+        {
+            message.setId(this.lastMessageKey++);
+            this.messages.add(message);
+        }
     }
 }

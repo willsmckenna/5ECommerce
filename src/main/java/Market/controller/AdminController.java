@@ -182,4 +182,11 @@ public class AdminController {
         return "messaging/messageInbox";
     }
 
+    @GetMapping(value = "viewMessage")
+    public String getViewMessage(Model model,String username, Principal principal) {
+
+        model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
+        return "messaging/messageInbox";
+    }
+
 }

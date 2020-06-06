@@ -33,6 +33,9 @@ public class Admin implements Serializable {
     @Column(name="lastname")
     private String lastname;
 
+    @Column(name = "last_message_id")
+    private Integer lastMessageKey = 0;
+
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb", name = "messages")
     @Basic(fetch = FetchType.LAZY)
@@ -46,5 +49,14 @@ public class Admin implements Serializable {
     }
 
     public Admin() {
+    }
+
+    public void addMessage(Message message)
+    {
+        if(message != null)
+        {
+            message.setId(this.lastMessageKey++);
+            this.messages.add(message);
+        }
     }
 }
