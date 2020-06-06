@@ -103,6 +103,7 @@ public class BootStrapData implements CommandLineRunner {
         product_1.setPrice(119.99);
         product_1.setQuantity(1);
         product_1.setDescription("Very cool please buy");
+        product_1.setSeedImageStr("1200px-Globe_Skateboard.jpg");
         demoProducts.add(product_1);
 
         Product product_2 = new Product();
@@ -111,6 +112,7 @@ public class BootStrapData implements CommandLineRunner {
         product_2.setPrice(219.99);
         product_2.setQuantity(1);
         product_2.setDescription("Also pretty cool");
+        product_2.setSeedImageStr("img24o.jpg");
         demoProducts.add(product_2);
 
         Product product_3 = new Product();
@@ -119,6 +121,7 @@ public class BootStrapData implements CommandLineRunner {
         product_3.setPrice(109.99);
         product_3.setQuantity(1);
         product_3.setDescription("Lasts literally forever");
+        product_3.setSeedImageStr("bike.jpg");
         demoProducts.add(product_3);
 
         Product product_4 = new Product();
@@ -128,6 +131,7 @@ public class BootStrapData implements CommandLineRunner {
         product_4.setQuantity(1);
         product_4.setDescription("Standard surgical facemask");
         demoProducts.add(product_4);
+        product_4.setSeedImageStr("facemask.jpg");
         productRepository.saveAll(demoProducts);
 
         /*Make shipping address for seller_1*/

@@ -25,6 +25,7 @@ public class Product {
     private double price;
     private String description;
     private Blob image;
+    private String seedImageStr;
 
     public Product() {
     }

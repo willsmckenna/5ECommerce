@@ -11,7 +11,7 @@
 <div class="container">
     <div class="shadow p-3 mb-5 bg-white rounded">
         <form action="#" th:action="@{buyer/productview/info/add}" method="post">
-            <img class="card-img-top" src="0.png" alt="Card image cap" style="width:100px;height:100px;">
+            <img class="card-img-top img-fluid" th:src="@{${p.seedImageStr}}" alt="Card image cap" style="width:100px;height:100px;">
             <div class="card-body">
                     <h5 class="card-title"  th:text = "${p.name}" id="name" name="name"></h5>
                     <input type="hidden" th:value="${p.name}" name="name"/>
