@@ -1,8 +1,18 @@
 package Market.model.userTypes;
 
-
+import Market.model.messages.Message;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+
 import javax.persistence.*;
+import java.util.*;
+
+@TypeDefs({
+        @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
+})
 
 @Entity
 @Data
@@ -22,6 +32,13 @@ public class Admin{
     @Column(name="lastname")
     private String lastname;
 
+    @Type(type = "hstore")
+    @Column(columnDefinition = "hstore")
+    private Map<Integer, Message> messages = new HashMap<Integer, Message>();
+
+    @Column(name = "last_key")
+    private Integer lastKey = 0;
+
     public Admin(String username, String firstname, String lastname) {
         this.username = username;
         this.firstname = firstname;
@@ -30,4 +47,11 @@ public class Admin{
 
     public Admin() {
     }
+
+    //pretty slick
+    public void addMessage(Message message) {
+        this.getMessages().put(lastKey, message);
+        lastKey++;
+    }
+    
 }

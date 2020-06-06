@@ -6,8 +6,7 @@ import Market.model.Review;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.buyerRelated.ShoppingCart;
-import Market.model.messages.MessageContent;
-import Market.model.messages.MessageHeader;
+import Market.model.messages.Message;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
@@ -17,7 +16,6 @@ import Market.repo.AdminRepo;
 import Market.repo.BuyerRepository;
 import Market.repo.SellerRepository;
 import Market.repo.UsersRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -41,9 +39,8 @@ public class BootStrapData implements CommandLineRunner {
     private final OrderRepository orderRepository;
     private final PaymentRepo paymentRepo;
     private final ShoppingCartProductsRepository shoppingCartProductsRepository;
-    private final MessageRepository messageRepository;
 
-    public BootStrapData(UsersRepository userRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository, AdminRepo adminRepo, ProductRepository productRepository, ShippingAddressRepository shippingAddressRepository, ShoppingCartRepository shoppingCartRepository, OrderRepository orderRepository, PaymentRepo paymentRepo, ShoppingCartProductsRepository shoppingCartProductsRepository, MessageRepository messageRepository) {
+    public BootStrapData(UsersRepository userRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository, AdminRepo adminRepo, ProductRepository productRepository, ShippingAddressRepository shippingAddressRepository, ShoppingCartRepository shoppingCartRepository, OrderRepository orderRepository, PaymentRepo paymentRepo, ShoppingCartProductsRepository shoppingCartProductsRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.buyerRepository = buyerRepository;
@@ -55,7 +52,6 @@ public class BootStrapData implements CommandLineRunner {
         this.orderRepository = orderRepository;
         this.paymentRepo = paymentRepo;
         this.shoppingCartProductsRepository = shoppingCartProductsRepository;
-        this.messageRepository = messageRepository;
     }
 
     @Override
@@ -199,10 +195,7 @@ public class BootStrapData implements CommandLineRunner {
         paymentRepo.saveAll(demoPaymentInfo);
 
 
-        /*
-            Make a seller review:
-
-         */
+        /* Make a seller review: */
         Review review_1 = new Review();
         review_1.setAuthor(buyer_1.getUsername());
         review_1.setContent("Because, If I am not, I am more than likely doomed");
@@ -210,19 +203,21 @@ public class BootStrapData implements CommandLineRunner {
         review_1.setDate(date);
         seller_1.getReviews().put("wut", review_1);
         sellerRepository.save(seller_1);
-        /*
+
+        //Get the review:
+        System.out.println(seller_1.getReviews().containsKey("wut"));
+
 
         //Make some messages: STRESS TEST
-        MessageHeader messageHeader_1 = new MessageHeader();
-        MessageContent messageContent_1 = new MessageContent();
-        messageContent_1.setFromUsername(seller_1.getUsername());
-        messageContent_1.setToUsername(buyer_1.getUsername());
-        messageContent_1.setSubject("I Hope I am doing this write..");
-        messageContent_1.setMessagePayload("Because, If I am not, I am more than likely doomed");
-        messageHeader_1.getMessageContents().add(messageContent_1);
-        this.messageRepository.save(messageHeader_1);
-
-        MessageContent messageContent_2 = new MessageContent();
+        Message message_1 = new Message();
+        message_1.setFromUsername(seller_1.getUsername());
+        message_1.setToUsername(admin_1.getUsername());
+        message_1.setSubject("I Hope I am doing this right..");
+        message_1.setMessagePayload("Because, If I am not, I am more than likely doomed");
+        admin_1.addMessage(message_1);
+        adminRepo.save(admin_1);
+    /*
+        Message messageContent_2 = new Message();
         messageContent_2.setFromUsername(buyer_1.getUsername());
         messageContent_2.setToUsername(seller_1.getUsername());
         messageContent_2.setSubject("Wild!");
@@ -231,7 +226,7 @@ public class BootStrapData implements CommandLineRunner {
         this.messageRepository.save(messageHeader_1);
 
 
-        MessageContent messageContent_3 = new MessageContent();
+        Message messageContent_3 = new Message();
         messageContent_3.setFromUsername(admin_1.getUsername());
         messageContent_3.setToUsername(seller_1.getUsername());
         messageContent_3.setSubject("Word!");
@@ -239,7 +234,7 @@ public class BootStrapData implements CommandLineRunner {
         messageHeader_1.getMessageContents().add(messageContent_3);
         this.messageRepository.save(messageHeader_1);
 
-        MessageContent messageContent_4 = new MessageContent();
+        Message messageContent_4 = new Message();
         messageContent_4.setFromUsername(admin_1.getUsername());
         messageContent_4.setToUsername(seller_1.getUsername());
         messageContent_4.setSubject("Word!");
