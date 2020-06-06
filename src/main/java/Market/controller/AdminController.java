@@ -9,8 +9,9 @@ import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.OrderRepository;
 import Market.service.MessagingService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.tomcat.util.json.JSONParser;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +19,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+
 
 @Controller
 @RequestMapping("admin")
@@ -180,9 +183,13 @@ public class AdminController {
     @GetMapping("inbox")
     public String getInbox(Model model, Principal principal)
     {
-        //JSONPObject obj = new JSONPObject(this.messagingService.getAllMessagesByUser(principal.getName()));
+        Map<String, Message> map = this.messagingService.convertUserMessagesToJSON(principal.getName());
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        JSONArray json  = new JSONArray();
+        json.put(map);
 
-
+        System.out.println(json.toString());
+        
         return "messaging/messageInbox";
     }
 
