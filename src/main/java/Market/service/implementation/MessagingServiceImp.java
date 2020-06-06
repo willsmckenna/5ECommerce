@@ -10,7 +10,9 @@ import Market.repo.SellerRepository;
 import Market.service.MessagingService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Service
@@ -53,42 +55,21 @@ public class MessagingServiceImp  implements MessagingService {
     }
 
     @Override
-    public Set<Message> getAllMessages(String username) {
+    public Map<Integer, Message> getAllMessages(String username) {
         if(this.buyerRepository.existsByUsername(username)) {
             Buyer buyer = buyerRepository.findByUsername(username);
-            Set<Message> messages  = new HashSet<Message>();
-            for(Message m : buyer.getMessages().values())
-            {
-                messages.add(m);
-            }
-            return messages;
-        }
-        else if(this.adminRepo.existsByUsername(username)) {
-            Admin admin = this.adminRepo.findByUsername(username);
-            Set<Message> messages  = new HashSet<Message>();
-            for(Message m : admin.getMessages().values()) {
-                messages.add(m);
-            }
-            return messages;
+            return buyer.getMessages();
         }
 
         else if(this.sellerRepository.existsByUsername(username)) {
             Seller seller = this.sellerRepository.findByUsername(username);
-            Set<Message> messages  = new HashSet<Message>();
-            for(Message m : seller.getMessages().values()) {
-                messages.add(m);
-            }
-            return messages;
+            return seller.getMessages();
         }
 
         else if(this.adminRepo.existsByUsername(username)) {
             Admin admin = this.adminRepo.findByUsername(username);
-            Set<Message> messages  = new HashSet<Message>();
-            for(Message m : admin.getMessages().values()) {
-                messages.add(m);
-            }
-            return messages;
+            return admin.getMessages();
         }
-        return new HashSet<Message>();
+        return new HashMap<Integer, Message>();
     }
 }

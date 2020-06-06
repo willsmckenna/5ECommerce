@@ -9,6 +9,7 @@ import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.OrderRepository;
 import Market.service.MessagingService;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("admin")
@@ -176,7 +179,8 @@ public class AdminController {
     @GetMapping("inbox")
     public String getInbox(Model model, Principal principal)
     {
-        model.addAttribute("messages", this.messagingService.getAllMessages(principal.getName()));
+        System.out.println(this.messagingService.getAllMessages(principal.getName()));
+        
         return "messaging/messageInbox";
     }
 

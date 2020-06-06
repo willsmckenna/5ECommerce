@@ -3,13 +3,10 @@ package Market.model.messages;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
 import java.util.Date;
 
+@NoArgsConstructor
 @Data
 @AllArgsConstructor
 public class Message implements Serializable
@@ -19,20 +16,4 @@ public class Message implements Serializable
     private String subject;
     private String messagePayload;
     private Date date;
-
-    public Message()
-    {
-        this.date = new Date();
-    }
-
-    @Override
-    public String toString() {
-        return "Message{" +
-                "fromUsername='" + fromUsername + '\'' +
-                ", toUsername='" + toUsername + '\'' +
-                ", subject='" + subject + '\'' +
-                ", messagePayload='" + messagePayload + '\'' +
-                ", date=" + date +
-                '}';
-    }
 }
