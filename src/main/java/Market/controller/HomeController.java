@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -46,13 +48,15 @@ public class HomeController {
 
     private final ProductReviewRepository productReviewRepository;
     private final SellerReviewRepository sellerReviewRepository;
-    private final SellerRepository sellerRepository;
 
-    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository, SellerRepository sellerRepository){
+    @Autowired
+    private  SellerRepository sellerRepository;
+
+    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository){
         this.productRepository = pr;
         this.productReviewRepository = productReviewRepository;
         this.sellerReviewRepository = sellerReviewRepository;
-        this.sellerRepository = sellerRepository;
+       // this.sellerRepository = sellerRepository;
     }
 
     @GetMapping("index")
@@ -146,6 +150,14 @@ public class HomeController {
         return "redirect:/browse";
     }
 
+    @GetMapping("viewSellerReviews")
+    public String viewSellerReviews(@RequestParam String sellerUsername,Model model)
+    {
+        Seller seller = sellerRepository.findByUsername(sellerUsername);
+        System.out.println(seller.getReviews());
+        model.addAttribute("reviews",seller.getReviews());
+        return "productview/sellerreviewsview";
+    }
 
     @GetMapping("reviewSeller")
     public String redirectToReviewForm(@RequestParam String sellerUsername,Model model)
@@ -163,23 +175,15 @@ public class HomeController {
         //model.addAttribute("reviews",reviews);
         if(principal==null)
             return "/login";
-        sellerReview.setSellerUN(seller);
+
         sellerReview.setAuthor(principal.getName());
         sellerReview.setDate(new Date());
 
+        System.out.println(sellerReview);
         Seller seller1 = sellerRepository.findByUsername(seller);
-        seller1.getReviews().put(principal.getName(),sellerReview);
-
-        System.out.println(seller1.getReviews());
-        SellerReviews sellerReviews = new SellerReviews();
-        sellerReviews.getReviews().add(sellerReview);
-
+        seller1.getReviews().add(sellerReview);
         sellerRepository.save(seller1);
-        sellerReviewRepository.save(sellerReviews);
 
-        //System.out.println(sellerReview);
-        //System.out.println(model.getAttribute("review"));
-        //System.out.println(seller);
         return "redirect:/browse";
     }
 

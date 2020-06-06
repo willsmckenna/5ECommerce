@@ -199,17 +199,15 @@ public class BootStrapData implements CommandLineRunner {
         paymentRepo.saveAll(demoPaymentInfo);
 
 
-        /* Make a seller review: */
+        // Adding Seller Review
         Review review_1 = new Review();
         review_1.setAuthor(buyer_1.getUsername());
-        review_1.setContent("Because, If I am not, I am more than likely doomed");
-        review_1.setSellerUN(seller_1.getUsername());
-        review_1.setDate(date);
-        seller_1.getReviews().put("wut", review_1);
+        review_1.setContent("Great seller!!!!");
+        review_1.setDate(new Date());
+        seller_1.getReviews().add(review_1);
         sellerRepository.save(seller_1);
+        System.out.println(seller_1.getReviews());
 
-        //Get the review:
-        System.out.println(seller_1.getReviews().containsKey("wut"));
 
 
         //Make some messages: STRESS TEST

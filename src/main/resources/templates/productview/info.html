@@ -19,7 +19,10 @@
                     <p class="card-text" th:text = "${p.description}" id="description" name="description"></p>
                     <p class="card-text">Sold By:</p>
                     <p class="card-text" th:text ="${p.getSeller().getUsername()}" id="seller" name="seller"></p>
+                    <a th:href="@{viewSellerReviews(sellerUsername=${p.getSeller().getUsername()})}" class="w-button">View Seller Reviews</a>
+                    <br/>
                     <button type="submit" class="btn-primary" th:onclick="'alert(\'Product Added to Cart!\');'">Add to Cart</button>
+                    <br/>
                     <a th:href="@{addReview(productName=${p.name}, sellerUsername=${p.getSeller().getUsername()})}" class="w-button"> ADD REVIEW </a>
                     <a th:href="@{reviewSeller(sellerUsername=${p.getSeller().getUsername()})}" class="w-button"> REVIEW SELLER </a>
             </div>

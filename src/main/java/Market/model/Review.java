@@ -11,7 +11,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Review implements Serializable {
-    private String sellerUN;
     private String author;
     private Date date;
     private String content;

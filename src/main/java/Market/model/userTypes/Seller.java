@@ -47,9 +47,11 @@ public class Seller implements Serializable  {
     @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL)
     private Set<PaymentInfo> paymentInfo = new HashSet<>();
 
-    @Type(type = "hstore")
-    @Column(columnDefinition = "hstore")
-    private Map<String, Review> reviews = new HashMap<>();
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb",name="reviews")
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Review> reviews = new ArrayList<>();
 
     @Column(name = "last_message_id")
     private Integer lastMessageKey = 0;
