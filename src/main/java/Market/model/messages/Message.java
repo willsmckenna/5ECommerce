@@ -24,4 +24,15 @@ public class Message implements Serializable
     {
         this.date = new Date();
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "fromUsername='" + fromUsername + '\'' +
+                ", toUsername='" + toUsername + '\'' +
+                ", subject='" + subject + '\'' +
+                ", messagePayload='" + messagePayload + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

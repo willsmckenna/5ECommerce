@@ -45,7 +45,7 @@
             <li th:text="${user.getUsername()}">Username</li>
             <li th:text="${user.getRoles()}">Occupation</li>
             <li class="w-button" style="text-decoration: none;">
-                <a th:href="@{adminAlterSelectedUser(username=${user.username})}" style="text-decoration: none; color: white;">
+                <a th:href="@{composeMessage(username=${user.username})}" style="text-decoration: none; color: white;">
                     Select
                 </a>
             </li>

@@ -2,6 +2,7 @@ package Market.controller;
 
 import Market.model.OrderTrackingContent;
 import Market.model.buyerRelated.Orders;
+import Market.model.messages.Message;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -153,4 +155,21 @@ public class AdminController {
         model.addAttribute("users",userService.findByUserNames(username));
         return "messaging/searchUserToMessage";
     }
+
+    @GetMapping("composeMessage")
+    public String getComposeMessage(Model model, String username)
+    {
+        usernamePlaceHolder = username;
+        model.addAttribute("message", new Message());
+        return "messaging/composeMessage";
+    }
+
+    @RequestMapping(value = "sendMessage", method = RequestMethod.POST)
+    public String getMessageSent(Principal principal, @ModelAttribute("message")Message message)
+    {
+        this.adminService.saveMessage(message,principal.getName(), usernamePlaceHolder);
+        return "messaging/messagingPortal";
+    }
+
+
 }
