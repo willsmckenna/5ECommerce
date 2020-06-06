@@ -49,7 +49,7 @@ public class MessagingServiceImp  implements MessagingService {
         else if(this.adminRepo.existsByUsername(to))
         {
             Admin admin = this.adminRepo.findByUsername(to);
-            admin.addMessage(message);
+            admin.getMessages().add(message);
             this.adminRepo.save(admin);
         }
     }

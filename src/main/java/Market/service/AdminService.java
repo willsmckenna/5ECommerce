@@ -11,5 +11,5 @@ public interface AdminService {
     Admin findByUsername(String username);
     boolean containsAdmin(String username);
     void save(Admin admin);
-    Map<String, Map<String, String>> getAdminMessages(String username);
+    List<Message> getAdminMessages(String username);
 }

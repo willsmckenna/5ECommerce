@@ -42,7 +42,7 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public Map<String, Map<String, String>> getAdminMessages(String username) {
+    public List<Message> getAdminMessages(String username) {
         Admin admin = this.adminRepo.findByUsername(username);
         return admin.getMessages();
     }
