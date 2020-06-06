@@ -29,7 +29,7 @@ public class Orders {
     Buyer buyer;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    Set<productsNoDepend> ordersProducts = new HashSet<productsNoDepend>();
+    Set<ProductsNoDepend> ordersProducts = new HashSet<ProductsNoDepend>();
 
 
     private double orderTotal;
@@ -43,7 +43,7 @@ public class Orders {
 
     public void addProduct(Product product, int quantity)
     {
-        productsNoDepend productsNoDepend = new productsNoDepend(
+        ProductsNoDepend productsNoDepend = new ProductsNoDepend(
                 this,
                 product.getId(),
                 product.getSeller().getUsername(),

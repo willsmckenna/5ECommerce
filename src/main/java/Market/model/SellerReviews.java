@@ -8,6 +8,7 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @TypeDefs({
@@ -18,10 +19,10 @@ import java.util.List;
 public class SellerReviews {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reviewId;
+    private Long reviewId;
     @Type(type="jsonb")
     @Column(columnDefinition = "jsonb")
     @Basic(fetch = FetchType.EAGER)
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 
 }

@@ -9,7 +9,7 @@ import java.sql.Blob;
 @Data
 @Entity
 @Table(name = "products_no_depend",schema = "public")
-public class productsNoDepend {
+public class ProductsNoDepend {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,10 +42,10 @@ public class productsNoDepend {
     Blob image;
 
 
-    public productsNoDepend() {
+    public ProductsNoDepend() {
     }
 
-    public productsNoDepend(Orders orders, Long product_id, String seller_username, String product_name,
+    public ProductsNoDepend(Orders orders, Long product_id, String seller_username, String product_name,
                             double price, int quantity, Blob image)
     {
         this.orders = orders;

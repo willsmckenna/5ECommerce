@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common-header">
+    <meta charset="UTF-8">
+    <title>Product Info</title>
+    <head th:replace="fragments/header :: common-header">
+    </head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<h1 class="text-center font-weight-bold">Review Seller</h1>
+<div class="container">
+    <form action="#" th:action="@{addSellerReview(seller=${seller})}" th:object="${sellerReview}" method="post">
+        <p class="card-text" th:text = "${seller}" id="username" name="username"></p>
+        <div class="form-group">
+            <input type="text" th:field="*{content}" rows="5" class="form-control" id="review" name="review" placeholder="review">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Review</button>
+
+    </form>
+
+</body>
+</html>
