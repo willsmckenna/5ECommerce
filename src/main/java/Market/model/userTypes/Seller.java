@@ -4,6 +4,7 @@ import Market.model.PaymentInfo;
 import Market.model.Product;
 import Market.model.Review;
 import Market.model.buyerRelated.ShippingAddress;
+import Market.model.messages.Message;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
 import org.hibernate.annotations.Type;
@@ -48,6 +49,14 @@ public class Seller {
     @Column(columnDefinition = "hstore")
     private Map<String, Review> reviews = new HashMap<>();
 
+    @Type(type = "hstore")
+    @Column(columnDefinition = "hstore", name = "messages")
+    private Map<Integer, Message> messages = new HashMap<Integer, Message>();
+
+    @Column(name = "last_key")
+    private Integer lastKey = 0;
+
+
     public Seller() { }
 
     public Seller(String username, String firstname, String lastname) {
@@ -55,6 +64,7 @@ public class Seller {
         this.firstname = firstname;
         this.lastname = lastname;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -80,5 +90,11 @@ public class Seller {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
+    }
+
+    //pretty slick
+    public void addMessage(Message message) {
+        this.getMessages().put(lastKey, message);
+        lastKey++;
     }
 }

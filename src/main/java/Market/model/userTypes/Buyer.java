@@ -4,11 +4,19 @@ import Market.model.PaymentInfo;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.buyerRelated.ShoppingCart;
+import Market.model.messages.Message;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+
+@TypeDefs({
+        @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
+})
 
 @Data
 @Entity
@@ -40,6 +48,12 @@ public class Buyer{
     @OneToMany(mappedBy = "buyer",cascade = CascadeType.ALL)
     private Set<PaymentInfo> paymentInfo = new HashSet<PaymentInfo>();
 
+    @Type(type = "hstore")
+    @Column(columnDefinition = "hstore")
+    private Map<Integer, Message> messages = new HashMap<Integer, Message>();
+
+    @Column(name = "last_key")
+    private Integer lastKey = 0;
 
     public Buyer(String username, String firstname, String lastname) {
         this.username = username;
@@ -64,5 +78,11 @@ public class Buyer{
     @Override
     public int hashCode() {
         return Objects.hash(id, username, firstname, lastname);
+    }
+
+    //pretty slick
+    public void addMessage(Message message) {
+        this.getMessages().put(lastKey, message);
+        lastKey++;
     }
 }

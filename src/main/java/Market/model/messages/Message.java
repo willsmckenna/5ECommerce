@@ -8,18 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.SequenceGenerator;
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class Message implements Serializable
 {
     private String fromUsername;
     private String toUsername;
     private String subject;
     private String messagePayload;
+    private Date date;
 
-    /*
-    THIS IS ALL WRONG -peter
- */
+    public Message()
+    {
+        this.date = new Date();
+    }
 }
