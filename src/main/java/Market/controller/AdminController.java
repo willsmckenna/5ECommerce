@@ -179,8 +179,7 @@ public class AdminController {
     @GetMapping("inbox")
     public String getInbox(Model model, Principal principal)
     {
-        System.out.println(this.messagingService.getAllMessages(principal.getName()));
-        
+        model.addAttribute("messages", this.messagingService.getAllMessagesByUser(principal.getName()));
         return "messaging/messageInbox";
     }
 

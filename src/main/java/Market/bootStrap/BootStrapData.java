@@ -210,8 +210,8 @@ public class BootStrapData implements CommandLineRunner {
 
         //Make some messages: STRESS TEST
         Message message_1 = new Message();
-        message_1.setFromUsername(seller_1.getUsername());
-        message_1.setToUsername(admin_1.getUsername());
+        message_1.setFrom(seller_1.getUsername());
+        message_1.setTo(admin_1.getUsername());
         message_1.setSubject("I Hope I am doing this right..");
         message_1.setMessagePayload("Because, If I am not, I am more than likely doomed");
         admin_1.addMessage(message_1);

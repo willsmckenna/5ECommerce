@@ -34,7 +34,7 @@ public class Admin{
 
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore",name = "messages")
-    private Map<Integer, Message> messages = new HashMap<Integer, Message>();
+    private HashMap<Integer, Message> messages = new HashMap<Integer, Message>();
 
     @Column(name = "last_message_key")
     private Integer lastKey = 0;

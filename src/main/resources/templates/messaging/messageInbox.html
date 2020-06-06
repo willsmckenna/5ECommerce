@@ -46,9 +46,9 @@
             <li>Subject</li>
             <li>View</li>
         </ul>
-        <ul role="list" class="list" th:each="message: ${messages}">>
-            <li th:text="${message.getFromUsername()}">From</li>
-            <li th:text="${message.subject}">Subject</li>
+        <ul role="list" class="list" th:each="message: ${messages}">
+            <li th:text=" ${message.getValue()}"> From</li>
+            <!--<li th:text="${message.subject}">Subject</li>  -->
             <li class="w-button" style="text-decoration: none;">
                 <a href= # style="text-decoration: none; color: white;">
                 View

@@ -31,8 +31,8 @@ public class MessagingServiceImp  implements MessagingService {
     @Override
     public void saveMessage(Message message, String from, String to)
     {
-        message.setFromUsername(from);
-        message.setToUsername(to);
+        message.setFrom(from);
+        message.setTo(to);
 
         if(this.buyerRepository.existsByUsername(to))
         {
@@ -55,7 +55,7 @@ public class MessagingServiceImp  implements MessagingService {
     }
 
     @Override
-    public Map<Integer, Message> getAllMessages(String username) {
+    public Map<Integer, Message> getAllMessagesByUser(String username) {
         if(this.buyerRepository.existsByUsername(username)) {
             Buyer buyer = buyerRepository.findByUsername(username);
             return buyer.getMessages();
