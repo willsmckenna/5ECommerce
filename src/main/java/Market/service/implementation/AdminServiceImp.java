@@ -10,6 +10,9 @@ import Market.repo.SellerRepository;
 import Market.service.AdminService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class AdminServiceImp implements AdminService {
 
@@ -36,6 +39,12 @@ public class AdminServiceImp implements AdminService {
     @Override
     public void save(Admin admin) {
         this.adminRepo.save(admin);
+    }
+
+    @Override
+    public Map<String, Map<String, String>> getAdminMessages(String username) {
+        Admin admin = this.adminRepo.findByUsername(username);
+        return admin.getMessages();
     }
 
 }

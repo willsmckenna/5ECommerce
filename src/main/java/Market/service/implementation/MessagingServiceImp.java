@@ -64,9 +64,6 @@ public class MessagingServiceImp  implements MessagingService {
            return this.sellerRepository.findByUsername(username).getMessages();
         }
 
-        else if(this.adminRepo.existsByUsername(username)) {
-            return this.adminRepo.findByUsername(username).getMessages();
-        }
         return new HashMap<String, Message>();
     }
 }

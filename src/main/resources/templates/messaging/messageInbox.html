@@ -40,15 +40,14 @@
             <h1>Your Inbox</h1>
         </div>
     </div>
-    <div class="w-container">
         <ul role="list" class="list">
             <li>From</li>
             <li>Subject</li>
             <li>View</li>
         </ul>
-        <ul role="list" class="list" th:each="message: ${messages}">
-            <li th:text=" ${message.getValue()}"> From</li>
-            <li th:text="${message['from']}">Subject</li>
+        <ul role="list" class="list">
+            <li th:text="${messages.values()}"> From</li>
+            <li>Subject</li>
             <li class="w-button" style="text-decoration: none;">
                 <a href= # style="text-decoration: none; color: white;">
                 View
