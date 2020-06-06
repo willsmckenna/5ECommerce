@@ -1,10 +1,16 @@
 package Market.controller;
 
 import Market.model.Product;
+import Market.model.Review;
+import Market.model.SellerReviews;
+import Market.model.buyerRelated.Orders;
+import Market.model.OrderTrackingContent;
 import Market.model.reviewTypes.ProductReviewsHeading;
 import Market.model.reviewTypes.ProductReviewContent;
+import Market.repo.OrderRepository;
 import Market.repo.ProductRepository;
 import Market.repo.ProductReviewRepository;
+import Market.repo.SellerReviewRepository;
 import Market.service.BuyerService;
 import Market.service.ProductService;
 import Market.service.UserService;
@@ -12,12 +18,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.Date;
 import java.util.Set;
 
 @Controller
@@ -33,13 +41,18 @@ public class HomeController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    OrderRepository orderRepository;
+
     private final ProductRepository productRepository;
 
     private final ProductReviewRepository productReviewRepository;
+    private final SellerReviewRepository sellerReviewRepository;
 
-    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository){
+    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository){
         this.productRepository = pr;
         this.productReviewRepository = productReviewRepository;
+        this.sellerReviewRepository = sellerReviewRepository;
     }
 
     @GetMapping("index")
@@ -130,6 +143,38 @@ public class HomeController {
         productReviewsHeading.getProductReviewContents().add(productReviewContent);
 
         productReviewRepository.save(productReviewsHeading);
+        return "redirect:/browse";
+    }
+
+
+    @GetMapping("reviewSeller")
+    public String redirectToReviewForm(@RequestParam String sellerUsername,Model model)
+    {
+        model.addAttribute("sellerReview",new Review());
+        model.addAttribute("seller",sellerUsername);
+        System.out.println("hello");
+        System.out.println(sellerUsername);
+        return "seller/reviewSeller";
+    }
+
+    @PostMapping("addSellerReview")
+    public String saveSellerReview(@ModelAttribute("sellerReview") Review sellerReview, String seller, Model model,Principal principal)
+    {
+        //model.addAttribute("reviews",reviews);
+        if(principal==null)
+            return "/login";
+        sellerReview.setSellerUN(seller);
+        sellerReview.setAuthor(principal.getName());
+        sellerReview.setDate(new Date());
+
+        SellerReviews sellerReviews = new SellerReviews();
+        sellerReviews.getReviews().add(sellerReview);
+
+        sellerReviewRepository.save(sellerReviews);
+
+        //System.out.println(sellerReview);
+        //System.out.println(model.getAttribute("review"));
+        //System.out.println(seller);
         return "redirect:/browse";
     }
 

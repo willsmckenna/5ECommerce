@@ -1,33 +1,41 @@
 package Market.controller;
 
+import Market.model.OrderTrackingContent;
+import Market.model.buyerRelated.Orders;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
-import Market.service.*;
+import Market.repo.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("admin")
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private Market.service.UserService userService;
 
     @Autowired
-    private ProductService productService;
+    private Market.service.ProductService productService;
 
     @Autowired
-    private BuyerService buyerService;
+    private Market.service.BuyerService buyerService;
 
     @Autowired
-    private SellerService sellerService;
+    private Market.service.SellerService sellerService;
 
     @Autowired
-    private AdminService adminService;
+    private Market.service.AdminService adminService;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     static String usernamePlaceHolder ="";
 
@@ -104,6 +112,34 @@ public class AdminController {
         }
 
         return "admin/index";
+    }
+    @RequestMapping(value = "searchOrders", method = RequestMethod.GET)
+    public String getSearchOrders(Model model){
+        List<Orders> orders = orderRepository.findAll();
+        model.addAttribute("orders", orders);
+
+        return "admin/searchOrders";
+
+    }
+
+    @RequestMapping(value = "updateTracking", method = RequestMethod.GET)
+    public String updateTracking(Model model, long orderId){
+        OrderTrackingContent tracking = new OrderTrackingContent();
+        tracking.setOrderID(orderId);
+        model.addAttribute("tracking", tracking);
+        return "admin/updateTracking";
+    }
+
+    //collect user input of product productReviewContent
+    @RequestMapping(value = "/saveTracking", method = RequestMethod.POST)
+    public String saveTracking(@ModelAttribute("tracking")OrderTrackingContent orderTrackingContent,
+                               BindingResult bindingResult, long orderId) {
+
+        Orders order = orderRepository.findById(orderId).orElse(null);
+        order.setOrderTrackingContents(orderTrackingContent);
+        orderRepository.save(order);
+
+        return "redirect:/admin/searchOrders";
     }
 
     @GetMapping("messagingPortal")

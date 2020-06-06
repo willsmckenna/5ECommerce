@@ -1,6 +1,7 @@
 package Market.model.buyerRelated;
 
 import Market.model.Product;
+import Market.model.OrderTrackingContent;
 import Market.model.userTypes.Buyer;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
@@ -28,7 +29,7 @@ public class Orders {
     Buyer buyer;
 
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
-    Set<productsNoDepend> ordersProducts = new HashSet<productsNoDepend>();
+    Set<ProductsNoDepend> ordersProducts = new HashSet<ProductsNoDepend>();
 
 
     private double orderTotal;
@@ -42,7 +43,7 @@ public class Orders {
 
     public void addProduct(Product product, int quantity)
     {
-        productsNoDepend productsNoDepend = new productsNoDepend(
+        ProductsNoDepend productsNoDepend = new ProductsNoDepend(
                 this,
                 product.getId(),
                 product.getSeller().getUsername(),
@@ -54,11 +55,11 @@ public class Orders {
         this.ordersProducts.add(productsNoDepend);
     }
 
-
-    //no-sql for order status
-    @Type(type = "hstore")
-    @Column(columnDefinition = "hstore")
-    private Map<String,String> status = new HashMap<String,String>();
+    //No-SQL for order status
+    @Type(type="jsonb")
+    @Column(columnDefinition = "jsonb")
+    @Basic(fetch = FetchType.EAGER)
+    private OrderTrackingContent orderTrackingContents = new OrderTrackingContent();
 
     @Override
     public boolean equals(Object o) {

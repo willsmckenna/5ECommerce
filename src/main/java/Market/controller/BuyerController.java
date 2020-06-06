@@ -1,10 +1,8 @@
 package Market.controller;
 
+import Market.model.PaymentInfo;
 import Market.model.Product;
-import Market.model.buyerRelated.Orders;
-import Market.model.buyerRelated.ShoppingCart;
-import Market.model.buyerRelated.ShoppingCartProducts;
-import Market.model.buyerRelated.productsNoDepend;
+import Market.model.buyerRelated.*;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
@@ -147,14 +145,27 @@ public class BuyerController {
     public String getOrders(HttpServletRequest request, Model model) {
         String user = request.getUserPrincipal().getName();
         Buyer buyer = buyerRepository.findByUsername(user);
-        Set<Orders>orders = buyer.getOrders();
-        Set<productsNoDepend>items = new HashSet<>();
-        for (Orders o: orders){
-            for (productsNoDepend p: o.getOrdersProducts())
-                items.add(p);
-        }
-        model.addAttribute("orderItems", items);
+        Set<Orders> orders = buyer.getOrders();
+        model.addAttribute("orders", orders);
         return "buyer/orders";
+    }
+
+    @GetMapping("shippingInfo")
+    public String getShippingInfo(HttpServletRequest request, Model model) {
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        Set<ShippingAddress> sa = buyer.getShippingAddress();
+        model.addAttribute("shippingInfo", sa);
+        return "buyer/shippingInfo";
+    }
+
+    @GetMapping("paymentInfo")
+    public String getPaymentInfo(HttpServletRequest request, Model model) {
+        String user = request.getUserPrincipal().getName();
+        Buyer buyer = buyerRepository.findByUsername(user);
+        Set<PaymentInfo> pay = buyer.getPaymentInfo();
+        model.addAttribute("paymentInfo", pay);
+        return "buyer/paymentInfo";
     }
 
     @RequestMapping(value = "alterBuyerInfo", method = RequestMethod.GET)

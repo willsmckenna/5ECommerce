@@ -5,10 +5,13 @@ import Market.model.Product;
 import Market.model.buyerRelated.ShippingAddress;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -42,6 +45,10 @@ public class Seller {
 
     @OneToMany(mappedBy = "seller",cascade = CascadeType.ALL)
     private Set<PaymentInfo> paymentInfo;
+
+    @Type(type = "hstore")
+    @Column(columnDefinition = "hstore")
+    private Map<String, String> reviews = new HashMap<String, String>();
 
     public Seller() { }
 

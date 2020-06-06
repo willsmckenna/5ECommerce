@@ -1,9 +1,11 @@
 package Market.controller;
 
+import Market.model.Product;
 import Market.model.buyerRelated.ShoppingCart;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
+import Market.repo.ProductRepository;
 import Market.repo.ShoppingCartRepository;
 import Market.repo.BuyerRepository;
 import Market.repo.SellerRepository;
@@ -22,14 +24,16 @@ public class SignupController {
     private final BuyerRepository buyerRepository;
     private final SellerRepository sellerRepository;
     private final ShoppingCartRepository shoppingCartRepository;
+    private final ProductRepository productRepository;
     private static Users user;
 
-    public SignupController(UsersRepository usersRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository) {
+    public SignupController(UsersRepository usersRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, BuyerRepository buyerRepository, SellerRepository sellerRepository, ProductRepository productRepository) {
         this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
         this.buyerRepository = buyerRepository;
         this.sellerRepository = sellerRepository;
         this.shoppingCartRepository = shoppingCartRepository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping({"/signupview", "/signup"})
@@ -41,16 +45,10 @@ public class SignupController {
     @RequestMapping(value = "/saveUsers", method = RequestMethod.POST)
     public String addUser(@ModelAttribute("newUser") Users newUser, BindingResult bindingResult,Model model)
     {
-        //model.addAttribute("newUser",new Users());
-        //new
-        //System.out.println(newUser);
-        //newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+
         System.out.println(newUser);
-        //model.addAttribute("newUser",newUser);
         Users nUser = new Users(newUser.getUsername(),passwordEncoder.encode(newUser.getPassword()),newUser.getRoles(),"none");
         user = nUser;
-       // newUser.setPermissions("none");
-       // newUser.setActive(1);
         System.out.println(nUser);
         usersRepository.save(nUser);
 
@@ -85,13 +83,6 @@ public class SignupController {
         return "/login";
 
     }
-
-/*
-    @PostMapping("/addUser")
-    public String addBuye(@ModelAttribute Users newUser){
-        return "signupview/signup";
-    }
-*/
 
 
 }

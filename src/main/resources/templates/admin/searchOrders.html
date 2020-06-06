@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <head th:replace="fragments/header :: common-header">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <title>Shopping Cart</title>
+    </head>
+    <div th:replace="fragments/header :: header"></div>
+<body>
+<h1 class="text-center font-weight-bold">Customer Orders</h1>
+<br>
+<div class="container">
+        <div class="row">
+            <table class="table table-striped" style="border: solid;">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Order Number</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Change Status</th>
+                </tr>
+                </thead>
+                <tr th:if="${orders.empty}">Shopping Cart Empty</tr>
+                <tr th:each = "order: ${orders}"  style="margin: 20px">
+                    <th scope="row" th:text="${order.id}"> </th>
+                    <td th:text="${order.orderTrackingContents.status}"></td>
+                    <td><a th:href="@{updateTracking(orderId=${order.id})}" class="btn btn-primary"> Update Tracking </a></td>
+                </tr>
+            </table>
+        </div>
+
+    <div class="align-right" style="float:left;">
+        <button type="button" class="btn btn-outline-primary" onclick="window.location.href='/admin/index'">Admin Home</button>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
