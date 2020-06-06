@@ -2,6 +2,7 @@ package Market.model.userTypes;
 
 import Market.model.PaymentInfo;
 import Market.model.Product;
+import Market.model.Review;
 import Market.model.buyerRelated.ShippingAddress;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
@@ -48,7 +49,7 @@ public class Seller {
 
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore")
-    private Map<String, String> reviews = new HashMap<String, String>();
+    private Map<String, Review> reviews = new HashMap<>();
 
     public Seller() { }
 

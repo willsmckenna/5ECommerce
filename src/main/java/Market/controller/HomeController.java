@@ -7,10 +7,8 @@ import Market.model.buyerRelated.Orders;
 import Market.model.OrderTrackingContent;
 import Market.model.reviewTypes.ProductReviewsHeading;
 import Market.model.reviewTypes.ProductReviewContent;
-import Market.repo.OrderRepository;
-import Market.repo.ProductRepository;
-import Market.repo.ProductReviewRepository;
-import Market.repo.SellerReviewRepository;
+import Market.model.userTypes.Seller;
+import Market.repo.*;
 import Market.service.BuyerService;
 import Market.service.ProductService;
 import Market.service.UserService;
@@ -48,11 +46,13 @@ public class HomeController {
 
     private final ProductReviewRepository productReviewRepository;
     private final SellerReviewRepository sellerReviewRepository;
+    private final SellerRepository sellerRepository;
 
-    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository){
+    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository, SellerRepository sellerRepository){
         this.productRepository = pr;
         this.productReviewRepository = productReviewRepository;
         this.sellerReviewRepository = sellerReviewRepository;
+        this.sellerRepository = sellerRepository;
     }
 
     @GetMapping("index")
@@ -167,9 +167,14 @@ public class HomeController {
         sellerReview.setAuthor(principal.getName());
         sellerReview.setDate(new Date());
 
+        Seller seller1 = sellerRepository.findByUsername(seller);
+        seller1.getReviews().put(principal.getName(),sellerReview);
+
+        System.out.println(seller1.getReviews());
         SellerReviews sellerReviews = new SellerReviews();
         sellerReviews.getReviews().add(sellerReview);
 
+        sellerRepository.save(seller1);
         sellerReviewRepository.save(sellerReviews);
 
         //System.out.println(sellerReview);
