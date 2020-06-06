@@ -9,6 +9,7 @@ import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.OrderRepository;
 import Market.service.MessagingService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -179,7 +180,9 @@ public class AdminController {
     @GetMapping("inbox")
     public String getInbox(Model model, Principal principal)
     {
-        model.addAttribute("messages", this.messagingService.getAllMessagesByUser(principal.getName()));
+        //JSONPObject obj = new JSONPObject(this.messagingService.getAllMessagesByUser(principal.getName()));
+
+
         return "messaging/messageInbox";
     }
 

@@ -34,7 +34,7 @@ public class Admin{
 
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore",name = "messages")
-    private HashMap<Integer, Message> messages = new HashMap<Integer, Message>();
+    private HashMap<String, Message> messages = new HashMap<String, Message>();
 
     @Column(name = "last_message_key")
     private Integer lastKey = 0;
@@ -50,7 +50,7 @@ public class Admin{
 
     //pretty slick
     public void addMessage(Message message) {
-        this.getMessages().put(lastKey, message);
+        this.getMessages().put(lastKey.toString(), message);
         lastKey++;
     }
 

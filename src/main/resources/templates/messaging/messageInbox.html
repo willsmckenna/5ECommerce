@@ -48,7 +48,7 @@
         </ul>
         <ul role="list" class="list" th:each="message: ${messages}">
             <li th:text=" ${message.getValue()}"> From</li>
-            <!--<li th:text="${message.subject}">Subject</li>  -->
+            <li th:text="${message['from']}">Subject</li>
             <li class="w-button" style="text-decoration: none;">
                 <a href= # style="text-decoration: none; color: white;">
                 View

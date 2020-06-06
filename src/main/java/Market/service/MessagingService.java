@@ -5,6 +5,6 @@ import Market.model.messages.Message;
 import java.util.Map;
 public interface MessagingService {
     void saveMessage(Message message, String from, String to);
-    Map<Integer, Message> getAllMessagesByUser(String username);
+    Map<String, String> convertUserMessageToJSON(String username);
 
 }

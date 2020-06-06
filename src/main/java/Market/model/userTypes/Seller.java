@@ -51,7 +51,7 @@ public class Seller {
 
     @Type(type = "hstore")
     @Column(columnDefinition = "hstore", name = "messages")
-    private Map<Integer, Message> messages = new HashMap<Integer, Message>();
+    private Map<String, Message> messages = new HashMap<String, Message>();
 
     @Column(name = "last_message_key")
     private Integer lastKey = 0;
@@ -94,7 +94,7 @@ public class Seller {
 
     //pretty slick
     public void addMessage(Message message) {
-        this.getMessages().put(lastKey, message);
+        this.getMessages().put(lastKey.toString(), message);
         lastKey++;
     }
 }

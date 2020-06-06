@@ -55,21 +55,26 @@ public class MessagingServiceImp  implements MessagingService {
     }
 
     @Override
-    public Map<Integer, Message> getAllMessagesByUser(String username) {
-        if(this.buyerRepository.existsByUsername(username)) {
+    public Map<String, String> convertUserMessageToJSON(String username)
+    {
+        if(this.buyerRepository.existsByUsername(username))
+        {
             Buyer buyer = buyerRepository.findByUsername(username);
-            return buyer.getMessages();
+            //return buyer.getMessages();
         }
 
-        else if(this.sellerRepository.existsByUsername(username)) {
+        else if(this.sellerRepository.existsByUsername(username))
+        {
             Seller seller = this.sellerRepository.findByUsername(username);
-            return seller.getMessages();
+            //return seller.getMessages();
         }
 
-        else if(this.adminRepo.existsByUsername(username)) {
+        else if(this.adminRepo.existsByUsername(username))
+        {
             Admin admin = this.adminRepo.findByUsername(username);
-            return admin.getMessages();
+            //return admin.getMessages();
         }
-        return new HashMap<Integer, Message>();
+        return new HashMap<String, String>();
+
     }
 }
