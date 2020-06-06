@@ -172,4 +172,12 @@ public class AdminController {
         this.messagingService.saveMessage(message,principal.getName(), usernamePlaceHolder);
         return "messaging/messagingPortal";
     }
+
+    @GetMapping("inbox")
+    public String getInbox(Model model, Principal principal)
+    {
+        model.addAttribute("messages", this.messagingService.getAllMessages(principal.getName()));
+        return "messaging/messageInbox";
+    }
+
 }

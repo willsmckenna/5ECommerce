@@ -2,12 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Messaging Portal</title>
+    <title>Your Inbox</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/messagingCSS/messagingPortal.css}"/>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/messagingCSS/messageInbox.css}"/>
 </head>
 <body class="body">
 <header id="nav" class="sticky-nav-2">
@@ -27,22 +26,31 @@
     </nav>
 </header>
 <div>
-    <div class="container-4 w-container">
-        <div>
-            <h1>Messaging Portal </h1>
+    <div class="container-2 w-container">
+        <div class="w-form">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2">
+                <label for="username">Search Inbox By From:</label>
+                    <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="Search By Username.." id="username">
+                <input type="submit" value="Search Inbox" data-wait="Please wait..." class="w-button">
+            </form>
         </div>
     </div>
-</div>
-<div class="section-2">
-    <div class="container-5 w-container">
-        <a th:href="@{searchUserToMessage}" class="link-block-3 w-inline-block">
-            <h2 class="heading-4">Compose</h2>
-            <p>Compose A Message<br>To Someone</p>
-        </a>
-        <a th:href="@{inbox}" class="link-block-3 w-inline-block">
-            <h2 class="heading-4">Inbox</h2>
-            <p>View your Message<br>Inbox</p>
-        </a>
+    <div class="container w-container">
+        <div>
+            <h1>Your Inbox</h1>
+        </div>
+    </div>
+    <div class="w-container">
+        <ul role="list" class="list">
+            <li>From</li>
+            <li>Subject</li>
+            <li>View</li>
+        </ul>
+        <ul role="list" class="list">
+            <li>From</li>
+            <li>Subject</li>
+            <li>View</li>
+        </ul>
     </div>
 </div>
 </body>

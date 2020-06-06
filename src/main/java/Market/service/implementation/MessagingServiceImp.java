@@ -10,6 +10,9 @@ import Market.repo.SellerRepository;
 import Market.service.MessagingService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class MessagingServiceImp  implements MessagingService {
 
@@ -47,5 +50,45 @@ public class MessagingServiceImp  implements MessagingService {
             admin.addMessage(message);
             this.adminRepo.save(admin);
         }
+    }
+
+    @Override
+    public Set<Message> getAllMessages(String username) {
+        if(this.buyerRepository.existsByUsername(username)) {
+            Buyer buyer = buyerRepository.findByUsername(username);
+            Set<Message> messages  = new HashSet<Message>();
+            for(Message m : buyer.getMessages().values())
+            {
+                messages.add(m);
+            }
+            return messages;
+        }
+        else if(this.adminRepo.existsByUsername(username)) {
+            Admin admin = this.adminRepo.findByUsername(username);
+            Set<Message> messages  = new HashSet<Message>();
+            for(Message m : admin.getMessages().values()) {
+                messages.add(m);
+            }
+            return messages;
+        }
+
+        else if(this.sellerRepository.existsByUsername(username)) {
+            Seller seller = this.sellerRepository.findByUsername(username);
+            Set<Message> messages  = new HashSet<Message>();
+            for(Message m : seller.getMessages().values()) {
+                messages.add(m);
+            }
+            return messages;
+        }
+
+        else if(this.adminRepo.existsByUsername(username)) {
+            Admin admin = this.adminRepo.findByUsername(username);
+            Set<Message> messages  = new HashSet<Message>();
+            for(Message m : admin.getMessages().values()) {
+                messages.add(m);
+            }
+            return messages;
+        }
+        return new HashSet<Message>();
     }
 }
