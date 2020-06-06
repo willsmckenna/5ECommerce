@@ -67,4 +67,14 @@ public class MessagingServiceImp  implements MessagingService {
 
         return new ArrayList<Message>();
     }
+
+    @Override
+    public List<Message> getByUserWhereFromIsLike(String username, String fromLike) {
+        List<Message>  tempList = getUsersMessages(username);
+        List<Message> listFromLike = new ArrayList<>();
+        for(Message m : tempList) {
+            if(m.getFrom().contains(fromLike)) { listFromLike.add(m); }
+        }
+        return listFromLike;
+    }
 }

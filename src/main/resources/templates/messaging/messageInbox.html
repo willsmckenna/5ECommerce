@@ -28,7 +28,7 @@
 <div>
     <div class="container-2 w-container">
         <div class="w-form">
-            <form id="email-form-2" name="email-form-2" data-name="Email Form 2">
+            <form id="email-form-2" name="email-form-2" data-name="Email Form 2" th:action="@{inbox}" method="get">
                 <label for="username">Search Inbox By From:</label>
                     <input type="text" class="w-input" maxlength="256" name="username" data-name="username" placeholder="Search By Username.." id="username">
                 <input type="submit" value="Search Inbox" data-wait="Please wait..." class="w-button">
@@ -47,7 +47,7 @@
         </ul>
         <ul role="list" class="list" th:each="message : ${messages}">
             <li th:text="${message.from}"> From</li>
-            <li>Subject</li>
+            <li th:text="${message.subject}">Subject</li>
             <li class="w-button" style="text-decoration: none;">
                 <a href= # style="text-decoration: none; color: white;">
                 View

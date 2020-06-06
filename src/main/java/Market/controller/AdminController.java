@@ -176,9 +176,9 @@ public class AdminController {
         return "messaging/messagingPortal";
     }
 
-    @GetMapping("inbox")
-    public String getInbox(Model model, Principal principal) {
-        model.addAttribute("messages",this.adminService.getAdminMessages(principal.getName()));
+    @GetMapping(value = "inbox")
+    public String getInbox(Model model, @RequestParam(defaultValue = "") String username, Principal principal) {
+        model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
         return "messaging/messageInbox";
     }
 
