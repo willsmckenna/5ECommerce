@@ -34,21 +34,33 @@ public class MessagingServiceImp  implements MessagingService {
         if(this.buyerRepository.existsByUsername(to))
         {
             Buyer buyer = buyerRepository.findByUsername(to);
-            buyer.getMessages().add(message);
+            buyer.addMessage(message);
             this.buyerRepository.save(buyer);
         }
         else if(this.sellerRepository.existsByUsername(to))
         {
             Seller seller = this.sellerRepository.findByUsername(to);
-            seller.getMessages().add(message);
+            seller.addMessage(message);
             this.sellerRepository.save(seller);
         }
         else if(this.adminRepo.existsByUsername(to))
         {
             Admin admin = this.adminRepo.findByUsername(to);
-            admin.getMessages().add(message);
+            admin.addMessage(message);
             this.adminRepo.save(admin);
         }
+    }
+
+    @Override
+    public Message getByUsernameAndMessageId(String username, Integer messageId)
+    {
+        List<Message> messages = this.getUsersMessages(username);
+        if(messages != null) {
+            for(Message m : messages) {
+                if(m.getId().equals(messageId)) { return m; }
+            }
+        }
+        return new Message();
     }
 
     @Override

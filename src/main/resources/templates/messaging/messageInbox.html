@@ -49,7 +49,7 @@
             <li th:text="${message.from}"> From</li>
             <li th:text="${message.subject}">Subject</li>
             <li class="w-button" style="text-decoration: none;">
-                <a th:action="@{viewMessage}" style="text-decoration: none; color: white;">
+                <a th:href="@{viewMessage(messageId=${message.getId()})}" style="text-decoration: none; color: white;">
                 View
                 </a>
             </li>

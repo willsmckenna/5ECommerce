@@ -214,7 +214,7 @@ public class BootStrapData implements CommandLineRunner {
         message_1.setTo(admin_1.getUsername());
         message_1.setSubject("I Hope I am doing this right..");
         message_1.setMessagePayload("Because, If I am not, I am more than likely doomed");
-        admin_1.getMessages().add(message_1);
+        admin_1.addMessage(message_1);
         adminRepo.save(admin_1);
     }
 }
