@@ -63,9 +63,11 @@ public class MessagingServiceImp  implements MessagingService {
         {
             for(Message m : messages)
             {
-                if(m.getId().equals(messageID)) {
+                if(m.getId().equals(messageID))
+                {
                     messages.remove(m);
                     this.userService.simpleSaveUserInRoleRepo(username);
+                    return;
                 }
             }
         }

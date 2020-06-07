@@ -191,9 +191,11 @@ public class AdminController {
 
 
     @GetMapping(value = "deleteMessage")
-    public String getDeleteMessage(Model model, Principal principal, @RequestParam(defaultValue = "") String username, String messageId) {
+    public String getDeleteMessage(Model model, Principal principal, @RequestParam(defaultValue = "") String username, Integer messageId) {
 
-
+        System.out.println("Username:" + username);
+        System.out.println("Integer: " + messageId);
+        this.messagingService.deleteMessage(principal.getName(), messageId);
         model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
         return "messaging/messageInbox";
     }

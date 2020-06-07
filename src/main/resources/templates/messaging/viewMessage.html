@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="container-4 w-container">
-        <div class="div-block-2"><a href="#" class="button w-button">      Delete Message?</a></div>
+        <div class="div-block-2"><a th:href="@{deleteMessage(username = ${''}, messageId=${message.getId()})}" class="button w-button">      Delete Message?</a></div>
         <div class="div-block-3"><a href="#" class="button-2 w-button">             Reply</a></div>
     </div>
 </div>
