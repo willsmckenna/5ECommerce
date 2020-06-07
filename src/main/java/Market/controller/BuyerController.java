@@ -211,6 +211,7 @@ public class BuyerController {
     @GetMapping("composeMessage")
     public String getComposeMessage(Model model, String username) {
         usernamePlaceHolder = username;
+        model.addAttribute("to", username);
         model.addAttribute("message", new Message());
         return "messaging/composeMessage";
     }

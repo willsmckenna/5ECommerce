@@ -129,6 +129,7 @@ public class SellerController
     public String getComposeMessage(Model model, String username)
     {
         usernamePlaceHolder = username;
+        model.addAttribute("to", username);
         model.addAttribute("message", new Message());
         return "messaging/composeMessage";
     }
