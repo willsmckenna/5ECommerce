@@ -1,9 +1,6 @@
 package Market.controller;
 
 import Market.model.*;
-import Market.model.buyerRelated.Orders;
-import Market.model.reviewTypes.ProductReviewsHeading;
-import Market.model.reviewTypes.ProductReviewContent;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.repo.*;
@@ -41,14 +38,12 @@ public class HomeController {
 
     private final ProductRepository productRepository;
 
-    private final ProductReviewRepository productReviewRepository;
 
     @Autowired
     private  SellerRepository sellerRepository;
 
-    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository){
+    public HomeController(ProductRepository pr){
         this.productRepository = pr;
-        this.productReviewRepository = productReviewRepository;
     }
 
     @GetMapping("index")
