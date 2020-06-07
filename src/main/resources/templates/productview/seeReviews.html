@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="common-header">
+    <meta charset="UTF-8">
+    <title>Product Info</title>
+    <head th:replace="fragments/header :: common-header">
+    </head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div>
+    <table  class="table">
+        <thead>
+        <tr>
+            <th scope="col"> Author </th>
+            <th scope="col"> Content </th>
+            <th scope="col"> Date </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="review : ${reviews}">
+            <td span th:text="${review.author}"></td>
+            <td th:text="${review.content}"></td>
+            <td th:text="${review.date}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

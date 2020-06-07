@@ -9,15 +9,15 @@
 <div th:replace="fragments/header :: header"></div>
 <h1 class="text-center font-weight-bold">Add Review</h1>
 
-    <div class="container">
+<div class="container">
 
-        <form action="#" th:action="@{saveReview(productName=${product.name},sellerUsername =${product.getSeller().getUsername()})}" th:object="${Review}" method="post">
-            <div class="form-group">
-                <input type="text" class="form-control" th:field="*{reviewMessage}" id="productReviewContent" name="productReviewContent">
-            </div>
-            <button type="submit">add productReviewContent </button>
-        </form>
+    <form action="#" th:action="@{saveReview(productName=${product.name},sellerUsername =${product.getSeller().getUsername()})}" th:object="${Review}" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" th:field="*{content}" id="review" name="review">
+        </div>
+        <button type="submit">add review <button>
+    </form>
 
 
-    </div>
+</div>
 </body>

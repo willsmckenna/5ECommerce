@@ -1,12 +1,10 @@
 package Market.controller;
 
-import Market.model.Product;
-import Market.model.Review;
-import Market.model.SellerReviews;
+import Market.model.*;
 import Market.model.buyerRelated.Orders;
-import Market.model.OrderTrackingContent;
 import Market.model.reviewTypes.ProductReviewsHeading;
 import Market.model.reviewTypes.ProductReviewContent;
+import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.repo.*;
 import Market.service.BuyerService;
@@ -23,10 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
@@ -122,7 +117,7 @@ public class HomeController {
                 //is a buyer
                 model.addAttribute("product", product);
                 model.addAttribute("buyer", buyerService.findByUsername(username));
-                model.addAttribute("Review", new ProductReviewContent());
+                model.addAttribute("Review", new Review());
                 return "buyer/addReview";
             }
         }
@@ -130,24 +125,52 @@ public class HomeController {
     }
     //collect user input of product productReviewContent
     @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
-    public String saveReview(Principal principal, @ModelAttribute("review") ProductReviewContent productReviewContent,
-                             String productName, String sellerUsername)
+    public String saveReview(Principal principal,Model model,@ModelAttribute("review") Review review,
+                             BindingResult bindingResult, String productName, String sellerUsername)
     {
-        productReviewContent.setAuthor(principal.getName());
-        productReviewContent.setProductName(productName);
-        productReviewContent.setSellerUsername(sellerUsername);
+        System.out.println("review user write is :" + review.getContent());
 
-        /*
-        System.out.println("Product Name:" + productName);
-        System.out.println("Seller Name:" + sellerUsername);
-        System.out.println("ProductReviewContent" + productReviewContent.getReviewMessage());
-         */
+        Product product =productService.findByNameAndSeller(productName, sellerUsername);
+        System.out.println("product name is " + product.getName());
+        //get buyer name
+        String username = principal.getName();
+        Buyer buyer = buyerService.findByUsername(username);
+        String buyerName = buyer.getUsername();
 
-        ProductReviewsHeading productReviewsHeading = new ProductReviewsHeading();
-        productReviewsHeading.getProductReviewContents().add(productReviewContent);
+        List<Review> reviewList = product.getReviews();
 
-        productReviewRepository.save(productReviewsHeading);
+        if (reviewList == null) {
+            reviewList = new ArrayList<Review>();
+        }
+
+        Review new_review = new Review();
+        new_review.setContent(review.getContent());
+        new_review.setDate(new Date());
+        new_review.setAuthor(buyerName);
+
+        reviewList.add(new_review);
+
+        System.out.println("review list from product:");
+        for (Review r: reviewList){
+            System.out.println(r.getContent());
+            System.out.println(r.getDate());
+            System.out.println(r.getAuthor());
+        }
+
+        product.setReviews(reviewList);
+
+        productRepository.save(product);
+
         return "redirect:/browse";
+    }
+
+    @GetMapping(value = "/showProductReview")
+    public String showProductReview(Model model, String productName, String sellerUsername){
+        Product product =productService.findByNameAndSeller(productName, sellerUsername);
+        System.out.println(productName + " " +sellerUsername );
+        System.out.println(product.getReviews());
+        model.addAttribute("reviews",product.getReviews());
+        return "productview/seeReviews";
     }
 
     @GetMapping("viewSellerReviews")

@@ -1,13 +1,24 @@
 package Market.model;
 
 import Market.model.userTypes.Seller;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 import lombok.Data;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+@TypeDefs({
+        @TypeDef(name="hstore", typeClass= PostgreSQLHStoreType.class)
+})
 @Data
 @Entity
 @Table(name = "products", schema = "public")
@@ -26,6 +37,12 @@ public class Product {
     private String description;
     private Blob image;
     private String seedImageStr;
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb",name="reviews")
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Review> reviews = new ArrayList<>();
 
     public Product() {
     }
