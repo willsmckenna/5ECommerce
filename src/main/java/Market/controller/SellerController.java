@@ -140,4 +140,23 @@ public class SellerController
         return "messaging/messagingPortal";
     }
 
+    @GetMapping(value = "inbox")
+    public String getInbox(Model model, @RequestParam(defaultValue = "") String username, Principal principal) {
+        model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
+        return "messaging/messageInbox";
+    }
+
+    @GetMapping(value = "viewMessage")
+    public String getViewMessage(Model model, Principal principal, Integer messageId) {
+        model.addAttribute("message",this.messagingService.getByUsernameAndMessageId(principal.getName(), messageId));
+        return "messaging/viewMessage";
+    }
+
+    @GetMapping(value = "deleteMessage")
+    public String getDeleteMessage(Model model, Principal principal, @RequestParam(defaultValue = "") String username, Integer messageId) {
+        this.messagingService.deleteMessage(principal.getName(), messageId);
+        model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
+        return "messaging/messageInbox";
+    }
+
 }
