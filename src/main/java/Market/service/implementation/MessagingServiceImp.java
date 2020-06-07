@@ -8,12 +8,17 @@ import Market.repo.AdminRepo;
 import Market.repo.BuyerRepository;
 import Market.repo.SellerRepository;
 import Market.service.MessagingService;
+import Market.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class MessagingServiceImp  implements MessagingService {
+
+    @Autowired
+    UserService userService;
 
     private final SellerRepository sellerRepository;
     private final BuyerRepository buyerRepository;
@@ -48,6 +53,21 @@ public class MessagingServiceImp  implements MessagingService {
             Admin admin = this.adminRepo.findByUsername(to);
             admin.addMessage(message);
             this.adminRepo.save(admin);
+        }
+    }
+
+    @Override
+    public void deleteMessage(String username, Integer messageID) {
+        List<Message> messages = this.getUsersMessages(username);
+        if(messages != null)
+        {
+            for(Message m : messages)
+            {
+                if(m.getId().equals(messageID)) {
+                    messages.remove(m);
+                    this.userService.simpleSaveUserInRoleRepo(username);
+                }
+            }
         }
     }
 

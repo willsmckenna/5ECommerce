@@ -189,4 +189,13 @@ public class AdminController {
         return "messaging/viewMessage";
     }
 
+
+    @GetMapping(value = "deleteMessage")
+    public String getDeleteMessage(Model model, Principal principal, @RequestParam(defaultValue = "") String username, String messageId) {
+
+
+        model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
+        return "messaging/messageInbox";
+    }
+
 }
