@@ -42,16 +42,13 @@ public class HomeController {
     private final ProductRepository productRepository;
 
     private final ProductReviewRepository productReviewRepository;
-    private final SellerReviewRepository sellerReviewRepository;
 
     @Autowired
     private  SellerRepository sellerRepository;
 
-    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository, SellerReviewRepository sellerReviewRepository){
+    public HomeController(ProductRepository pr, ProductReviewRepository productReviewRepository){
         this.productRepository = pr;
         this.productReviewRepository = productReviewRepository;
-        this.sellerReviewRepository = sellerReviewRepository;
-       // this.sellerRepository = sellerRepository;
     }
 
     @GetMapping("index")
