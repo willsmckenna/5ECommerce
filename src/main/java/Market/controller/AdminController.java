@@ -66,7 +66,6 @@ public class AdminController {
         return "admin/searchUser";
     }
 
-
     @RequestMapping(value = "adminSearchProduct", method = RequestMethod.GET)
     public String getProductSearch(Model model, @RequestParam(defaultValue = "") String productname) {
         model.addAttribute("products", productService.findByName(productname));
@@ -80,13 +79,11 @@ public class AdminController {
         return "admin/adminSearchProduct";
     }
 
-
     @RequestMapping(value = "adminAlterUserSearch", method = RequestMethod.GET)
     public String getAlterUserSearch(Model model, @RequestParam(defaultValue = "") String username) {
         model.addAttribute("users",userService.findByUserNames(username));
         return "admin/adminSearchUsersToAlter";
     }
-
 
     @RequestMapping(value = "adminAlterSelectedUser", method = RequestMethod.GET)
     public String getAlterSelectedUser(Model model, @RequestParam(defaultValue = "") String username) {
@@ -184,20 +181,14 @@ public class AdminController {
 
     @GetMapping(value = "viewMessage")
     public String getViewMessage(Model model, Principal principal, Integer messageId) {
-
         model.addAttribute("message",this.messagingService.getByUsernameAndMessageId(principal.getName(), messageId));
         return "messaging/viewMessage";
     }
 
-
     @GetMapping(value = "deleteMessage")
     public String getDeleteMessage(Model model, Principal principal, @RequestParam(defaultValue = "") String username, Integer messageId) {
-
-        System.out.println("Username:" + username);
-        System.out.println("Integer: " + messageId);
         this.messagingService.deleteMessage(principal.getName(), messageId);
         model.addAttribute("messages",this.messagingService.getByUserWhereFromIsLike(principal.getName(), username));
         return "messaging/messageInbox";
     }
-
 }

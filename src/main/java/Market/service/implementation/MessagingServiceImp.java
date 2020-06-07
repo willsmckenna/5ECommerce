@@ -63,8 +63,7 @@ public class MessagingServiceImp  implements MessagingService {
         {
             for(Message m : messages)
             {
-                if(m.getId().equals(messageID))
-                {
+                if(m.getId().equals(messageID)) {
                     messages.remove(m);
                     this.userService.simpleSaveUserInRoleRepo(username);
                     return;
@@ -90,11 +89,9 @@ public class MessagingServiceImp  implements MessagingService {
         if(this.buyerRepository.existsByUsername(username)) {
            return buyerRepository.findByUsername(username).getMessages();
         }
-
         else if(this.sellerRepository.existsByUsername(username)) {
            return this.sellerRepository.findByUsername(username).getMessages();
         }
-
         else if(this.adminRepo.existsByUsername(username)) {
             return this.adminRepo.findByUsername(username).getMessages();
         }
