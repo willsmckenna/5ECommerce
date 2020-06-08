@@ -137,7 +137,7 @@ public class BuyerController {
             Seller seller = product.getSeller();
             seller.addSoldProduct(product, buyer.getUsername());
             sellerRepository.save(seller);
-            
+
             total += product.getPrice();
             order.addProduct(product, 1);
         }

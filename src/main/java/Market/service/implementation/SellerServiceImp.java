@@ -2,6 +2,7 @@ package Market.service.implementation;
 
 import Market.model.messages.Message;
 import Market.model.products.Product;
+import Market.model.products.SoldProducts;
 import Market.model.userTypes.Admin;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
@@ -11,6 +12,9 @@ import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
 import Market.service.SellerService;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SellerServiceImp  implements SellerService {
@@ -24,6 +28,17 @@ public class SellerServiceImp  implements SellerService {
     @Override
     public Seller findByUsername(String username) {
         return this.sellerRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<SoldProducts> getAllSoldProducts(String username)
+    {
+        if(this.sellerRepository.existsByUsername(username))
+        {
+            Seller seller = this.sellerRepository.findByUsername(username);
+            return  seller.getSoldProducts();
+        }
+        return new ArrayList<SoldProducts>();
     }
 
     @Override

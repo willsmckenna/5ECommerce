@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sold Items</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/seller/soldItems.css}"/>
+</head>
+<body class="body">
+<header id="nav" class="sticky-nav">
+    <nav class="container w-container">
+        <ul role="list" class="nav-grid w-list-unstyled">
+            <li class="list-item"><a th:href="@{/}" class="nav-link">5ECommerce</a></li>
+            <li><a th:href="@{index}" class="nav-link">Home</a></li>
+            <li class="list-item"><a th:href="@{messagingPortal}" class="nav-link">Messages</a></li>
+            <li>
+                <div class="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" th:action="@{/logout}">
+                        <input type="submit" value="Logout" data-wait="Please wait..." class="w-button">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</header>
+<div class="section">
+    <div class="container-2 w-container">
+        <div>
+            <h1 class="heading-2">Your Sold Items</h1>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+</body>
+</html>

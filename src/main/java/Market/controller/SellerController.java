@@ -159,4 +159,10 @@ public class SellerController
         return "messaging/messageInbox";
     }
 
+    @GetMapping(value = "soldItems")
+    public String getSoldItems(Model model, Principal principal) {
+        model.addAttribute("soldProducts",this.sellerService.getAllSoldProducts(principal.getName()));
+        return "seller/soldItems";
+    }
+
 }
