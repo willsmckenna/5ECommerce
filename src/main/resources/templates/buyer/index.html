@@ -12,85 +12,61 @@
     >
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/buyerCSS/BuyerHomePage.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/buyerCSS/buyerHomepage.css}"/>
 </head>
 <body class="body">
-<header id="nav" class="sticky-nav-2">
-    <nav class="container-8 w-container">
-        <div class="div-block-13">
-            <h5>5ECommerce</h5>
-        </div>
-        <a href="#" class="link-block-7 w-inline-block">
-            <h5>Home</h5>
-        </a>
-        <div class="div-block-14">
-            <form action="/search" class="search-2 w-form">
-                <input type="search" class="search-input w-input" maxlength="256" name="query" placeholder="Search…" id="search" required="">
-                <input type="submit" value="Search" class="search-button-2 w-button">
-            </form>
-        </div>
-        <div>
-            <div class="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form" method="post" class="form" th:action="@{/logout}">
-                    <input type="submit" value="logout" data-wait="Please wait..." class="submit-button w-button"></form>
-            </div>
-        </div>
-        <br>
-        <div class="div-block-14" style="margin-top: 10px; display:block;">
-            <a href="/buyer/cart"><i class="fa fa-shopping-cart fa-2x"></i></a>
-            <p>Cart</p>
-        </div>
+<header id="nav" class="sticky-nav">
+    <nav class="container w-container">
+        <ul role="list" class="nav-grid w-list-unstyled">
+            <li class="list-item"><a th:href="@{/}" class="nav-link">5ECommerce</a></li>
+            <li><a th:href="@{index}" class="nav-link">Home</a></li>
+            <li class="list-item"><a th:href="@{messagingPortal}" class="nav-link">Messages</a></li>
+            <li><a href="/buyer/cart" class="nav-link">Shopping Cart</a></li>
+            <li>
+                <div class="w-form">
+                    <form id="email-form" name="email-form" data-name="Email Form" th:action="@{/logout}">
+                        <input type="submit" value="Logout" data-wait="Please wait..." class="w-button">
+                    </form>
+                </div>
+            </li>
+        </ul>
     </nav>
 </header>
-<div class="section-4">
-    <div class="container-7 w-container">
-        <div class="div-block-12">
-            <h2>Your Customer Account Overview</h2>
+<div class="section">
+    <div class="container-2 w-container">
+        <div>
+            <h1 class="heading-2">You Customer Account Overview</h1>
         </div>
     </div>
+</div>
+<div>
     <div class="container-3 w-container">
-        <div class="div-block-9">
-            <a href="/buyer/orders" class="link-block w-inline-block">
-                <h3 class="heading-3">Orders</h3>
-                <p class="paragraph">Review Your Recent <br>Orders</p>
-            </a>
-        </div>
-        <div class="div-block-7">
-            <a th:href="@{alterBuyerInfo}"  class="link-block-2 w-inline-block">
-                <h3 class="heading-2"> Security</h3>
-                <p class="paragraph">Review Your Personal Info</p>
-            </a>
-        </div>
-        <div class="div-block-8">
-            <a href="/buyer/paymentInfo" class="link-block-3 w-inline-block">
-                <h3 class="heading-4">Payment Info</h3>
-                <p class="paragraph">Review Your Payment</p>
-            </a>
-        </div>
-        <div class="div-block-10">
-            <a href="/buyer/shippingInfo" class="link-block-4 w-inline-block">
-                <h3>Shipping</h3>
-                <p class="paragraph">Review Your Shipping<br>Address</p>
-            </a>
-        </div>
-        <div class="div-block-11">
-            <a th:href="@{messagingPortal}" class="link-block-5 w-inline-block">
-                <h3>Messages</h3>
-                <p class="paragraph">View or compose<br>Messages to a User</p>
-            </a>
-        </div>
-        <div class="div-block-11">
-            <a th:href="@{TOS}" class="link-block-6 w-inline-block">
-                <h3>Service</h3>
-                <p class="paragraph">Learn About Our <br>Terms of Service</p>
-            </a>
-        </div>
-        <div class="div-block-11">
-            <a href="/browse" class="link-block-6 w-inline-block">
-                <h3>Browse</h3>
-                <p class="paragraph">Browse<br>All Products</p>
-            </a>
-        </div>
+        <a href="/buyer/shippingInfo" class="link-block w-inline-block">
+            <h3 class="heading">Shipping</h3>
+            <p class="paragraph">Review Your Shipping<br>Information</p>
+        </a>
+        <a href="/browse" class="link-block w-inline-block">
+            <h3 class="heading">Browse</h3>
+            <p class="paragraph">Browse Our Product<br>Inventory</p>
+        </a>
+        <a href="/buyer/paymentInfo" class="link-block w-inline-block">
+            <h3 class="heading">Payment Info</h3>
+            <p class="paragraph">Review Your Payment<br>Information</p>
+        </a>
+    </div>
+    <div class="container-4 w-container">
+        <a th:href="@{alterBuyerInfo}" class="link-block w-inline-block">
+            <h3 class="heading">Security</h3>
+            <p class="paragraph">Review Your Personal<br>Information</p>
+        </a>
+        <a th:href="@{TOS}" class="link-block-2 w-inline-block">
+            <h3 class="heading">Service</h3>
+            <p class="paragraph">Learn About Our<br>Terms of Service</p>
+        </a>
+        <a href="/buyer/orders" class="link-block w-inline-block">
+            <h3 class="heading">Your Orders</h3>
+            <p class="paragraph">Review Your Recent<br>Orders</p>
+        </a>
     </div>
 </div>
 </body>
