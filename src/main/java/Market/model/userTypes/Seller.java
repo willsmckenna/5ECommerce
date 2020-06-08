@@ -124,6 +124,7 @@ public class Seller implements Serializable  {
            soldProducts.setItemPrice(product.getPrice());
            soldProducts.setSoldDate(new Date());
            soldProducts.setItemQuantity(1);
+           this.soldProducts.add(soldProducts);
         }
     }
 }

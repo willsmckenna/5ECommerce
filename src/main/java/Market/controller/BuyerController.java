@@ -133,7 +133,6 @@ public class BuyerController {
 
         for (ShoppingCartProducts p: products){
             Product product = productRepository.findById(p.getProductId()).orElse(null);
-
             Seller seller = product.getSeller();
             seller.addSoldProduct(product, buyer.getUsername());
             sellerRepository.save(seller);

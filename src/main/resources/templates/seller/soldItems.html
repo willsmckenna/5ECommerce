@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/normalize.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/commonWebFlow/webflow.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/seller/soldItems.css}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+
 </head>
 <body class="body">
 <header id="nav" class="sticky-nav">
@@ -33,7 +40,30 @@
     </div>
 </div>
 <div>
-
+    <table class="table">
+        <thead class="text-center">
+        <tr>
+            <th style="color: white;">Product Name&nbsp;</th>
+            <th>Buyer Name</th>
+            <th>Sold Date</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th style="width: 200px;">Message Buyer</th>
+        </tr>
+        </thead>
+        <tbody class="text-center" th:each="product : ${soldProducts}">
+        <tr>
+            <td th:text="${product.getItemName()}" style="color: white;">Item Name</td>
+            <td th:text="${product.getBuyerUsername()}">Buyer name</td>
+            <td th:text="${product.getSoldDate()}">date sold</td>
+            <td th:text="${product.getItemPrice()}">price</td>
+            <td th:text="${product.getItemQuantity()}">quantity</td>
+            <td>
+                <a class="btn btn-primary btn-lg text-uppercase text-center text-white visible" role="button" th:href="@{composeMessage(username=${product.getBuyerUsername()})}" >Message</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
