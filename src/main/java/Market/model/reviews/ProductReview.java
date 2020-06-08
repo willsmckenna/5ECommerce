@@ -1,4 +1,4 @@
-package Market.model;
+package Market.model.reviews;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

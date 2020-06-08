@@ -13,7 +13,7 @@
 <br>
 <form action="#" th:action="@{saveTracking(orderId=${tracking.OrderID})}" th:object="${tracking}" method="post">
     <div class="container">
-        <input type="text" class="form-control" th:field="*{status}" id="orderStatus" name="orderTrackingContent">
+        <input type="text" class="form-control" th:field="*{status}" id="orderStatus" name="orderTracking">
         <button type="submit">Change Order Status</button>
     </div>
 </form>

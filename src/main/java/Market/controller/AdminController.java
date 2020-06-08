@@ -1,6 +1,6 @@
 package Market.controller;
 
-import Market.model.OrderTrackingContent;
+import Market.model.buyerRelated.OrderTracking;
 import Market.model.buyerRelated.Orders;
 import Market.model.messages.Message;
 import Market.model.userTypes.Admin;
@@ -9,8 +9,6 @@ import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.OrderRepository;
 import Market.service.MessagingService;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("admin")
@@ -130,7 +127,7 @@ public class AdminController {
 
     @RequestMapping(value = "updateTracking", method = RequestMethod.GET)
     public String updateTracking(Model model, long orderId){
-        OrderTrackingContent tracking = new OrderTrackingContent();
+        OrderTracking tracking = new OrderTracking();
         tracking.setOrderID(orderId);
         model.addAttribute("tracking", tracking);
         return "admin/updateTracking";
@@ -138,11 +135,11 @@ public class AdminController {
 
     //collect user input of product productReviewContent
     @RequestMapping(value = "/saveTracking", method = RequestMethod.POST)
-    public String saveTracking(@ModelAttribute("tracking")OrderTrackingContent orderTrackingContent,
+    public String saveTracking(@ModelAttribute("tracking") OrderTracking orderTracking,
                                BindingResult bindingResult, long orderId) {
 
         Orders order = orderRepository.findById(orderId).orElse(null);
-        order.setOrderTrackingContents(orderTrackingContent);
+        order.setOrderTrackingContents(orderTracking);
         orderRepository.save(order);
 
         return "redirect:/admin/searchOrders";

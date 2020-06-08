@@ -66,7 +66,6 @@ public class ShoppingCartController {
     //will do remove and check out later if add product works
     @GetMapping(params = "add")
     public ModelAndView addProduct(@RequestParam Long productId){
-        System.out.println(productId);
         productService.findById(productId).ifPresent(shoppingCartService::addProduct);
         return showProduct();
     }

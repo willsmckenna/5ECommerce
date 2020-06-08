@@ -1,6 +1,6 @@
 package Market.repo;
 
-import Market.model.PaymentInfo;
+import Market.model.buyerRelated.PaymentInfo;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import org.springframework.data.repository.CrudRepository;

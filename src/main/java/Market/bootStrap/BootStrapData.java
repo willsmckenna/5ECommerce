@@ -1,8 +1,8 @@
 package Market.bootStrap;
-import Market.model.OrderTrackingContent;
-import Market.model.PaymentInfo;
+import Market.model.buyerRelated.OrderTracking;
+import Market.model.buyerRelated.PaymentInfo;
 import Market.model.Product;
-import Market.model.Review;
+import Market.model.reviews.Review;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.buyerRelated.ShoppingCart;
@@ -172,7 +172,7 @@ public class BootStrapData implements CommandLineRunner {
             order_1_Price += p.getPrice();
         }
         orders_1.setOrderTotal(order_1_Price);
-        OrderTrackingContent tracking = new OrderTrackingContent();
+        OrderTracking tracking = new OrderTracking();
         tracking.setStatus("Ordered, not yet Shipped");
         orders_1.setOrderTrackingContents(tracking);
         orderRepository.save(orders_1);

@@ -1,6 +1,6 @@
 package Market.model.userTypes;
 
-import Market.model.PaymentInfo;
+import Market.model.buyerRelated.PaymentInfo;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.buyerRelated.ShoppingCart;

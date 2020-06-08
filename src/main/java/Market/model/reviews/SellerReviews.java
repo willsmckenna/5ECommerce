@@ -1,6 +1,5 @@
-package Market.model;
+package Market.model.reviews;
 
-import Market.model.reviewTypes.ProductReviewContent;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import org.hibernate.annotations.Type;

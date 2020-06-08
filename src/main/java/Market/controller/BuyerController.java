@@ -1,6 +1,6 @@
 package Market.controller;
 
-import Market.model.PaymentInfo;
+import Market.model.buyerRelated.PaymentInfo;
 import Market.model.Product;
 import Market.model.buyerRelated.*;
 import Market.model.messages.Message;
@@ -140,6 +140,10 @@ public class BuyerController {
         ShoppingCart cart = shoppingCartRepository.findByBuyer(buyer);
         cart.getShoppingCartProducts().removeAll(products);
         shoppingCartRepository.save(cart);
+
+        /*
+            Inject sold items here
+         */
         return "buyer/checkout";
     }
 

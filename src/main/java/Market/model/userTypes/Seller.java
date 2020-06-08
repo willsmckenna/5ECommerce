@@ -1,8 +1,8 @@
 package Market.model.userTypes;
 
-import Market.model.PaymentInfo;
+import Market.model.buyerRelated.PaymentInfo;
 import Market.model.Product;
-import Market.model.Review;
+import Market.model.reviews.Review;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.messages.Message;
 import com.fasterxml.jackson.annotation.JsonIgnore;

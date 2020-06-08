@@ -1,5 +1,6 @@
 package Market.model;
 
+import Market.model.reviews.Review;
 import Market.model.userTypes.Seller;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;

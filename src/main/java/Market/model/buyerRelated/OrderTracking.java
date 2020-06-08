@@ -1,4 +1,4 @@
-package Market.model;
+package Market.model.buyerRelated;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderTrackingContent implements Serializable {
+public class OrderTracking implements Serializable {
     private long OrderID;
     private String status;
 }

@@ -1,4 +1,4 @@
-package Market.model;
+package Market.model.buyerRelated;
 
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;

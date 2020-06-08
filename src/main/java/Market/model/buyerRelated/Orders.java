@@ -1,7 +1,6 @@
 package Market.model.buyerRelated;
 
 import Market.model.Product;
-import Market.model.OrderTrackingContent;
 import Market.model.userTypes.Buyer;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
@@ -59,7 +58,7 @@ public class Orders {
     @Type(type="jsonb")
     @Column(columnDefinition = "jsonb")
     @Basic(fetch = FetchType.EAGER)
-    private OrderTrackingContent orderTrackingContents = new OrderTrackingContent();
+    private OrderTracking orderTrackingContents = new OrderTracking();
 
     @Override
     public boolean equals(Object o) {
