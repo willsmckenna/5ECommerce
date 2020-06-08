@@ -1,7 +1,7 @@
 package Market.service.implementation;
 
 import Market.service.ShoppingCartService;
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

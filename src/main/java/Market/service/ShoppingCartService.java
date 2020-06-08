@@ -1,6 +1,6 @@
 package Market.service;
 
-import Market.model.Product;
+import Market.model.products.Product;
 
 import java.util.Map;
 

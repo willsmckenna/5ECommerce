@@ -3,7 +3,7 @@ package Market.service.implementation;
 import Market.model.userTypes.Seller;
 import Market.repo.SellerRepository;
 import Market.service.ProductService;
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

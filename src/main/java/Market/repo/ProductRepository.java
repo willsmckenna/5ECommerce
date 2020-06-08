@@ -1,6 +1,6 @@
 package Market.repo;
 
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.userTypes.Seller;
 import org.springframework.data.repository.CrudRepository;
 

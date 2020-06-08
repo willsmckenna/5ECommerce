@@ -1,13 +1,12 @@
 package Market.controller;
 
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.messages.Message;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;
 import Market.repo.ProductRepository;
 import Market.repo.SellerRepository;
 import Market.service.*;
-import Market.service.implementation.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

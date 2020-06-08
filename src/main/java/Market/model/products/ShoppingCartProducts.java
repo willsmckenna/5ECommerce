@@ -1,5 +1,6 @@
-package Market.model.buyerRelated;
+package Market.model.products;
 
+import Market.model.buyerRelated.ShoppingCart;
 import lombok.Data;
 
 import javax.persistence.*;

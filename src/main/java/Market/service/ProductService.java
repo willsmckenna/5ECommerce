@@ -1,6 +1,6 @@
 package Market.service;
 
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.userTypes.Seller;
 
 import java.util.Optional;

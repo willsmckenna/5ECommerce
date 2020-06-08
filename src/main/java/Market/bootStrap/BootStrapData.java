@@ -1,7 +1,7 @@
 package Market.bootStrap;
 import Market.model.buyerRelated.OrderTracking;
 import Market.model.buyerRelated.PaymentInfo;
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.reviews.Review;
 import Market.model.buyerRelated.Orders;
 import Market.model.buyerRelated.ShippingAddress;

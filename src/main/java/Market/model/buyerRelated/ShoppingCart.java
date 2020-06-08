@@ -1,10 +1,9 @@
 package Market.model.buyerRelated;
 
-import Market.model.Product;
+import Market.model.products.Product;
+import Market.model.products.ShoppingCartProducts;
 import Market.model.userTypes.Buyer;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;

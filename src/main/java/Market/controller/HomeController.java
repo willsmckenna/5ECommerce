@@ -1,6 +1,6 @@
 package Market.controller;
 
-import Market.model.*;
+import Market.model.products.Product;
 import Market.model.reviews.Review;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;

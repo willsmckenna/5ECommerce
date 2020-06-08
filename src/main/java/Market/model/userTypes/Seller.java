@@ -1,7 +1,7 @@
 package Market.model.userTypes;
 
 import Market.model.buyerRelated.PaymentInfo;
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.reviews.Review;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.messages.Message;

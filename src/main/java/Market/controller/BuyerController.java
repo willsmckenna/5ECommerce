@@ -1,9 +1,10 @@
 package Market.controller;
 
 import Market.model.buyerRelated.PaymentInfo;
-import Market.model.Product;
+import Market.model.products.Product;
 import Market.model.buyerRelated.*;
 import Market.model.messages.Message;
+import Market.model.products.ShoppingCartProducts;
 import Market.model.userTypes.Buyer;
 import Market.model.userTypes.Seller;
 import Market.model.userTypes.Users;

@@ -1,4 +1,4 @@
-package Market.model;
+package Market.model.products;
 
 import Market.model.reviews.Review;
 import Market.model.userTypes.Seller;

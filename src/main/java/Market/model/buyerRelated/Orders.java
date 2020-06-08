@@ -1,6 +1,7 @@
 package Market.model.buyerRelated;
 
-import Market.model.Product;
+import Market.model.products.Product;
+import Market.model.products.ProductsNoDepend;
 import Market.model.userTypes.Buyer;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
