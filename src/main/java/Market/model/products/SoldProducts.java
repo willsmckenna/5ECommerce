@@ -5,13 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SoldProducts  implements Serializable {
+    private String sellerUsername;
+    private String buyerUsername;
     private String itemName;
-    private String itemPrice;
-    private String soldDate;
-    private String itemQuantity;
+    private Date soldDate;
+    private double itemPrice;
+    private int itemQuantity;
 }

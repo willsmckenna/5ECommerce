@@ -20,6 +20,7 @@ public class ShoppingCartProducts {
     @Column(name = "product_Id")
     Long productId;
 
+
 //    @Column(name = "product_quantity")
 //    Long quantity;
 

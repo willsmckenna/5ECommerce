@@ -2,6 +2,7 @@ package Market.model.userTypes;
 
 import Market.model.buyerRelated.PaymentInfo;
 import Market.model.products.Product;
+import Market.model.products.SoldProducts;
 import Market.model.reviews.Review;
 import Market.model.buyerRelated.ShippingAddress;
 import Market.model.messages.Message;
@@ -62,6 +63,12 @@ public class Seller implements Serializable  {
     @JsonIgnore
     private List<Message> messages = new ArrayList<Message> ();
 
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb", name = "sold_items")
+    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<SoldProducts> soldProducts = new ArrayList<SoldProducts> ();
+
     public Seller() { }
 
     public Seller(String username, String firstname, String lastname) {
@@ -103,6 +110,20 @@ public class Seller implements Serializable  {
         {
             message.setId(this.lastMessageKey++);
             this.messages.add(message);
+        }
+    }
+
+    public void addSoldProduct(Product product, String buyerUsername)
+    {
+        if(product != null)
+        {
+           SoldProducts soldProducts = new SoldProducts();
+           soldProducts.setSellerUsername(this.username);
+           soldProducts.setBuyerUsername(buyerUsername);
+           soldProducts.setItemName(product.getName());
+           soldProducts.setItemPrice(product.getPrice());
+           soldProducts.setSoldDate(new Date());
+           soldProducts.setItemQuantity(1);
         }
     }
 }

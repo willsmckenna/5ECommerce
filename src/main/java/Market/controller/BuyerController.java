@@ -53,6 +53,9 @@ public class BuyerController {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private SellerRepository sellerRepository;
+
     static String usernamePlaceHolder ="";
 
     public BuyerController(){
@@ -130,6 +133,11 @@ public class BuyerController {
 
         for (ShoppingCartProducts p: products){
             Product product = productRepository.findById(p.getProductId()).orElse(null);
+
+            Seller seller = product.getSeller();
+            seller.addSoldProduct(product, buyer.getUsername());
+            sellerRepository.save(seller);
+            
             total += product.getPrice();
             order.addProduct(product, 1);
         }
@@ -139,12 +147,14 @@ public class BuyerController {
         orderRepository.save(order);
         //also empty current items in shopping cart since they were checked out
         ShoppingCart cart = shoppingCartRepository.findByBuyer(buyer);
+
         cart.getShoppingCartProducts().removeAll(products);
         shoppingCartRepository.save(cart);
 
         /*
             Inject sold items here
          */
+
         return "buyer/checkout";
     }
 
