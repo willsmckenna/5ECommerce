@@ -46,10 +46,8 @@ public class SignupController {
     public String addUser(@ModelAttribute("newUser") Users newUser, BindingResult bindingResult,Model model)
     {
 
-        System.out.println(newUser);
         Users nUser = new Users(newUser.getUsername(),passwordEncoder.encode(newUser.getPassword()),newUser.getRoles(),"none");
         user = nUser;
-        System.out.println(nUser);
         usersRepository.save(nUser);
 
         if(newUser.getRoles().equals("BUYER"))
@@ -63,7 +61,6 @@ public class SignupController {
     {
         newBuyer.setUsername(user.getUsername());
         user = null;
-        System.out.println(newBuyer);
         buyerRepository.save(newBuyer);
         //add a new shopping cart for the new buyer
         ShoppingCart sc = new ShoppingCart();
@@ -78,7 +75,6 @@ public class SignupController {
     {
         newSeller.setUsername(user.getUsername());
         user = null;
-        System.out.println(newSeller);
         sellerRepository.save(newSeller);
         return "/login";
 

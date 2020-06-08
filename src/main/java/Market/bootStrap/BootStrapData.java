@@ -206,9 +206,6 @@ public class BootStrapData implements CommandLineRunner {
         review_1.setDate(new Date());
         seller_1.getReviews().add(review_1);
         sellerRepository.save(seller_1);
-        System.out.println(seller_1.getReviews());
-
-
 
         //Make some messages: STRESS TEST
         Message message_1 = new Message();
