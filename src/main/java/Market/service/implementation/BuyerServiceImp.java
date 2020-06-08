@@ -1,9 +1,8 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
-import Market.repo.BuyerRepository;
-import Market.service.BuyerService;
+import market.model.userTypes.Buyer;
+import market.repo.BuyerRepository;
+import market.service.BuyerService;
 import org.springframework.stereotype.Service;
 
 @Service

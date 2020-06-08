@@ -1,17 +1,14 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.messages.Message;
-import Market.model.userTypes.Admin;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
-import Market.repo.AdminRepo;
-import Market.repo.BuyerRepository;
-import Market.repo.SellerRepository;
-import Market.service.AdminService;
+import market.model.messages.Message;
+import market.model.userTypes.Admin;
+import market.repo.AdminRepo;
+import market.repo.BuyerRepository;
+import market.repo.SellerRepository;
+import market.service.AdminService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class AdminServiceImp implements AdminService {

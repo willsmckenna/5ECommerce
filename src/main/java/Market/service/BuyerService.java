@@ -1,6 +1,6 @@
-package Market.service;
+package market.service;
 
-import Market.model.userTypes.Buyer;
+import market.model.userTypes.Buyer;
 
 public interface BuyerService {
         Buyer findByUsername(String username);

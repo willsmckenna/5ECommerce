@@ -1,10 +1,10 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.userTypes.Seller;
-import Market.repo.SellerRepository;
-import Market.service.ProductService;
-import Market.model.products.Product;
-import Market.repo.ProductRepository;
+import market.model.userTypes.Seller;
+import market.repo.SellerRepository;
+import market.service.ProductService;
+import market.model.products.Product;
+import market.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,14 +1,14 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.userTypes.Admin;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
-import Market.model.userTypes.Users;
-import Market.repo.AdminRepo;
-import Market.repo.BuyerRepository;
-import Market.repo.SellerRepository;
-import Market.repo.UsersRepository;
-import Market.service.UserService;
+import market.model.userTypes.Admin;
+import market.model.userTypes.Buyer;
+import market.model.userTypes.Seller;
+import market.model.userTypes.Users;
+import market.repo.AdminRepo;
+import market.repo.BuyerRepository;
+import market.repo.SellerRepository;
+import market.repo.UsersRepository;
+import market.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

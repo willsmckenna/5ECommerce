@@ -1,10 +1,9 @@
-package Market.service;
+package market.service;
 
-import Market.model.messages.Message;
-import Market.model.userTypes.Admin;
+import market.model.messages.Message;
+import market.model.userTypes.Admin;
 
 import java.util.List;
-import java.util.Map;
 
 public interface AdminService {
 

@@ -1,6 +1,6 @@
-package Market.service;
+package market.service;
 
-import Market.model.userTypes.Users;
+import market.model.userTypes.Users;
 
 import java.util.Set;
 

@@ -1,14 +1,14 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.messages.Message;
-import Market.model.userTypes.Admin;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
-import Market.repo.AdminRepo;
-import Market.repo.BuyerRepository;
-import Market.repo.SellerRepository;
-import Market.service.MessagingService;
-import Market.service.UserService;
+import market.model.messages.Message;
+import market.model.userTypes.Admin;
+import market.model.userTypes.Buyer;
+import market.model.userTypes.Seller;
+import market.repo.AdminRepo;
+import market.repo.BuyerRepository;
+import market.repo.SellerRepository;
+import market.service.MessagingService;
+import market.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,7 @@
-package Market.service;
+package market.service;
 
-import Market.model.messages.Message;
-import Market.model.products.Product;
-import Market.model.products.SoldProducts;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
+import market.model.products.SoldProducts;
+import market.model.userTypes.Seller;
 
 import java.util.List;
 

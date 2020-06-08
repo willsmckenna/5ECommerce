@@ -1,16 +1,9 @@
-package Market.service.implementation;
+package market.service.implementation;
 
-import Market.model.messages.Message;
-import Market.model.products.Product;
-import Market.model.products.SoldProducts;
-import Market.model.userTypes.Admin;
-import Market.model.userTypes.Buyer;
-import Market.model.userTypes.Seller;
-import Market.repo.AdminRepo;
-import Market.repo.BuyerRepository;
-import Market.repo.ProductRepository;
-import Market.repo.SellerRepository;
-import Market.service.SellerService;
+import market.model.products.SoldProducts;
+import market.model.userTypes.Seller;
+import market.repo.SellerRepository;
+import market.service.SellerService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

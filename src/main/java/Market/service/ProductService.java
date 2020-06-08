@@ -1,7 +1,7 @@
-package Market.service;
+package market.service;
 
-import Market.model.products.Product;
-import Market.model.userTypes.Seller;
+import market.model.products.Product;
+import market.model.userTypes.Seller;
 
 import java.util.Optional;
 import java.util.Set;
